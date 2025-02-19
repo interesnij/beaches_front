@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Шезлонгер - вход</title>
+    <meta name="Description" content="Шезлонгер - вход">
+    <link rel="icon" href="/assets/images/brand-logos/favicon.ico" type="image/x-icon">
+    <link id="style" href="/assets/css/bootstrap.css" rel="stylesheet" >
+    <link href="/assets/css/styles.min.css" rel="stylesheet" >
+    <link href="/assets/css/icons.min.css" rel="stylesheet" >
+</head>
+
+<body>
+    <div class="container-fluid custom-page">
+        <div class="row bg-white">
+            <!-- The image half -->
+            <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent-3">
+                <div class="row w-100 mx-auto text-center">
+                    <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto w-100">
+                        <img src="/assets/images/media/pngs/5.png"
+                            class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+                    </div>
+                </div>
+            </div>
+            <!-- The content half -->
+            <div class="col-md-6 col-lg-6 col-xl-5 bg-white py-4">
+                <div class="login d-flex align-items-center py-2">
+                    <!-- Demo content-->
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
+                                <div class="card-sigin">
+                                    <div class="mb-5 d-flex">
+                                        <a href="/" class="header-logo">
+											<img src="/assets/images/brand-logos/desktop-logo.png"
+                                            class="desktop-logo ht-40" alt="logo">
+                                            <img src="/assets/images/brand-logos/desktop-white.png"
+                                            class="desktop-white ht-40" alt="logo">
+                                        </a>
+                                    </div>
+                                    <div class="card-sigin">
+                                        <div class="main-signup-header">
+                                            <h3>С возвращением!</h3>
+                                            <h6 class="api_response fw-medium mb-4 fs-17">
+												Пожалуйста, заполните форму.
+											</h6>
+                                            <form>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Email</label> 
+													<input class="form-control" name="email" id="id_email" placeholder="Введите Вашу почту" type="text">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Password</label> <input class="form-control"
+                                                         name="password" id="id_password" placeholder="Введите Ваш пароль" type="password">
+                                                </div>
+                                                <button id="logg" type="button" class="btn btn-primary btn-block w-100">Войти</button>
+                                            </form>
+                                            <div class="main-signin-footer mt-5">
+                                                <p class="mb-1"><a href="">Забыли пароль?</a></p>
+                                                <p>Не зарегистрированы? 
+													<a href="/signup/">
+														Создать аккаунт
+													</a>
+												</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End -->
+                </div>
+            </div><!-- End -->
+        </div>
+    </div>
+	<script src="/assets/js/auth2.js"></script>
+</body>
+
+</html>

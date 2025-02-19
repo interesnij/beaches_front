@@ -1,0 +1,18 @@
+<% include!("mainhead.stpl"); %>
+
+</head>
+
+<body> 
+    <% let admin = request_user.is_superuser(); %>
+    <% let partner = request_user.is_partner(); %>
+
+    <% include!("switcher.stpl"); %>
+    <div id="loader" >
+        <img src="/assets/images/media/loader.svg" alt="">
+    </div>
+
+    <div class="page">
+        <% include!("header.stpl"); %>
+        <% include!("sidebar.stpl"); %>
+
+        <!-- Start::app-content -->

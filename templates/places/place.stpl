@@ -57,7 +57,7 @@
                                             </div>
                                             <span class="review-no">41 reviews</span>
                                         </div>
-                                        <a href="/place/<%= object.uuid %>/create_map/">Создать модули</a>
+                                        <a href="/place/<%= object.id %>/create_map/">Создать модули</a>
                                     </div>
                                 </div>
                             </div>

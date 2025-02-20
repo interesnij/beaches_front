@@ -30,14 +30,14 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/place/{id}/edit/", web::post().to(edit_place));
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceJson {
     pub title:   String, 
     pub type_id: String, 
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct EditPlaceJson {
     pub title:   String,
     pub type_id: String,
@@ -54,7 +54,16 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         object = data;
     }
     else {
-        object = Place{};
+        object = Place{
+            id:      "".to_string(),
+            title:   "".to_string(), 
+            types:   0,
+            created: chrono::Local::now().naive_utc(),
+            user_id: "".to_string(),
+            type_id: "".to_string(),
+            image:   None,
+            cord:    None,
+        };
     }
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
@@ -96,7 +105,16 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
         object = data;
     }
     else {
-        object = Place{};
+        object = Place{
+            id:      "".to_string(),
+            title:   "".to_string(), 
+            types:   0,
+            created: chrono::Local::now().naive_utc(),
+            user_id: "".to_string(),
+            type_id: "".to_string(),
+            image:   None,
+            cord:    None,
+        };
     }
 
     let object_list: Vec<UserJson>;
@@ -167,7 +185,16 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
             object = data;
         }
         else {
-            object = Place{};
+            object = Place{
+            id:      "".to_string(),
+            title:   "".to_string(), 
+            types:   0,
+            created: chrono::Local::now().naive_utc(),
+            user_id: "".to_string(),
+            type_id: "".to_string(),
+            image:   None,
+            cord:    None,
+        };
         }
         #[derive(TemplateOnce)]
         #[template(path = "places/edit.stpl")]

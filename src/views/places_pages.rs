@@ -26,15 +26,14 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/place/{id}/managers/", web::get().to(managers_page));
     config.route("/place/{id}/", web::get().to(place_page));
 
-    config.route("/create/", web::post().to(create_place));
+    config.route("/create_place/", web::post().to(create_place));
     config.route("/place/{id}/edit/", web::post().to(edit_place));
 }
 
 #[derive(Deserialize)]
 pub struct PlaceJson {
-    pub title:   String,
-    pub user_id: String,
-    pub type_id: String,
+    pub title:   String, 
+    pub type_id: String, 
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }
@@ -92,7 +91,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
     let object: Place;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone()).await;
-    if resp.is_ok() { 
+    if resp.is_ok() {  
         let data = resp.expect("E.");
         object = data;
     }
@@ -102,10 +101,10 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
 
     let object_list: Vec<UserJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/managers/".to_string();
-    let resp = crate::utils::request_get::<UserJsons>(url, _request_user.uuid.clone()).await;
+    let resp = crate::utils::request_get::<Vec<UserJson>>(url, _request_user.uuid.clone()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
-        object_list = data.data;
+        object_list = data;
     }
     else { 
         object_list = Vec::new();

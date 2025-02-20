@@ -149,7 +149,14 @@
                     <img src="/assets/images/faces/6.jpg" alt="img" width="37" height="37" class="rounded-circle">
                 </a>
                 <!-- End::header-link|dropdown-toggle -->
-                <ul class="main-header-dropdown dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end main-profile-menu" aria-labelledby="mainHeaderProfile">
+                <ul 
+                    class="user_info main-header-dropdown dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end main-profile-menu" 
+                    aria-labelledby="mainHeaderProfile"
+                    data-er="<%= request_user.perm %>"
+                    data-id="<%= request_user.uuid %>"
+                    first-name="<%= request_user.first_name %>"
+                    last-name="<%= request_user.last_name %>"
+                > 
                     <li>
                         <div class="main-header-profile bg-primary menu-header-content text-fixed-white">
                             <div class="my-auto">
@@ -161,7 +168,6 @@
                         </div>
                     </li>
                     <li><a class="dropdown-item d-flex" href="/profile/"><i class="bx bx-user-circle fs-18 me-2 op-7"></i>Профиль</a></li>
-                    <li><a class="dropdown-item d-flex" href="/profile/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Редактировать </a></li>
                     
                     <% if admin == true { %>
                         <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои объекты </a></li>

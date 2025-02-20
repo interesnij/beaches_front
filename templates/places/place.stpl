@@ -6,9 +6,9 @@
         position: relative;
     }
 </style>
-<script src="./booking/scheme-designer-viewer.js"></script>
-<script src="./booking/scheme-select-module.js"></script>
-<script src="./booking/scheme-viewer.js"></script>
+<script src="/assets/js/scheme-designer-viewer.js"></script>
+<script src="/assets/js/scheme-select-module.js"></script>
+<script src="/assets/js/scheme-viewer.js"></script>
 
  <div class="main-content app-content">
             <div class="container-fluid">

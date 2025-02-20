@@ -185,7 +185,7 @@
                     <% } else { %>
                         <li><a class="dropdown-item d-flex" href="/orders/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои заказы </a></li>
                     <% } %>
-                    <li><a class="dropdown-item d-flex logout_hundler" href="#"><i class="bx bx-log-out fs-18 me-2 op-7"></i>Выйти</a></li>
+                    <li><a class="dropdown-item d-flex logout_hundler" style="cursor:pointer"><i class="bx bx-log-out fs-18 me-2 op-7"></i>Выйти</a></li>
                 </ul>
             </div>  
             <!-- End::header-element -->

@@ -10,7 +10,7 @@ use actix_session::Session;
 use crate::utils::{
     get_current_user,
     is_signed_in,
-    Place, Places,
+    Place, Places, URL,
 };
 use crate::views::AuthResp2;
 
@@ -24,8 +24,8 @@ pub fn pages_urls(config: &mut web::ServiceConfig) {
 
 pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
     let object_list: Vec<Place>;
-    let url = URL.to_string() + &"/places/?page=".to_string() + &page.to_string();
-    let resp = crate::utils::request_get::<Places>(url, _request_user.uuid.clone()).await;
+    let url = URL.to_string() + &"/places/".to_string();
+    let resp = crate::utils::request_get::<Places>(url, "".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
         object_list = data.data;

@@ -159,6 +159,7 @@
                             data-id="<%= request_user.uuid %>"
                             first-name="<%= request_user.first_name %>"
                             last-name="<%= request_user.last_name %>"
+                            secret="<%= request_user.uuid %>"
                         >
                             <div class="my-auto">
                                 <h6 class="mb-0 lh-1 text-fixed-white"><%= request_user.first_name %> <%= request_user.last_name %></h6>

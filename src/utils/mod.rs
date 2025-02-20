@@ -58,7 +58,7 @@ pub fn get_id(req: &HttpRequest) -> String {
     if params_some.is_ok() {
         let params = params_some.unwrap();
         if params.id.is_some() {
-            id = params.id.unwrap();
+            id = params.id.as_deref().unwrap();
         }
         else {
             id = "".to_string();

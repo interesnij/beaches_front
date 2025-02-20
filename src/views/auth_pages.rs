@@ -47,9 +47,15 @@ pub struct AuthResp {
     pub email:      String,
     pub perm:       i16,
     pub image:      Option<String>,
-    pub phone:      Option<String>,
-    pub white_list: Vec<UserWhiteList>,
-} 
+}
+impl AuthResp {
+    pub fn is_superuser(&self) -> bool {
+        return self.perm == 10;
+    }
+    pub fn is_partner(&self) -> bool {
+        return self.perm == 4;
+    }
+}
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct AuthResp2 { 
@@ -61,7 +67,6 @@ pub struct AuthResp2 {
     pub image:      Option<String>,
     pub phone:      Option<String>,
     pub uuid:       String,
-    pub white_list: Vec<UserWhiteList>,
 } 
 
 #[derive(Deserialize, Serialize, Debug)]

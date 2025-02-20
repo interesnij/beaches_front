@@ -27,11 +27,11 @@ pub fn is_signed_in(session: &Session) -> bool {
   }
 }
 
-pub fn set_current_user(session: &Session, user: &AuthResp) -> () {
+pub fn set_current_user(session: &Session, user: &AuthResp2) -> () {
     session.insert("user", serde_json::to_string(user).unwrap()).unwrap();
 }
  
-pub fn get_current_user(session: &Session) -> Result<AuthResp, AuthError> {
+pub fn get_current_user(session: &Session) -> Result<AuthResp2, AuthError> {
     let msg = "Error";
 
     session

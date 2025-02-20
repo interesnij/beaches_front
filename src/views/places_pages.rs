@@ -137,7 +137,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
     }
 }
 pub async fn create_place_page(session: Session) -> actix_web::Result<HttpResponse> {
-    if is_signed_in(&session) {
+    //if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         
         #[derive(TemplateOnce)]
@@ -151,10 +151,10 @@ pub async fn create_place_page(session: Session) -> actix_web::Result<HttpRespon
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
         Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
-    }
-    else {
-        crate::views::auth_page(session.clone()).await
-    }
+    //}
+    //else {
+    //    crate::views::auth_page(session.clone()).await
+    //}
 }
 pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {

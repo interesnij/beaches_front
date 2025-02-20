@@ -221,8 +221,8 @@ pub async fn create_place(session: Session, data: Json<PlaceJson>) -> actix_web:
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let res = crate::utils::request_post::<PlaceJson, ()> (
-            URL.to_owned() + &"/places/create/".to_string(),
-            &data, 
+            URL.to_owned() + &"/create_place/".to_string(),
+            &data,  
             _request_user.uuid
         ).await;
 
@@ -236,7 +236,7 @@ pub async fn create_place(session: Session, data: Json<PlaceJson>) -> actix_web:
 pub async fn edit_place(session: Session, data: Json<EditPlaceJson>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/edit/".to_string();
+        let url = URL.to_string() + &"/create_place/".to_string() + &id.clone() + &"/".to_string();
         let res = crate::utils::request_post::<EditPlaceJson, ()> (
             url,
             &data, 

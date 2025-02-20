@@ -36,16 +36,6 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
         Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
     }
     else {
-        #[derive(TemplateOnce)]
-        #[template(path = "user/anon_index.stpl")]
-        struct Template {
-            //types: String,
-        }
-        let body = Template {
-            //types: "anon".to_string(),
-        }
-        .render_once()
-        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
-        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+        crate::views::auth_page(session).await
     }
 }

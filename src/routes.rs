@@ -3,6 +3,7 @@ use crate::views::{
     pages_urls,
     user_urls,
     auth_urls,
+    place_urls,
 };
 
 
@@ -11,5 +12,6 @@ pub fn routes(cfg: &mut web::ServiceConfig) {
     .configure(pages_urls)
     .configure(user_urls)
     .configure(auth_urls)
+    .configure(place_urls)
     ;
 }

@@ -94,7 +94,7 @@ pub struct NewUser {
     pub last_name:  String,
     pub email:      String,
     pub password:   String,
-    //pub token:      String,
+    pub token:      String,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct NewPassword {

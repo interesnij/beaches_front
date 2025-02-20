@@ -204,4 +204,4 @@
             </div>
         </div>
 
-<% include!("f.stpl"); %>
+<% include!("partials/f.stpl"); %>

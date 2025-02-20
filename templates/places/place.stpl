@@ -113,16 +113,16 @@
         </div>
 
         <script type="module">
-    import { SchemeData } from './booking/scheme-data.js';
-    import { Observer } from './booking/data/observer.js';
-    import { SchemeSelectModule } from './booking/scheme-select-module.js';
-    import { SchemeViewer } from './booking/scheme-viewer.js';
-    import { SchemeBookingSettings } from './booking/scheme-booking-settings.js';
+    import { SchemeData } from '/assets/js/scheme-data.js';
+    import { Observer } from '/assets/js/data/observer.js';
+    import { SchemeSelectModule } from '/assets/js/scheme-select-module.js';
+    import { SchemeViewer } from '/assets/js/scheme-viewer.js';
+    import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
 
     //window.addEventListener('load', (event) => {
     var request = new XMLHttpRequest();
-    request.open("GET", "./assets/json/data_view2.json", false);
+    request.open("GET", "/assets/json/data_view2.json", false);
     request.send(null)
     var JSONObject = JSON.parse(request.responseText);
     var canvas = document.getElementById('scheme-canvas');

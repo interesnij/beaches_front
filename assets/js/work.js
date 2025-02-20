@@ -1,6 +1,12 @@
 function on(elSelector, eventName, selector, fn) {var element = document.querySelector(elSelector);element.addEventListener(eventName, function(event) {var possibleTargets = element.querySelectorAll(selector);var target = event.target;for (var i = 0, l = possibleTargets.length; i < l; i++) {var el = target;var p = possibleTargets[i];while (el && el !== element) {if (el === p) {return fn.call(p, event);}el = el.parentNode;}}});};
 
 info_div = document.body.querySelector(".user_info");
+console.log("info_div", info_div);
+console.log("ID", ID);
+console.log("FIRSTNAME", FIRSTNAME);
+console.log("LASTNAME", LASTNAME);
+console.log("ER", ER);
+
 const ID = info_div.getAttribute("data-id");
 const FIRSTNAME = info_div.getAttribute("first-name");
 const LASTNAME = info_div.getAttribute("last-name");

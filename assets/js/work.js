@@ -57,6 +57,7 @@ on('body', 'click', '#create_place', function() {
     }
     
 	form_data.append("user_id", ID);
+	form_data.append("type_id", "");
     object = {};
     form_data.forEach((value, key) => object[key] = value);
     json = JSON.stringify(object);

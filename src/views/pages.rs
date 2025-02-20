@@ -1,7 +1,5 @@
 use actix_web::{
-    HttpRequest,
     HttpResponse,
-    Responder,
     web,
     error::InternalError,
     http::StatusCode,
@@ -24,6 +22,7 @@ pub fn pages_urls(config: &mut web::ServiceConfig) {
 }
 
 pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
+    
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         #[derive(TemplateOnce)]

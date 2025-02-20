@@ -8,7 +8,7 @@
     <title> Шезлонгер</title>
     <meta name="Description" content="Шезлонгер">
 
-    <link rel="icon" href="/assets/images/brand-logos/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
     <script src="/assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
     <script src="/assets/js/main.js"></script>
     <link id="style" href="/assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" >

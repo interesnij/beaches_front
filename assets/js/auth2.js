@@ -3,7 +3,7 @@ function on(elSelector, eventName, selector, fn) {var element = document.querySe
 
 on('body', 'click', '#logg', function() {
     _this = this;
-    form = _this.parentElement.parentElement.parentElement;
+    form = _this.parentElement;
     response = form.querySelector(".api_response");
   
     if (!form.querySelector("#id_email").value){
@@ -44,7 +44,7 @@ on('body', 'click', '#logg', function() {
 
 on('body', 'click', '#signup', function() {
     _this = this;
-    form = _this.parentElement.parentElement.parentElement;
+    form = _this.parentElement;
     response = form.querySelector(".api_response");
     if (!form.querySelector("#id_first_name").value){
       form.querySelector("#id_first_name").style.border = "1px #FF0000 solid";

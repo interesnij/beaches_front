@@ -55,6 +55,12 @@ impl AuthResp {
     pub fn is_partner(&self) -> bool {
         return self.perm == 4;
     }
+    pub fn is_await_partner(&self) -> bool {
+        return self.perm == 3;
+    }
+    pub fn is_manager(&self) -> bool {
+        return self.perm == 2;
+    }
 }
 
 #[derive(Deserialize, Serialize, Debug)]
@@ -74,6 +80,12 @@ impl AuthResp2 {
     pub fn is_partner(&self) -> bool {
         return self.perm == 4;
     }
+    pub fn is_await_partner(&self) -> bool {
+        return self.perm == 3;
+    }
+    pub fn is_manager(&self) -> bool {
+        return self.perm == 2;
+    }
 }
 
 #[derive(Deserialize, Serialize, Debug)]
@@ -82,7 +94,7 @@ pub struct NewUser {
     pub last_name:  String,
     pub email:      String,
     pub password:   String,
-    pub token:      String,
+    //pub token:      String,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct NewPassword {
@@ -132,7 +144,7 @@ pub async fn signup(req: HttpRequest, session: Session, data: Json<NewUser>) -> 
         last_name:  data.last_name.clone(),
         email:      data.email.clone(),
         password:   data.password.clone(),
-        token:      data.token.clone(),
+        //token:      "".to_string(),
     }; 
     let res = request_post::<NewUser, AuthResp2> (
         URL.to_owned() + &"/signup/".to_string(),

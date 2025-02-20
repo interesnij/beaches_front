@@ -81,7 +81,7 @@ pub struct ModuleTypes {
 }
 
 // пользователи
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct UserJson {
     pub id:         String,
     pub first_name: String,

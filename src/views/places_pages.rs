@@ -49,7 +49,7 @@ pub struct EditPlaceJson {
 pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     let object: Place;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-    let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone()).await;
+    let resp = crate::utils::request_get::<Place>(url, "".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
         object = data;
@@ -132,7 +132,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
             object_list = Vec::new();
         }
         let mut list: Vec<UserJson> = Vec::new();
-        for object in object_list.into_iter() {
+        for object in object_list.clone().into_iter() {
             list.push(object);
         }
         

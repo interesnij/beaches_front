@@ -1,6 +1,6 @@
 function on(elSelector, eventName, selector, fn) {var element = document.querySelector(elSelector);element.addEventListener(eventName, function(event) {var possibleTargets = element.querySelectorAll(selector);var target = event.target;for (var i = 0, l = possibleTargets.length; i < l; i++) {var el = target;var p = possibleTargets[i];while (el && el !== element) {if (el === p) {return fn.call(p, event);}el = el.parentNode;}}});};
 
-
+ 
 on('body', 'click', '#logg', function() {
     _this = this;
     form = _this.parentElement;
@@ -10,7 +10,7 @@ on('body', 'click', '#logg', function() {
       form.querySelector("#id_email").style.border = "1px #FF0000 solid";
       response.innerHTML = "Введите Вашу почту";
       response.classList.add("error");
-      return
+      return 
     }
     else if (!form.querySelector("#id_password").value){
       form.querySelector("#id_password").style.border = "1px #FF0000 solid";

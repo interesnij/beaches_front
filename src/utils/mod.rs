@@ -24,6 +24,10 @@ pub struct Time {
     pub id:   String,
     pub time: chrono::NaiveDateTime,
 }
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Times {
+    pub data: Vec<Time>,
+}
 
 // для регистрации
 #[derive(Debug, Deserialize, Serialize)]
@@ -47,12 +51,20 @@ pub struct Place {
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Places {
+    pub data: Vec<Place>,
+}
 
 // типы объектов (пляж, ресторан)
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PlaceType {
     pub id:    String,
     pub title: String,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct PlaceTypes {
+    pub data: Vec<PlaceType>,
 }
 
 // типы модулей (стул, лежак)
@@ -62,6 +74,10 @@ pub struct ModuleType {
     pub title: String,
     pub types: i16,
     pub image: Option<String>,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct ModuleTypes {
+    pub data: Vec<ModuleType>,
 }
 
 // пользователи
@@ -74,6 +90,10 @@ pub struct UserJson {
     pub level:      i16,
     pub image:      Option<String>,
 }
+#[derive(Debug, Deserialize, Serialize)]
+pub struct UserJsons {
+    pub data: Vec<UserJson>,
+}
 
 // заказы владельца объекта
 #[derive(Debug, Deserialize, Serialize)]
@@ -85,6 +105,10 @@ pub struct RespOrderJson {
     pub price:      i32,
     pub time_start: String,
     pub time_end:   String,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct RespOrderJsons {
+    pub data: Vec<RespOrderJson>,
 }
 //
 
@@ -107,6 +131,11 @@ pub struct RespOrderJson2 {
     pub order:  OrderListJson,
     pub place:  PlaceListJson,
 }
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct RespOrderJson2s {
+    pub data: Vec<RespOrderJson2>,
+} 
 ///
 
 // модули 

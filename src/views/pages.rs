@@ -10,6 +10,7 @@ use actix_session::Session;
 use crate::utils::{
     get_current_user,
     is_signed_in,
+    Place, Places,
 };
 use crate::views::AuthResp2;
 
@@ -22,16 +23,32 @@ pub fn pages_urls(config: &mut web::ServiceConfig) {
 }
 
 pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
-    
+    let object_list: Vec<Place>;
+    let url = URL.to_string() + &"/places/?page=".to_string() + &page.to_string();
+    let resp = crate::utils::request_get::<Places>(url, _request_user.uuid.clone()).await;
+    if resp.is_ok() { 
+        let data = resp.expect("E.");
+        object_list = data.data;
+    }
+    else { 
+        object_list = Vec::new();
+    }
+    let mut list: Vec<Place> = Vec::new();
+    for object in object_list.into_iter() {
+        list.push(object);
+    }
+
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         #[derive(TemplateOnce)]
         #[template(path = "mainpage.stpl")]
         struct Template {
             request_user: AuthResp2,
+            object_list:  Vec<Place>,
         }
         let body = Template {
             request_user: _request_user,
+            object_list:  list,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -41,10 +58,10 @@ pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "anon_mainpage.stpl")]
         struct Template {
-            //types: String,
+            object_list:  Vec<Place>,
         }
         let body = Template {
-            //types: "anon".to_string(),
+            object_list:  list,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

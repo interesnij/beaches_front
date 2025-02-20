@@ -34,7 +34,8 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
 #[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceJson {
     pub title:   String, 
-    pub type_id: String, 
+    pub type_id: String,
+    pub user_id: String,
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }
@@ -42,6 +43,7 @@ pub struct PlaceJson {
 pub struct EditPlaceJson {
     pub title:   String,
     pub type_id: String,
+    pub user_id: String,
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }

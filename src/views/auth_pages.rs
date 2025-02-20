@@ -94,7 +94,7 @@ pub struct NewUser {
     pub last_name:  String,
     pub email:      String,
     pub password:   String,
-    pub token:      String,
+    //pub token:      String,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct NewPassword {
@@ -144,7 +144,7 @@ pub async fn signup(req: HttpRequest, session: Session, data: Json<NewUser>) -> 
         last_name:  data.last_name.clone(),
         email:      data.email.clone(),
         password:   data.password.clone(),
-        token:      "".to_string(),
+        //token:      "".to_string(),
     }; 
     let res = request_post::<NewUser, AuthResp2> (
         URL.to_owned() + &"/signup/".to_string(),

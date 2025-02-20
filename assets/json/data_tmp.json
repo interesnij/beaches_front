@@ -1,0 +1,226 @@
+{
+	"version": "0.1",
+	"place": {
+		"id": "",
+		"name": "Пляж 1",
+		"description": "Плаж Бытха",
+		"guid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE2"
+	},
+	"workspace": {
+		"placeGuid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE2",
+		"width": 1600,
+		"height": 900,
+		"backgroundGuid": "78A4F7A2-E064-437B-B213-7BEC3F518337"
+	},
+	"settings": {
+		"placeGuid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE2",
+		"options": {
+			"cacheSchemeRatio": 2
+		},
+		"scroll": {
+			"draggable": true,
+			"draggableLeft": true,
+			"draggableTop": true,
+			"maxHiddenPart": 0.5
+		},
+		"zoom": {
+			"padding": 0.1,
+			"maxScale": 1.5,
+			"zoomCoefficient": 1.04
+		},
+		"storage": {
+			"treeDepth": 0
+		}
+	},
+	"typeModules": [
+		{
+			"guid": "78A4F7A2-E064-437B-B213-7BEC3F518337",
+			"type": "Place",
+			"name": "Бытха",
+			"description": "Пляж Бытха",
+			"price": 0,
+			"imageUrl": "/assets/images/my/фон.png"
+		},
+		{
+			"guid": "78A4F7A2-E064-437B-B213-7BEC3F518338",
+			"type": "Place",
+			"name": "DefaultPlace",
+			"description": "Пустой пляж",
+			"price": 0,
+			"imageUrl": ""
+		},
+		{
+			"guid": "78A4F7A2-E064-437B-B213-7BEC3F518336",
+			"type": "Module",
+			"name": "Пуфик",
+			"description": "мягкий стул",
+			"price": 100,
+			"imageUrl": "/assets/images/my/пуфик.png"
+		},
+		{
+			"guid": "ECDAF8AB-9566-4085-B4AA-5A21B154F56B",
+			"type": "Module",
+			"name": "Лежак",
+			"description": "Стандартный лежак",
+			"price": 200,
+			"imageUrl": "/assets/images/my/лежак.png"
+		},
+		{
+			"guid": "ECDAF8AB-9566-4085-B4AA-5A21B154F562",
+			"type": "Module",
+			"name": "Лежак+",
+			"description": "Деревянный лежак c мягким матрасом.",
+			"price": 800,
+			"imageUrl": "/assets/images/my/лежак2.png"
+		},
+		{
+			"guid": "04959400-3612-4852-BE77-15E8EFEBE3C1",
+			"type": "Module",
+			"name": "Столик с 2 пуфиками",
+			"description": "Столик с 2 пуфиками",
+			"price": 400,
+			"imageUrl": "/assets/images/my/пуфик_со_столиком.png"
+		},
+		{
+			"guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8119",
+			"type": "Module",
+			"name": "Качели",
+			"description": "Качели",
+			"price": 1500,
+			"imageUrl": "/assets/images/my/качели.png",
+			"parameters": []
+		},
+		{
+			"guid": "2AE18D2A-98D7-4B23-8BD4-2D798348BAFB",
+			"type": "Technical",
+			"name": "Туалет",
+			"description": "Платный туалет",
+			"imageUrl": "/assets/images/my/Туалет.png",
+			"parameters": []
+		},
+		{
+			"guid": "BFB61486-46AC-4975-9DA6-D13DC0413233",
+			"type": "Technical",
+			"name": "Кабинка для переодевания",
+			"description": "Кабинка для переодевания",
+			"imageUrl": "/assets/images/my/раздевалка.png",
+			"parameters": []
+		},
+		{
+			"guid": "273835FE-55D8-47D8-8DA9-3156BBBDF48E",
+			"type": "Technical",
+			"name": "Пляжный душ",
+			"description": "Пляжный душ",
+			"imageUrl": "/assets/images/my/душ.png",
+			"parameters": []
+		},
+		{
+			"guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB0",
+			"type": "label",
+			"name": "H2",
+			"fontname": "Arial",
+			"imageUrl": "/assets/images/my/label_h2.png",
+			"fontSize": 15,
+			"fontColor": "blue"
+		},
+		{
+			"guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB1",
+			"type": "label",
+			"name": "Text",
+			"imageUrl": "/assets/images/my/label_txt.png",
+			"fontname": "Arial",
+			"fontSize": 12,
+			"fontColor": "black"
+		},
+		{
+			"guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C3B",
+			"type": "Landscape",
+			"name": "Дорожка",
+			"description": "Дорожка",
+			"imageUrl": "/assets/images/my/дорожка1.png"
+		},
+		{
+			"guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C4B",
+			"type": "Landscape",
+			"name": "Дорожка_поворот",
+			"description": "Дорожка поворот",
+			"imageUrl": "/assets/images/my/дорожка2.png"
+		},
+		{
+			"guid": "395335BC-1C3C-4E33-AFBD-55EA3FE39C4B",
+			"type": "Landscape",
+			"name": "Дорожка_перекресток",
+			"description": "Дорожка перектесток",
+			"imageUrl": "/assets/images/my/дорожка3.png"
+		}
+	],
+	"modules": [
+		{
+			"guid": "53AFD1C3-6C0E-46CD-B37B-696447FF2566",
+			"name": "Лежак_1_1",
+			"objectName": "Module",
+			"typeModulesGuid": "ECDAF8AB-9566-4085-B4AA-5A21B154F56B",
+			"price": "300",
+			"width": "100",
+			"height": "150",
+			"left": "360.0000",
+			"top": "520.0000",
+			"angle": "0.00",
+			"fontColor": "",
+			"fontSize": "10",
+			"backColor": "FFCC66"
+		},
+		{
+			"guid": "49319C10-7EE3-49B6-AAB1-2D94C460A9AD",
+			"name": "Пуфик_1_1",
+			"objectName": "Module",
+			"typeModulesGuid": "04959400-3612-4852-BE77-15E8EFEBE3C1",
+			"price": "150",
+			"width": "100",
+			"height": "100",
+			"label": "2",
+			"left": "20.0000",
+			"top": "600.0000",
+			"angle": "0.00",
+			"fontColor": "",
+			"fontSize": "10",
+			"backColor": "FFCC66"
+		},
+		{
+			"guid": "97A0A090-8A59-427C-B17B-4FE9D6440F6C",
+			"name": "Пуфик_1_2",
+			"objectName": "Module",
+			"typeModulesGuid": "04959400-3612-4852-BE77-15E8EFEBE3C1",
+			"price": "150",
+			"width": "100",
+			"height": "100",
+			"left": "140.0000",
+			"top": "520.0000",
+			"angle": "50.00",
+			"fontColor": "",
+			"fontSize": "10",
+			"backColor": "FFCC66",
+			"FreeOfferseat": "0",
+			"label": "1",
+			"avail": false
+		},
+		{
+			"guid": "9953D073-9AE4-4E35-97C8-41B829DCF105",
+			"name": "Пуфик_1_3",
+			"objectName": "PaddedStool",
+			"typeModulesGuid": "04959400-3612-4852-BE77-15E8EFEBE3C1",
+			"price": "150",
+			"width": "100",
+			"height": "100",
+			"left": "168.0000",
+			"top": "388.0000",
+			"angle": "0.00",
+			"FreeOfferseat": "0",
+			"fontColor": "ff0000",
+			"fontSize": "0",
+			"label": "1",
+			"backColor": "1dbbf9",
+			"avail": false
+		}
+	]
+}

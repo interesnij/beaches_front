@@ -1,4 +1,149 @@
 <% include!("../partials/h.stpl"); %>
 
+<div class="main-content app-content">
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <div class="my-auto">
+                        <h5 class="page-title fs-21 mb-1">Профиль</h5>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                                <li class="breadcrumb-item active">Профиль</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+				<div class="row row-sm">
+					<div class="col-xl-4">
+						<div class="card mb-4">
+							<div class="card-body">
+								<div class="ps-0">
+									<div class="main-profile-overview">
+										<div class="main-img-user profile-user user-profile">
+											<img alt="" src="../assets/images/faces/6.jpg">
+										</div>
+										<div class="d-flex justify-content-between mb-4">
+											<div>
+												<h5 class="main-profile-name"><%= request_user.first_name %> <%= request_user.last_name %></h5>
+											</div>
+										</div>
+									</div><!-- main-profile-overview -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-8">
+						<div class="card">
+							<div class="card-body">
+								<div class="tabs-menu ">
+									<!-- Tabs -->
+									<ul class="nav nav-tabs profile navtab-custom panel-tabs" role="tablist">
+										<li class="">
+											<a href="#home" data-bs-toggle="tab" class="active" aria-expanded="true" aria-selected="true" role="tab"> <span class="visible-xs"><i class="las la-user-circle fs-16 me-1"></i></span> <span class="hidden-xs">Инфо</span> </a>
+										</li>
+										<li class="">
+											<a href="#gallery" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-images fs-15 me-1"></i></span>
+												<span class="hidden-xs">Объекты</span> </a>
+										</li>
+										<li class="">
+											<a href="#friends01" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-life-ring fs-16 me-1"></i></span>
+												<span class="hidden-xs">Заказы</span> </a>
+										</li>
+                                        <li class="">
+											<a href="#settings" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-life-ring fs-16 me-1"></i></span>
+												<span class="hidden-xs">Редактировать</span> </a>
+										</li>
+									</ul>
+								</div>
+								<div class="tab-content border border-top-0 p-4 br-dark">
+									<div class="tab-pane border-0 p-0 active show" id="home" role="tabpanel">
+										<h4 class="fs-15 text-uppercase mb-3">ID <%= request_user.uuid %></h4>
+                                        <h4 class="fs-15 text-uppercase mb-3">Статус - пользователь</h4>
+									</div> 
+									<div class="tab-pane border-0 p-0" id="gallery" role="tabpanel">
+                                        <div class="row">
+                                            <!--
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <div class="card overflow-hidden">
+													<a href="../assets/images/media/media-71.jpg" class="glightbox card shadow-none" data-gallery="gallery1">
+														<img src="../assets/images/media/media-71.jpg" alt="image">
+													</a>
+													<h4 class="text-center fs-14 mt-3 mb-0">Gallary Image</h4>
+													<div class="ga-border"></div>
+													<p class="text-muted text-center"><small>Photography</small></p>
+												</div>
+                                            </div>
+											-->
+											Пока нет объектов
+                                        </div>
+									</div>
+									<div class="tab-pane border-0 p-0" id="friends01" role="tabpanel">
+										<div class="row">
+											Пока нет заказов
+											<!--
+											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
+												<div class="card custom-card border shadow-none">
+													<div class="card-body  user-lock text-center">
+														<div class="dropdown float-end">
+															<a href="javascript:void(0);" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
+															<div class="dropdown-menu shadow"> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-message-square me-2"></i>
+																	Message</a> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-trash-2 me-2"></i> Delete</a>
+															</div>
+														</div>
+														<a href="profile.html">
+															<img alt="avatar" class="rounded-circle" src="../assets/images/faces/1.jpg">
+															<h5 class="fs-16 mb-0 mt-3 text-dark fw-semibold">James Thomas</h5>
+															<span class="text-muted">Web designer</span>
+															<div class="mt-3 d-flex mx-auto text-center justify-content-center">
+																<span class="btn btn-icon btn-outline-primary rounded-circle border me-3">
+																	<i class="bx bxl-facebook fs-18 align-middle"></i>
+																</span>
+																<span class="btn btn-icon btn-outline-primary rounded-circle border me-3">
+																	<i class="bx bxl-twitter fs-18 align-middle"></i>
+																</span>
+																<span class="btn btn-icon btn-outline-primary rounded-circle border">
+																	<i class="bx bxl-linkedin fs-18 align-middle"></i>
+																</span>
+															</div>
+														</a>
+													</div>
+												</div>
+											</div>
+											-->
+										</div>
+									</div>
+									<div class="tab-pane border-0 p-0" id="settings" role="tabpanel">
+										<form>
+												<div class="form-group mb-3">
+                                                    <label class="form-label">Ваше имя</label> 
+													<input class="form-control" name="first_name" id="id_first_name" placeholder="Введите Ваше имя" type="text">
+                                                </div>
+												<div class="form-group mb-3">
+                                                    <label class="form-label">Ваша фамилия</label> 
+													<input class="form-control" name="last_name" id="id_last_name" placeholder="Введите Вашу фамилию" type="text">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Email</label> 
+													<input class="form-control" name="email" id="id_email" placeholder="Введите Вашу почту" type="email">
+                                                </div>
+                                                
+                                                <button id="edit" type="button" class="btn btn-primary btn-block w-100">Изменить</button>
+                                                <p class="api_response fw-medium mb-4 fs-17"></p>
+                                            </form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <!--End::row-1 -->
+
+            </div>
+        </div>
  
 <% include!("../partials/f.stpl"); %>

@@ -1,4 +1,149 @@
 <% include!("../partials/h.stpl"); %>
+<style>
+    .canvas-holder {
+        width: 100%;
+        height: 500px;
+        position: relative;
+    }
+</style>
+<script src="./booking/scheme-designer-viewer.js"></script>
+<script src="./booking/scheme-select-module.js"></script>
+<script src="./booking/scheme-viewer.js"></script>
 
- 
+ <div class="main-content app-content">
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <div class="my-auto">
+                        <h5 class="page-title fs-21 mb-1"><%= object.title %></h5>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><%= object.title %></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body h-100">
+                                <div class="row ">
+                                    <div class=" col-xl-5 col-lg-12 col-md-12">
+                                        <div class="product-carousel  border br-5">
+                                            <div id="Slider" class="carousel slide" data-bs-ride="false">
+                                                <div class="carousel-inner py-3">
+                                                    <div class="carousel-item active">
+                                                        <img src="../assets/images/ecommerce/13.png" alt="img" class="img-fluid mx-auto d-block">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
+                                        <h5 class="product-title mb-1"><%= object.title %></h5>
+                                        <p class="text-muted fs-13 mb-1"><%= object.cord.as_deref().unwrap() %></p>
+                                        <div class="rating mb-1">
+                                            <div class="stars">
+                                                <span class="bx bxs-star fs-17 align-center checked"></span>
+                                                <span class="bx bxs-star fs-17 align-center checked"></span>
+                                                <span class="bx bxs-star fs-17 align-center checked"></span>
+                                                <span class="bx bxs-star fs-17 align-center text-muted"></span>
+                                                <span class="bx bxs-star fs-17 align-center text-muted"></span>
+                                            </div>
+                                            <span class="review-no">41 reviews</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+                <!-- Start::row-2 -->
+                <div class="related-products-ltr-l">
+                <div class="container" style="max-width: 1600px; max-height: 800px; min-width: 800px; min-height: 400px;">
+                        <div style="text-align: center;">
+                            <h2 id="placeName">Схема пляжа</h2>
+                            <form name="bookingSettings" style="display: flex; text-align: justify;">
+                                <div><label for="booking-date">Дата:</label>
+                                    <input type="date" id="bookingDate" name="booking-date" />
+                                </div>
+                                <div>
+                                    <label for="booking-time-start">Время начала:</label>
+                                    <input type="time" id="bookingTimeStart" name="time-start" required />
+                                </div>
+                                <div>
+                                    <label for="booking-time-end">Время окончания:</label>
+                                    <input type="time" id="bookingTimeEnd" name="time-end" min="09:30" max="18:00" required />
+                                </div>
+                            </form>
+                            <div style="height: 600px;">
+                                <canvas id="scheme-canvas" style="border: 1px solid #ccc;">
+                                    Ваш браузер не поддерживает элемент canvas.
+                                </canvas>
+                            </div>
+
+                            <div class="well">
+                                <div class="row">
+
+                                    <div class="col-sm-2" style="margin-bottom: 5px;">
+                                        <button id="save" type="button" class="btn btn-warning btn-sm">
+                                            Созранить
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        let bookingDate = document.getElementById('bookingDate');
+                        bookingDate.valueAsDate = new Date();
+                        bookingDate.setAttribute("min", new Date()); //????
+                    </script>
+                </div>
+
+            </div>
+        </div>
+
+        <script type="module">
+    import { SchemeData } from './booking/scheme-data.js';
+    import { Observer } from './booking/data/observer.js';
+    import { SchemeSelectModule } from './booking/scheme-select-module.js';
+    import { SchemeViewer } from './booking/scheme-viewer.js';
+    import { SchemeBookingSettings } from './booking/scheme-booking-settings.js';
+
+
+    //window.addEventListener('load', (event) => {
+    var request = new XMLHttpRequest();
+    request.open("GET", "./assets/json/data_view2.json", false);
+    request.send(null)
+    var JSONObject = JSON.parse(request.responseText);
+    var canvas = document.getElementById('scheme-canvas');
+    var selectForm = document.forms.bookingSettings;
+    let schemeData = new SchemeData(JSONObject);
+
+    var schemeViewe = new SchemeViewer(canvas, schemeData);
+    var schemeBookingSetting = new SchemeBookingSettings(selectForm, schemeData.bookingSettings);
+
+    var caption = document.getElementById('placeName');
+    caption.textContent = schemeData.place.name;
+    //});
+
+
+    var but = document.getElementById('save');
+    but.addEventListener("click", function () { saveSchemeData(); });
+
+    function saveSchemeData() {
+        let str = JSON.stringify(schemeData, null, 2);
+        console.log(schemeData);
+        console.log(str);
+    }
+</script>
 <% include!("../partials/f.stpl"); %>

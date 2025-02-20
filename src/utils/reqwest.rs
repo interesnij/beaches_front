@@ -1,19 +1,34 @@
 //use reqwest::header::HeaderValue;
 use serde::{
     de::DeserializeOwned, 
+    //ser::Error
 };
 use serde::{
+    //Deserialize, 
     Serialize
 };
 use std::fmt::Debug;
 use std::result;
+//use std::result::Result;
 use std::sync::Arc;
+//use actix_web::{HttpRequest, HttpMessage, web::Json};
 
 
 struct ReqResult<T> {
     code: Arc<u16>,
     body: Arc<T>,
 }
+
+
+//pub fn get_token()-> Option<String> {
+//    let token = web_local_storage_api::get_item("token").expect("E.");
+//    if token.is_some() {
+//        return token;
+//    }
+//    else {
+//        return None;
+//    }
+//}
 
 async fn request<U, T> (
     url: String, 
@@ -66,6 +81,7 @@ where
 pub async fn request_delete<T>(url: String, uuid: String) -> Result<T, u16>
 where
     T: DeserializeOwned + 'static + std::fmt::Debug + Send,
+    //T: DeserializeOwned + 'static + Send,
 {
     request(url, reqwest::Method::DELETE, &(), uuid).await
 }
@@ -74,6 +90,7 @@ where
 pub async fn request_get<T>(url: String, uuid: String) -> Result<T, u16>
 where
     T: DeserializeOwned + 'static + std::fmt::Debug + Send,
+    //T: DeserializeOwned + 'static + Send,
 {
     request(url, reqwest::Method::GET, &(), uuid).await
 }
@@ -83,6 +100,8 @@ pub async fn request_post<U, T>(url: String, body: &U, uuid: String) -> Result<T
 where
     T: DeserializeOwned + 'static + std::fmt::Debug + Send,
     U: Serialize + std::fmt::Debug,
+    //T: DeserializeOwned + 'static + Send,
+    //U: Serialize, 
 {
     request(url, reqwest::Method::POST, body, uuid).await
 }
@@ -92,6 +111,8 @@ pub async fn request_put<U, T>(url: String, body: &U, uuid: String) -> Result<T,
 where
     T: DeserializeOwned + 'static + std::fmt::Debug + Send,
     U: Serialize + std::fmt::Debug,
+    //T: DeserializeOwned + 'static + Send,
+    //U: Serialize,
 {
     request(url, reqwest::Method::PUT, body, uuid).await
 }

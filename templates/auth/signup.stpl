@@ -61,6 +61,7 @@
                                                          name="password" id="id_password2" placeholder="Посторите Ваш пароль" type="password">
                                                 </div>
                                                 <button id="signup" type="button" class="btn btn-primary btn-block w-100">Создать аккаунт</button>
+                                                <p class="api_response fw-medium mb-4 fs-17"></p>
                                             </form>
                                             <div class="main-signin-footer mt-5">
                                                 <p class="mb-1"><a href="">Забыли пароль?</a></p>

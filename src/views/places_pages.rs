@@ -139,7 +139,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
         Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
     }
     else {
-        
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("403"))
     }
 }
 

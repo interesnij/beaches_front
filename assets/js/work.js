@@ -42,7 +42,9 @@ on('body', 'click', '#create_place', function() {
 	form_data = new FormData(form);
 	if (form.querySelector("#id_image").files.length > 0){
       image = stringify(form.querySelector("#id_image").files[0]);
-	  form_data.append("image", image);
+      if (image != {}) {
+	    form_data.append("image", image);
+      }
 	  console.log(image);
     }
   

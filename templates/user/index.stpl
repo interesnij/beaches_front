@@ -1,4 +1,4 @@
-<% include!("../header.stpl"); %>
+<% include!("../partials/h.stpl"); %>
 
-
-<% include!("../footer.stpl"); %>
+ 
+<% include!("../partials/f.stpl"); %>

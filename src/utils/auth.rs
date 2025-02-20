@@ -4,7 +4,7 @@ use actix_web::{
     web::Json,
     Error,
 };
-use crate::views::AuthResp;
+use crate::views::{AuthResp, AuthResp2};
 use serde::{Serialize, Deserialize};
 use crate::errors::AuthError;
 use actix_session::Session;

@@ -102,7 +102,7 @@ pub async fn login(session: Session, data: Json<LoginUser>) -> Json<Resp> {
 
     match res {
         Ok(user) => {
-            if user.id == 0 {
+            if user.id == "".to_string() {
                 return Json(Resp {
                     status: "error".to_string(),
                 });

@@ -67,6 +67,14 @@ pub struct AuthResp2 {
     pub image:      Option<String>,
     pub uuid:       String,
 } 
+impl AuthResp2 {
+    pub fn is_superuser(&self) -> bool {
+        return self.perm == 10;
+    }
+    pub fn is_partner(&self) -> bool {
+        return self.perm == 4;
+    }
+}
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct NewUser {

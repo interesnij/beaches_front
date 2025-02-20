@@ -25,10 +25,10 @@ pub fn pages_urls(config: &mut web::ServiceConfig) {
 pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
     let object_list: Vec<Place>;
     let url = URL.to_string() + &"/places/".to_string();
-    let resp = crate::utils::request_get::<Places>(url, "".to_string()).await;
+    let resp = crate::utils::request_get::<Vec<Place>>(url, "".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
-        object_list = data.data;
+        object_list = data;
     }
     else { 
         object_list = Vec::new();

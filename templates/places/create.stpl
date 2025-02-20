@@ -1,4 +1,4 @@
-<% include!("partials/h.stpl"); %>
+<% include!("../partials/h.stpl"); %>
 
 <div class="main-content app-content">
     <div class="container-fluid">
@@ -32,4 +32,4 @@
     </div>
 </div>
 
-<% include!("partials/f.stpl"); %>
+<% include!("../partials/f.stpl"); %>

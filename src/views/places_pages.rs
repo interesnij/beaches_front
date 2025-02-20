@@ -3,6 +3,7 @@ use actix_web::{
     HttpResponse,
     Responder,
     web,
+    web::Json,
     error::InternalError,
     http::StatusCode,
 };
@@ -97,42 +98,43 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
     }
 }
 pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
-    let object: Place;
-    let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-    let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone()).await;
-    if resp.is_ok() {  
-        let data = resp.expect("E.");
-        object = data;
-    }
-    else {
-        object = Place{
-            id:      "".to_string(),
-            title:   "".to_string(), 
-            types:   0,
-            created: chrono::Local::now().naive_utc(),
-            user_id: "".to_string(),
-            type_id: "".to_string(),
-            image:   None,
-            cord:    None,
-        };
-    }
-
-    let object_list: Vec<UserJson>;
-    let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/managers/".to_string();
-    let resp = crate::utils::request_get::<Vec<UserJson>>(url, _request_user.uuid.clone()).await;
-    if resp.is_ok() { 
-        let data = resp.expect("E.");
-        object_list = data;
-    }
-    else { 
-        object_list = Vec::new();
-    }
-    let mut list: Vec<UserJson> = Vec::new();
-    for object in object_list.into_iter() {
-        list.push(object);
-    }
+    
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
+        let object: Place;
+        let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
+        let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone()).await;
+        if resp.is_ok() {  
+            let data = resp.expect("E.");
+            object = data;
+        }
+        else {
+            object = Place{
+                id:      "".to_string(),
+                title:   "".to_string(), 
+                types:   0,
+                created: chrono::Local::now().naive_utc(),
+                user_id: "".to_string(),
+                type_id: "".to_string(),
+                image:   None,
+                cord:    None,
+            };
+        }
+
+        let object_list: Vec<UserJson>;
+        let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/managers/".to_string();
+        let resp = crate::utils::request_get::<Vec<UserJson>>(url, _request_user.uuid.clone()).await;
+        if resp.is_ok() { 
+            let data = resp.expect("E.");
+            object_list = data;
+        }
+        else { 
+            object_list = Vec::new();
+        }
+        let mut list: Vec<UserJson> = Vec::new();
+        for object in object_list.into_iter() {
+            list.push(object);
+        }
         
         #[derive(TemplateOnce)]
         #[template(path = "places/place.stpl")]

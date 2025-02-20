@@ -150,7 +150,7 @@
                 </a>
                 <!-- End::header-link|dropdown-toggle -->
                 <ul 
-                    class="user_info main-header-dropdown dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end main-profile-menu" 
+                    class="main-header-dropdown dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end main-profile-menu" 
                     aria-labelledby="mainHeaderProfile"
                 > 
                     <li>

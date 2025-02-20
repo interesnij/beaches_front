@@ -152,7 +152,7 @@
 
     //window.addEventListener('load', (event) => {
     var request = new XMLHttpRequest();
-    request.open("GET", "./data/data_editor2.json", false);
+    request.open("GET", "/assets/json/data_editor2.json", false);
     request.send(null)
     var JSONObject = JSON.parse(request.responseText);
     var canvas = document.getElementById('scheme-canvas');

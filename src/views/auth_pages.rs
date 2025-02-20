@@ -65,7 +65,6 @@ pub struct AuthResp2 {
     pub email:      String,
     pub perm:       i16,
     pub image:      Option<String>,
-    pub phone:      Option<String>,
     pub uuid:       String,
 } 
 

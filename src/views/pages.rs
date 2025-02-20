@@ -29,7 +29,7 @@ pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "mainpage.stpl")]
         struct Template {
-            request_user: AuthResp,
+            request_user: AuthResp2,
         }
         let body = Template {
             request_user: _request_user,
@@ -42,10 +42,10 @@ pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "anon_mainpage.stpl")]
         struct Template {
-            types: String,
+            //types: String,
         }
         let body = Template {
-            types: "anon".to_string(),
+            //types: "anon".to_string(),
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -59,7 +59,7 @@ pub async fn about_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "about.stpl")]
         struct Template {
-            request_user: AuthResp,
+            request_user: AuthResp2,
         }
         let body = Template {
             request_user: _request_user,
@@ -72,10 +72,10 @@ pub async fn about_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "anon_about.stpl")]
         struct Template {
-            types: String,
+            //types: String,
         }
         let body = Template {
-            types: "anon".to_string(),
+            //types: "anon".to_string(),
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -89,7 +89,7 @@ pub async fn not_found_page(session: Session) -> actix_web::Result<HttpResponse>
         #[derive(TemplateOnce)]
         #[template(path = "not_found.stpl")]
         struct Template {
-            request_user: AuthResp,
+            request_user: AuthResp2,
         }
         let body = Template {
             request_user: _request_user,
@@ -102,10 +102,10 @@ pub async fn not_found_page(session: Session) -> actix_web::Result<HttpResponse>
         #[derive(TemplateOnce)]
         #[template(path = "anon_not_found.stpl")]
         struct Template {
-            types: String,
+            //types: String,
         }
         let body = Template {
-            types: "anon".to_string(),
+            //types: "anon".to_string(),
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -119,7 +119,7 @@ pub async fn terms_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "terms.stpl")]
         struct Template {
-            request_user: AuthResp,
+            request_user: AuthResp2,
         }
         let body = Template {
             request_user: _request_user,
@@ -132,10 +132,10 @@ pub async fn terms_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "anon_terms.stpl")]
         struct Template {
-            types: String,
+            //types: String,
         }
         let body = Template {
-            types: "anon".to_string(),
+            //types: "anon".to_string(),
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -149,7 +149,7 @@ pub async fn policy_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "policy.stpl")]
         struct Template {
-            request_user: AuthResp,
+            request_user: AuthResp2,
         }
         let body = Template {
             request_user: _request_user,
@@ -162,10 +162,10 @@ pub async fn policy_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "anon_policy.stpl")]
         struct Template {
-            types: String,
+            //types: String,
         }
         let body = Template {
-            types: "anon".to_string(),
+            //types: "anon".to_string(),
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

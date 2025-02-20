@@ -13,7 +13,7 @@ use crate::utils::{
     get_current_user,
     is_signed_in,
 };
-use crate::views::AuthResp;
+use crate::views::AuthResp2;
 
 
 pub fn user_urls(config: &mut web::ServiceConfig) {
@@ -26,7 +26,7 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "user/index.stpl")]
         struct Template {
-            request_user: AuthResp,
+            request_user: AuthResp2,
         }
         let body = Template {
             request_user: _request_user,
@@ -39,10 +39,10 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[derive(TemplateOnce)]
         #[template(path = "user/anon_index.stpl")]
         struct Template {
-            types: String,
+            //types: String,
         }
         let body = Template {
-            types: "anon".to_string(),
+            //types: "anon".to_string(),
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

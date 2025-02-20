@@ -26,6 +26,7 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/place/{id}/edit/", web::get().to(edit_place_page));
     config.route("/place/{id}/managers/", web::get().to(managers_page));
     config.route("/place/{id}/", web::get().to(place_page));
+    config.route("/place/{id}/create_map/", web::get().to(place_create_map_page));
 
     config.route("/create_place/", web::post().to(create_place));
     config.route("/place/{id}/edit/", web::post().to(edit_place));
@@ -99,6 +100,49 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
     }
 }
+
+pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    let object: Place;
+    let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
+    let resp = crate::utils::request_get::<Place>(url, "".to_string()).await;
+    if resp.is_ok() { 
+        let data = resp.expect("E.");
+        object = data;
+    }
+    else {
+        object = Place{
+            id:      "".to_string(),
+            title:   "".to_string(), 
+            types:   0,
+            created: chrono::Local::now().naive_utc(),
+            user_id: "".to_string(),
+            type_id: "".to_string(),
+            image:   None,
+            cord:    None,
+        };
+    }
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        
+        #[derive(TemplateOnce)]
+        #[template(path = "places/place_create_map.stpl")]
+        struct Template {
+            request_user: AuthResp2,
+            object:       Place,
+        }
+        let body = Template {
+            request_user: _request_user,
+            object:       object,
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+    else {
+        
+    }
+}
+
 pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     
     if is_signed_in(&session) {

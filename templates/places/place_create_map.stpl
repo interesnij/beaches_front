@@ -6,9 +6,7 @@
         position: relative;
     }
 </style>
-<script src="/assets/js/scheme-designer-viewer.js"></script>
-<script src="/assets/js/scheme-select-module.js"></script>
-<script src="/assets/js/scheme-viewer.js"></script>
+<script src="/assets/js/scheme-designer-editor.js"></script>
 
  <div class="main-content app-content">
             <div class="container-fluid">
@@ -57,7 +55,6 @@
                                             </div>
                                             <span class="review-no">41 reviews</span>
                                         </div>
-                                        <a href="/place/<%= object.uuid %>/create_map/">Создать модули</a>
                                     </div>
                                 </div>
                             </div>
@@ -69,39 +66,71 @@
                 <!-- Start::row-2 -->
                 <div class="related-products-ltr-l" style="margin-bottom:50px">
                 <div class="container" style="max-width: 1600px; max-height: 800px; min-width: 800px; min-height: 400px;">
-                        <div style="text-align: center;">
-                            <h2 id="placeName">Схема пляжа</h2>
-                            <form name="bookingSettings" style="display: flex; text-align: justify;">
-                                <div><label for="booking-date">Дата:</label>
-                                    <input type="date" id="bookingDate" name="booking-date" />
-                                </div>
-                                <div>
-                                    <label for="booking-time-start">Время начала:</label>
-                                    <input type="time" id="bookingTimeStart" name="time-start" required />
-                                </div>
-                                <div>
-                                    <label for="booking-time-end">Время окончания:</label>
-                                    <input type="time" id="bookingTimeEnd" name="time-end" min="09:30" max="18:00" required />
-                                </div>
-                            </form>
-                            <div style="height: 600px;">
-                                <canvas id="scheme-canvas" style="border: 1px solid #ccc;">
-                                    Ваш браузер не поддерживает элемент canvas.
-                                </canvas>
-                            </div>
+                        <div style="text-align: center; max-width: 2400px;">
+            <div style="display: flex;  max-width: 2400px">
+                <div class="container" style="max-width: 200px; height: 800px;">
+                    <canvas id="scheme-select-module" style="border: 1px solid #ccc;">
+                        Ваш браузер не поддерживает элемент canvas.
+                    </canvas>
+                </div>
+                <div class="container" style="max-width: 2200px; max-height: 800px;">
+                    <canvas id="scheme-canvas" tabindex='1' style="border: 1px solid #ccc;">
+                        Ваш браузер не поддерживает элемент canvas.
+                    </canvas>
+                </div>
 
-                            <div class="well">
-                                <div class="row">
+                <form name="selectedModuleSettings">
+                    <h3>Модуль</h3>
+                    <div>
+                        <label for="settingsGuid">id</label>
+                        <input type="text" id="settingsGuid" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsName">name</label>
+                        <input type="text" id="settingsName" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsLabel">label</label>
+                        <input type="text" id="settingsLabel" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsPrice">price</label>
+                        <input type="text" id="settingsPrice" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsLeft">left</label>
+                        <input type="text" id="settingsLeft" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsTop">top</label>
+                        <input type="text" id="settingsTop" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsWidth">width</label>
+                        <input type="text" id="settingsWidth" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsHeight">height</label>
+                        <input type="text" id="settingsHeight" required size="10" />
+                    </div>
+                    <div>
+                        <label for="settingsAngle">angle</label>
+                        <input type="text" id="settingsAngle" required size="10" />
+                    </div>
 
-                                    <div class="col-sm-2" style="margin-bottom: 5px;">
-                                        <button id="save" type="button" class="btn btn-warning btn-sm">
-                                            Созранить
-                                        </button>
-                                    </div>
+                </form>
+            </div>
 
-                                </div>
-                            </div>
-                        </div>
+            <div class="well">
+                <div class="row">
+                    <div class="col-sm-2" style="margin-bottom: 5px;">
+                        <button id="save" type="button" class="btn btn-warning btn-sm">
+                            Сохранить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
                     </div>
                     <script>
                         let bookingDate = document.getElementById('bookingDate');
@@ -117,25 +146,31 @@
     import { SchemeData } from '/assets/js/scheme-data.js';
     import { Observer } from '/assets/js/data/observer.js';
     import { SchemeSelectModule } from '/assets/js/scheme-select-module.js';
-    import { SchemeViewer } from '/assets/js/scheme-viewer.js';
-    import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
-
+    import { SchemeEditor } from '/assets/js/scheme-editor.js';
+    import { SchemeModuleSettings } from '/assets/js/scheme-module-settings.js';
+    import { SchemePlaceSettings } from '/assets/js/scheme-place-settings.js';
 
     //window.addEventListener('load', (event) => {
     var request = new XMLHttpRequest();
-    request.open("GET", "/assets/json/data_view2.json", false);
+    request.open("GET", "./data/data_editor2.json", false);
     request.send(null)
     var JSONObject = JSON.parse(request.responseText);
     var canvas = document.getElementById('scheme-canvas');
-    var selectForm = document.forms.bookingSettings;
+    var selectForm = document.forms.selectedModuleSettings;
     let schemeData = new SchemeData(JSONObject);
-
-    var schemeViewe = new SchemeViewer(canvas, schemeData);
-    var schemeBookingSetting = new SchemeBookingSettings(selectForm, schemeData.bookingSettings);
-
-    var caption = document.getElementById('placeName');
-    caption.textContent = schemeData.place.name;
-    //});
+    //test data
+    let observerPlace = new Observer('Place observer');
+    observerPlace.subscribe(schemeData.place);
+    let observerTypeModules = new Observer('TypeModules observer');
+    observerTypeModules.subscribe(schemeData.typeModulesList);
+    let observerModules = new Observer('Modules observer');
+    observerModules.subscribe(schemeData.modulesList);
+    //------------
+    var canvasSelect = document.getElementById('scheme-select-module');
+    var schemeSelectModule = new SchemeSelectModule(canvasSelect, schemeData);
+    var schemeEditor = new SchemeEditor(canvas, schemeData);
+    var schemeModuleSettings = new SchemeModuleSettings(selectForm, schemeData);
+    var schemePlaceSettings = new SchemePlaceSettings(document.forms.placeSettins, schemeData);
 
 
     var but = document.getElementById('save');
@@ -143,8 +178,8 @@
 
     function saveSchemeData() {
         let str = JSON.stringify(schemeData, null, 2);
-        console.log(schemeData);
         console.log(str);
     }
+
 </script>
 <% include!("../partials/f.stpl"); %>

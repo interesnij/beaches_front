@@ -47,8 +47,8 @@ export class SchemeEditor extends Observer {
                 context.fillStyle = 'rgba(12, 200, 15, 0.2)';
                 var width = schemeObject.width;
                 var height = schemeObject.height;
-                //context.rect(schemeObject.x, schemeObject.y, width, height);
-                context.drawImage(this.schemeData.imageStorage.getImage(this.schemeData.typeModulesList.list.find(item => item.guid == workspace.backgroundGuid)), schemeObject.x, schemeObject.y, width, height);
+                context.rect(schemeObject.x, schemeObject.y, width, height);
+                //context.drawImage(this.schemeData.imageStorage.getImage(this.schemeData.typeModulesList.list.find(item => item.guid == workspace.backgroundGuid)), schemeObject.x, schemeObject.y, width, height);
                 context.fill();
                 context.stroke();
             }

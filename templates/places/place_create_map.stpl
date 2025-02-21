@@ -170,7 +170,7 @@
     var schemeSelectModule = new SchemeSelectModule(canvasSelect, schemeData);
     var schemeEditor = new SchemeEditor(canvas, schemeData);
     var schemeModuleSettings = new SchemeModuleSettings(selectForm, schemeData);
-    var schemePlaceSettings = new SchemePlaceSettings(document.forms.placeSettins, schemeData);
+    var schemePlaceSettings = new SchemePlaceSettings(document.forms.placeSettings, schemeData);
 
 
     var but = document.getElementById('save');

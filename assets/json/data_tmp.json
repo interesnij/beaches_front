@@ -119,7 +119,7 @@
 			"type": "label",
 			"name": "H2",
 			"fontname": "Arial",
-			"imageUrl": "/assets/images/my/label_h2.png",
+			"imageUrl": "/assets/images/my/Label_h2.png",
 			"fontSize": 15,
 			"fontColor": "blue"
 		},

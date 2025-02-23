@@ -4,7 +4,6 @@ import { Module } from './data/module.js';
 
 export class SchemeSelectModule extends Observer {
 
-
     constructor(canvas, schemeData) {
         super("SchemeSelectModule");
         this.canvas = canvas;
@@ -27,7 +26,7 @@ export class SchemeSelectModule extends Observer {
                 maxHiddenPart: 0.1,
             },
             zoom: {
-                padding: -1,
+                padding: -5,
                 maxScale: 0,
                 zoomCoefficient: 0
             },

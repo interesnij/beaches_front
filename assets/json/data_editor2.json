@@ -254,13 +254,13 @@
             "guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB0",
             "type": "Label",
             "name": "H2",
-            "imageUrl": "/assets/images/my/label_h2.png"
+            "imageUrl": "/assets/images/my/Label_H2.png"
         },
         {
             "guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB1",
             "type": "Label",
             "name": "Text",
-            "imageUrl": "/assets/images/my/label_txt.png"
+            "imageUrl": "/assets/images/my/Label_txt.png"
         },
         {
             "guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C3B",

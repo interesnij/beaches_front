@@ -104,9 +104,9 @@
                         </div>
                     </div>
                     <script>
-                        let bookingDate = document.getElementById('bookingDate');
-                        bookingDate.valueAsDate = new Date();
-                        bookingDate.setAttribute("min", new Date()); //????
+                        //let bookingDate = document.getElementById('bookingDate');
+                        //bookingDate.valueAsDate = new Date();
+                        //bookingDate.setAttribute("min", new Date()); //????
                     </script>
                 </div>
 

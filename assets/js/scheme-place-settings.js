@@ -11,21 +11,18 @@ export class SchemePlaceSettings extends Observer {
         this.form = form;
         this.subscribe(this.schemeData.place);
 
-        //this.form.placeName.value = this.schemeData.place.name;
-        //this.form.placeName.value = "";
-        //this.form.placeDescription.value = this.schemeData.place.description;
-        //this.form.placeDescription.value = "";
-        //this.form.placeGuid.value = this.schemeData.place.guid;
-        //this.form.placeGuid.value = "";
+        this.form.placeName.value = this.schemeData.place.name;
+        this.form.placeDescription.value = this.schemeData.place.description;
+        this.form.placeGuid.value = this.schemeData.place.guid;
 
 
-        //this.form.placeName.onchange = (() => {
-        //    this.schemeData.place.name = this.form.placeName.value;
-        //});
+        this.form.placeName.onchange = (() => {
+            this.schemeData.place.name = this.form.placeName.value;
+        });
 
-        //this.form.placeDescription.onchange = (() => {
-        //    this.schemeData.place.description = this.form.placeDescription.value;
-        //});
+        this.form.placeDescription.onchange = (() => {
+            this.schemeData.place.description = this.form.placeDescription.value;
+        });
 
     }
 }

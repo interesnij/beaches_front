@@ -94,7 +94,7 @@
             "type": "Technical",
             "name": "Туалет",
             "description": "Платный туалет",
-            "imageUrl": "/assets/images/my/Туалет.png"
+            "imageUrl": "/assets/images/my/туалет.png"
         },
         {
             "guid": "BFB61486-46AC-4975-9DA6-D13DC0413233",

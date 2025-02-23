@@ -55,7 +55,7 @@
             "name": "Пуфик",
             "description": "мягкий стул",
             "price": 100,
-            "imageUrl": "/assets/images/myпуфик.png"
+            "imageUrl": "/assets/images/my/пуфик.png"
         },
         {
             "guid": "ECDAF8AB-9566-4085-B4AA-5A21B154F56B",
@@ -63,7 +63,7 @@
             "name": "Лежак",
             "description": "Стандартный лежак",
             "price": 200,
-            "imageUrl": "/assets/images/myлежак.png"
+            "imageUrl": "/assets/images/my/лежак.png"
         },
         {
             "guid": "ECDAF8AB-9566-4085-B4AA-5A21B154F562",
@@ -79,7 +79,7 @@
             "name": "Столик с 2 пуфиками",
             "description": "Столик с 2 пуфиками",
             "price": 400,
-            "imageUrl": "/assets/images/myпуфик_со_столиком.png"
+            "imageUrl": "/assets/images/my/пуфик_со_столиком.png"
         },
         {
             "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8119",
@@ -87,61 +87,61 @@
             "name": "Качели",
             "description": "Качели",
             "price": 1500,
-            "imageUrl": "/assets/images/myкачели.png"
+            "imageUrl": "/assets/images/my/качели.png"
         },
         {
             "guid": "2AE18D2A-98D7-4B23-8BD4-2D798348BAFB",
             "type": "Technical",
             "name": "Туалет",
             "description": "Платный туалет",
-            "imageUrl": "/assets/images/myТуалет.png"
+            "imageUrl": "/assets/images/my/туалет.png"
         },
         {
             "guid": "BFB61486-46AC-4975-9DA6-D13DC0413233",
             "type": "Technical",
             "name": "Кабинка для переодевания",
             "description": "Кабинка для переодевания",
-            "imageUrl": "/assets/images/myраздевалка.png"
+            "imageUrl": "/assets/images/my/раздевалка.png"
         },
         {
             "guid": "273835FE-55D8-47D8-8DA9-3156BBBDF48E",
             "type": "Technical",
             "name": "Пляжный душ",
             "description": "Пляжный душ",
-            "imageUrl": "/assets/images/myдуш.png"
+            "imageUrl": "/assets/images/my/душ.png"
         },
         {
             "guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB0",
             "type": "Label",
             "name": "H2",
-            "imageUrl": "/assets/images/mylabel_h2.png"
+            "imageUrl": "/assets/images/my/Label_h2.png"
         },
         {
             "guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB1",
             "type": "Label",
             "name": "Text",
-            "imageUrl": "/assets/images/mylabel_txt.png"
+            "imageUrl": "/assets/images/my/Label_txt.png"
         },
         {
             "guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C3B",
             "type": "Landscape",
             "name": "Дорожка",
             "description": "Дорожка",
-            "imageUrl": "/assets/images/myдорожка1.png"
+            "imageUrl": "/assets/images/my/дорожка1.png"
         },
         {
             "guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C4B",
             "type": "Landscape",
             "name": "Дорожка_поворот",
             "description": "Дорожка поворот",
-            "imageUrl": "/assets/images/myдорожка2.png"
+            "imageUrl": "/assets/images/my/дорожка2.png"
         },
         {
             "guid": "395335BC-1C3C-4E33-AFBD-55EA3FE39C4B",
             "type": "Landscape",
             "name": "Дорожка_перекресток",
             "description": "Дорожка перектесток",
-            "imageUrl": "/assets/images/myдорожка3.png"
+            "imageUrl": "/assets/images/my/дорожка3.png"
         }
     ],
     "modules": [

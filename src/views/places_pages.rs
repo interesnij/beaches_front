@@ -94,7 +94,7 @@ pub struct PlaceDataJson {
 
 pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     let object:  Place;
-    let modules: Vec<crate::utils::ModuleJson>;
+    let modules: Vec<crate::utils::Module>;
     let orders:  Vec<RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;

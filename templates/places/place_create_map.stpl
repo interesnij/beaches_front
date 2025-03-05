@@ -204,15 +204,14 @@
                     image:      first_list[i]["_guid"],
                 };
                 _module.push(_module);
-            }
-            var __data = {
-                plase_id: plase_id,
-                modules:  modules,
-            }
-
-            console.log("current list", _module);
-            console.log("__data", __data);
+        }
+        var __data = {
+            plase_id: plase_id,
+            modules:  modules,
         };
+
+        console.log("current list", _module);
+        console.log("__data", __data);
     }
 
 </script>

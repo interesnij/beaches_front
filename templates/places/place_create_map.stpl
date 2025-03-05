@@ -208,7 +208,7 @@
                     back_color: first_list[i]["_backColor"],
                     image:      filtered["_imageUrl"],
                 };
-                _module.push(_module);
+                modules.push(_module);
         }
         var __data = {
             plase_id: plase_id,

@@ -193,6 +193,7 @@
             var filtered = modules_list.filter(function (item) {
                 return item._guid === first_list[i]["_guid"];
             });
+            console.log("filtered", filtered);
                 var image = modules_list
                 var _module = {
                     id:         first_list[i]["_guid"],

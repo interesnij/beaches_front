@@ -422,7 +422,8 @@
         ],
         "bookings": []
     }
-    var JSONObject = JSON.parse(data);
+    //var JSONObject = JSON.parse(data);
+    var JSONObject = data;
     var canvas = document.getElementById('scheme-canvas');
     var selectForm = document.forms.bookingSettings;
     let schemeData = new SchemeData(JSONObject);

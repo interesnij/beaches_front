@@ -93,7 +93,7 @@
                             <div class="well">
                                 <div class="row">
                                     <div class="col-sm-12" style="margin-bottom: 20px;margin-top: 15px;text-align: right">
-                                        <button data-guid="<%= object.uuid %>" id="save" type="button" class="btn btn-info">
+                                        <button data-guid="<%= object.id %>" id="save" type="button" class="btn btn-info">
                                             Сделать заказ
                                         </button>
                                     </div>
@@ -414,9 +414,9 @@
                     "label": <%= i %>,
                     "price": <%= object.price %> + "",
                     "angle": <%= object.angle %>,
-                    "fontColor": <%= object.fontColor %>,
-                    "fontSize": <%= object.fontSize %>,
-                    "backColor": <%= object.backColor %>
+                    "fontColor": <%= object.font_color %>,
+                    "fontSize": <%= object.font_size %>,
+                    "backColor": <%= object.back_color %>
                 } <% if (i + 1) != _lenght { %>,<% } %>
             <% } %>
         ],

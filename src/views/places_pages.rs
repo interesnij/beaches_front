@@ -68,7 +68,7 @@ pub struct ModuleJson {
     pub image:      Option<String>,
 } 
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, Serialize)]
 pub struct CreateModuleJson {
     place_id: String,
     modules:  Vec<ModuleJson>,
@@ -115,8 +115,8 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             image:   None,
             cord:    None,
         };
-        modules = Vec:new();
-        orders = Vec:new();
+        modules = Vec::new();
+        orders = Vec::new();
     }
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");

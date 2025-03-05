@@ -178,11 +178,41 @@
 
 
     var but = document.getElementById('save');
-    but.addEventListener("click", function () { saveSchemeData(); });
+    but.addEventListener("click", function () { saveSchemeData(this.getAttribute("data-guid")); });
 
-    function saveSchemeData() {
+    function saveSchemeData(id) {
         let str = JSON.stringify(schemeData, null, 2);
-        console.log(schemeData["modulesList"]["list"]);
+        console.log("schemeData", schemeData);
+        console.log("first list", schemeData["modulesList"]["list"]);
+        var first_list = schemeData["modulesList"]["list"];
+        var plase_id = id;
+        var modules = [];
+        for (var i = 0; i < first_list.length; i++){
+                var _module = {
+                    id:         first_list[i]["_guid"],
+                    title:      first_list[i]["_name"],
+                    type_id:    first_list[i]["_typeModulesGuid"],
+                    price:      first_list[i]["_price"]*1,
+                    width:      first_list[i]["_width"],
+                    height:     first_list[i]["_height"],
+                    left:       first_list[i]["_left"],
+                    top:        first_list[i]["_top"],
+                    angle:      first_list[i]["_angle"],
+                    font_color: first_list[i]["_fontColor"],
+                    font_size:  first_list[i]["_fontSize"],
+                    back_color: first_list[i]["_backColor"],
+                    image:      first_list[i]["_guid"],
+                };
+                _module.push(_module);
+            }
+            var __data = {
+                plase_id: plase_id,
+                modules:  modules,
+            }
+
+            console.log("current list", _module);
+            console.log("__data", __data);
+        };
     }
 
 </script>

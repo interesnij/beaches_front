@@ -159,14 +159,18 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
 }
 
 pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
-    let object: Place;
+    let object:  Place;
+    let modules: Vec<crate::utils::Module>;
+    let orders:  Vec<RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-    let resp = crate::utils::request_get::<Place>(url, "".to_string()).await;
+    let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
-        object = data;
+        object = data.place;
+        modules = data.modules;
+        orders = data.orders;
     }
-    else {
+    else { 
         object = Place{
             id:      "".to_string(),
             title:   "".to_string(), 
@@ -177,6 +181,8 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
             image:   None,
             cord:    None,
         };
+        modules = Vec::new();
+        orders = Vec::new();
     }
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");

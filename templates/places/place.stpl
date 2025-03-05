@@ -113,7 +113,7 @@
     import { SchemeViewer } from '/assets/js/scheme-viewer.js';
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
-    data = {
+    var data = {
         "version": "0.1",
         "place": {
             "id": "",

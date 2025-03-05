@@ -185,9 +185,14 @@
         console.log("schemeData", schemeData);
         console.log("first list", schemeData["modulesList"]["list"]);
         var first_list = schemeData["modulesList"]["list"];
+        var modules_list = schemeData["typeModulesList"]["list"];
         var plase_id = id;
         var modules = [];
         for (var i = 0; i < first_list.length; i++){
+            var filtered = modules_list.filter(function (item) {
+                return item._guid === first_list[i]["_guid"];
+            });
+                var image = modules_list
                 var _module = {
                     id:         first_list[i]["_guid"],
                     title:      first_list[i]["_name"],
@@ -201,7 +206,7 @@
                     font_color: first_list[i]["_fontColor"],
                     font_size:  first_list[i]["_fontSize"],
                     back_color: first_list[i]["_backColor"],
-                    image:      first_list[i]["_guid"],
+                    image:      filtered["_imageUrl"],
                 };
                 _module.push(_module);
         }

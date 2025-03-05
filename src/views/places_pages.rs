@@ -25,12 +25,14 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/create_place/", web::get().to(create_place_page));
     config.route("/place/{id}/edit/", web::get().to(edit_place_page));
     config.route("/place/{id}/managers/", web::get().to(managers_page));
-    config.route("/place/{id}/", web::get().to(place_page));
+    config.route("/place/{id}/", web::get().to(place_page)); 
     config.route("/place/{id}/create_map/", web::get().to(place_create_map_page));
 
     config.route("/create_place/", web::post().to(create_place));
     config.route("/place/{id}/edit/", web::post().to(edit_place));
+    config.route("/place/{id}/create_modules/", web::post().to(create_modules));
 }
+
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceJson {
@@ -49,15 +51,60 @@ pub struct EditPlaceJson {
     pub cord:    Option<String>,
 }
 
+#[derive(Deserialize, Serialize, Debug)]
+pub struct ModuleJson { 
+    pub id:         String,
+    pub title:      String,
+    pub type_id:    String,
+    pub price:      i32,
+    pub width:      i16,
+    pub height:     i16,
+    pub left:       f64,
+    pub top:        f64,
+    pub angle:      f64,
+    pub font_color: String,
+    pub font_size:  String,
+    pub back_color: String,
+    pub image:      Option<String>,
+} 
+
+#[derive(Deserialize)]
+pub struct CreateModuleJson {
+    place_id: String,
+    modules:  Vec<ModuleJson>,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct RespOrderJson {
+    pub title:      String,
+    pub place_id:   String,
+    pub object_id:  String,
+    pub user:       UserJson,
+    pub price:      i32,
+    pub time_start: String,
+    pub time_end:   String,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct PlaceDataJson {
+    pub modules: Vec<Module>,
+    pub orders:  Vec<RespOrderJson>,
+    pub place:   Place, 
+}
+
 pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
-    let object: Place;
+    let object:  Place;
+    let modules: Vec<ModuleJson>;
+    let orders:  Vec<RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-    let resp = crate::utils::request_get::<Place>(url, "".to_string()).await;
+    let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
-        object = data;
+        object = data.place;
+        modules = data.modules;
+        orders = data.orders;
     }
-    else {
+    else { 
         object = Place{
             id:      "".to_string(),
             title:   "".to_string(), 
@@ -68,6 +115,8 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             image:   None,
             cord:    None,
         };
+        modules = Vec:new();
+        orders = Vec:new();
     }
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
@@ -77,10 +126,14 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         struct Template {
             request_user: AuthResp2,
             object:       Place,
+            modules:      Vec<ModuleJson>,
+            orders:       Vec<RespOrderJson>,
         }
         let body = Template {
             request_user: _request_user,
             object:       object,
+            modules:      modules,
+            orders:       orders,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -90,10 +143,14 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         #[derive(TemplateOnce)]
         #[template(path = "places/anon_place.stpl")]
         struct Template {
-            object: Place,
+            object:  Place,
+            modules: Vec<ModuleJson>,
+            orders:  Vec<RespOrderJson>,
         }
         let body = Template {
-            object: object,
+            object:  object,
+            modules: modules,
+            orders:  orders,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -282,10 +339,28 @@ pub async fn create_place(session: Session, data: Json<PlaceJson>) -> actix_web:
 pub async fn edit_place(session: Session, data: Json<EditPlaceJson>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/create_place/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/edit_place/".to_string() + &id.clone() + &"/".to_string();
         let res = crate::utils::request_post::<EditPlaceJson, ()> (
             url,
             &data, 
+            _request_user.uuid
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
+pub async fn create_modules(session: Session, data: Json<CreateModuleJson>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/create_modules/".to_string() + &id.clone() + &"/".to_string();
+        let res = crate::utils::request_post::<CreateModuleJson, ()> (
+            url,
+            &data,  
             _request_user.uuid
         ).await;
 

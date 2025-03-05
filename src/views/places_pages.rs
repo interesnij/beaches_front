@@ -126,7 +126,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         struct Template {
             request_user: AuthResp2,
             object:       Place,
-            modules:      Vec<Module>,
+            modules:      Vec<crate::utils::Module>,
             orders:       Vec<RespOrderJson>,
         }
         let body = Template {
@@ -144,7 +144,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         #[template(path = "places/anon_place.stpl")]
         struct Template {
             object:  Place,
-            modules: Vec<Module>,
+            modules: Vec<crate::utils::Module>,
             orders:  Vec<RespOrderJson>,
         }
         let body = Template {

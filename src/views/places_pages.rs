@@ -240,7 +240,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
         }
         
         #[derive(TemplateOnce)]
-        #[template(path = "places/place.stpl")]
+        #[template(path = "places/managers.stpl")]
         struct Template {
             request_user: AuthResp2,
             object:       Place,

@@ -120,7 +120,7 @@
             <%  let guid = object.id.to_string(); %>
             <%  for (i, object) in modules.iter().enumerate() { %>
                 modules_f.push({ 
-                    "guid": guid,
+                    "guid": <%= guid %>,
                     "name": String(<%= object.title %>),
                     "objectName": "Module",
                     "typeModulesGuid": String(<%= object.type_id %>),

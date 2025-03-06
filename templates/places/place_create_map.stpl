@@ -534,8 +534,8 @@
         link.onreadystatechange = function () {
         if ( link.readyState == 4 && link.status == 200 ) {
             console.log("ok!!")
-        }}
-        link.send(__data);
+        }} 
+        link.send(JSON.stringify(__data));
     }
 
 </script>

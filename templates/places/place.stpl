@@ -117,8 +117,8 @@
 
             <%  let _lenght = modules.len(); %>
             <%  let _label = _lenght + 1; %>
+            <%  let guid = object.id.to_string(); %>
             <%  for (i, object) in modules.iter().enumerate() { %>
-                var guid = <%= object.id %> + "";
                 modules_f.push({ 
                     "guid": guid,
                     "name": String(<%= object.title %>),

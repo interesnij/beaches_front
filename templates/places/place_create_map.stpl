@@ -510,7 +510,7 @@
                     height:     first_list[i]["_height"],
                     left:       first_list[i]["_left"] *1.0,
                     top:        first_list[i]["_top"] *1.0,
-                    angle:      first_list[i]["_angle"] *1.0,
+                    angle:      0.0,
                     font_color: first_list[i]["_fontColor"],
                     font_size:  first_list[i]["_fontSize"],
                     back_color: first_list[i]["_backColor"],

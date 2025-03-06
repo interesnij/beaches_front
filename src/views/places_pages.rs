@@ -30,7 +30,7 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
 
     config.route("/create_place/", web::post().to(create_place));
     config.route("/place/{id}/edit/", web::post().to(edit_place));
-    config.route("/place/{id}/create_modules/", web::post().to(create_modules));
+    config.route("/place/create_modules/", web::post().to(create_modules));
 }
 
 
@@ -61,7 +61,7 @@ pub struct ModuleJson {
     pub height:     i16,
     pub left:       f64,
     pub top:        f64,
-    pub angle:      f64,
+    pub angle:      f64, 
     pub font_color: String,
     pub font_size:  String,
     pub back_color: String,
@@ -365,12 +365,12 @@ pub async fn edit_place(session: Session, data: Json<EditPlaceJson>, id: web::Pa
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
 
-pub async fn create_modules(session: Session, data: Json<CreateModuleJson>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
-    if is_signed_in(&session) {
+pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/create_modules/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/create_modules/".to_string();
         let res = crate::utils::request_post::<CreateModuleJson, ()> (
-            url,
+            url, 
             &data,  
             _request_user.uuid
         ).await;

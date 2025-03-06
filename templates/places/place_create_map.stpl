@@ -493,7 +493,7 @@
         var first_list = schemeData["modulesList"]["list"];
         var modules_list = schemeData["typeModulesList"]["list"];
         console.log("modules_list", schemeData["typeModulesList"]["list"]);
-        var plase_id = id;
+        var place_id = id;
         var modules2 = [];
         for (var i = 0; i < first_list.length; i++){
             var filtered = modules_list.filter(function (item) {
@@ -519,7 +519,7 @@
                 modules2.push(_module);
         }
         var __data = {
-            plase_id: plase_id,
+            place_id: place_id,
             modules:  modules2,
         };
 
@@ -528,7 +528,7 @@
 
         var link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-        link.open( 'POST', "/place/" + plase_id + "/create_modules/", true );
+        link.open( 'POST', "/place/" + place_id + "/create_modules/", true );
         link.setRequestHeader('Content-Type', 'application/json');
     
         link.onreadystatechange = function () {

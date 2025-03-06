@@ -119,7 +119,7 @@
             <%  let _label = _lenght + 1; %>
             <%  let guid = object.id.to_string(); %>
             <%  for (i, object) in modules.iter().enumerate() { %>
-                modules_f.push({ 
+                modules_f.push(JSON.stringify(){ 
                     "guid": <%= guid %>,
                     "name": String(<%= object.title %>),
                     "objectName": "Module",

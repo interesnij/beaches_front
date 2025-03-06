@@ -403,20 +403,20 @@
             <%  let _lenght = modules.len(); %>
             <%  for (i, object) in modules.iter().enumerate() { %>
                 { 
-                    "guid": <%= object.id %>,
-                    "name": <%= object.title %>,
+                    "guid": <%= object.id %> + "",
+                    "name": <%= object.title %> + "",
                     "objectName": "Module",
-                    "typeModulesGuid": <%= object.type_id %>,
+                    "typeModulesGuid": <%= object.type_id %> + "",
                     "width": <%= object._width %>,
                     "height": <%= object._height %>,
-                    "left": <%= object._left %> *1,
-                    "top": <%= object._top %> *1,
+                    "left": <%= object._left %>.toFixed(),
+                    "top": <%= object._top %>.toFixed(),
                     "label": <%= i %>,
                     "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %> *1,
-                    "fontColor": <%= object.font_color %>,
-                    "fontSize": <%= object.font_size %>,
-                    "backColor": <%= object.back_color %>
+                    "angle": <%= object._angle %>.toFixed(),
+                    "fontColor": <%= object.font_color %> + "",
+                    "fontSize": <%= object.font_size %> + "",
+                    "backColor": <%= object.back_color %> + ""
                 } <% if (i + 1) != _lenght { %>,<% } %>
             <% } %>
         ],

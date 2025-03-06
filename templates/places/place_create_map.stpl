@@ -87,40 +87,40 @@
 
                 <form name="selectedModuleSettings">
                     <h3>Модуль</h3>
-                    <div>
+                    <div style="display:none">
                         <label for="settingsGuid">id</label>
                         <input type="text" id="settingsGuid" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsName">name</label>
+                        <label for="settingsName">Название</label>
                         <input type="text" id="settingsName" required size="10" />
                     </div>
-                    <div>
-                        <label for="settingsLabel">label</label>
+                    <div style="display:none">
+                        <label for="settingsLabel">Подпись</label>
                         <input type="text" id="settingsLabel" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsPrice">price</label>
+                        <label for="settingsPrice">Цена</label>
                         <input type="text" id="settingsPrice" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsLeft">left</label>
+                        <label for="settingsLeft">Отступ слева</label>
                         <input type="text" id="settingsLeft" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsTop">top</label>
+                        <label for="settingsTop">Отступ сверху</label>
                         <input type="text" id="settingsTop" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsWidth">width</label>
+                        <label for="settingsWidth">Ширина</label>
                         <input type="text" id="settingsWidth" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsHeight">height</label>
+                        <label for="settingsHeight">Высота</label>
                         <input type="text" id="settingsHeight" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsAngle">angle</label>
+                        <label for="settingsAngle">Глубина</label>
                         <input type="text" id="settingsAngle" required size="10" />
                     </div>
 
@@ -155,13 +155,318 @@
     import { SchemePlaceSettings } from '/assets/js/scheme-place-settings.js';
 
     //window.addEventListener('load', (event) => {
-    var request = new XMLHttpRequest();
-    request.open("GET", "/assets/json/data_editor2.json", false);
-    request.send(null)
-    var JSONObject = JSON.parse(request.responseText);
+    var data = {
+    "version": "0.1",
+    "place": {
+        "id": "",
+        "name": "Пляж",
+        "description": "Пляж",
+        "guid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3"
+    },
+    "workspace": {
+        "placeGuid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3",
+        "width": 1600,
+        "height": 900,
+        "backgroundGuid": "78A4F7A2-E064-437B-B213-7BEC3F518339"
+    },
+    "settings": {
+        "placeGuid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3",
+        "options": {
+            "cacheSchemeRatio": 0
+        },
+        "scroll": {
+            "draggable": true,
+            "draggableLeft": true,
+            "draggableTop": true,
+            "maxHiddenPart": 0.5
+        },
+        "zoom": {
+            "padding": 0.1,
+            "maxScale": 1.5,
+            "zoomCoefficient": 1.04
+        },
+        "storage": {
+            "treeDepth": 3
+        }
+    },
+    "typeModules": [
+        {
+            "guid": "78A4F7A2-E064-437B-B213-7BEC3F518338",
+            "type": "Place",
+            "name": "DefaultPlace",
+            "description": "Пустое пространство",
+            "price": 0,
+            "imageUrl": ""
+        },
+        {
+            "guid": "78A4F7A2-E064-437B-B213-7BEC3F518339",
+            "type": "Place",
+            "name": "Терраса",
+            "description": "Пустое пространство",
+            "price": 0,
+            "imageUrl": "/assets/images/my/Терраса_фон.jpg"
+        },
+        {
+            "guid": "78A4F7A2-E064-437B-B213-7BEC3F518336",
+            "type": "Module",
+            "name": "Пуфик",
+            "description": "мягкий стул",
+            "price": 100,
+            "imageUrl": "/assets/images/my/Пуфик.png"
+        },
+        {
+            "guid": "ECDAF8AB-9566-4085-B4AA-5A21B154F56B",
+            "type": "Module",
+            "name": "Шезлонг",
+            "description": "Деревянный шезлонг",
+            "price": 200,
+            "imageUrl": "/assets/images/my/Шезлонг1.png"
+        },
+        {
+            "guid": "ECDAF8AB-9566-4085-B4AA-5A21B154F562",
+            "type": "Module",
+            "name": "Подвесной шезлонг",
+            "description": "Подвесной шезлонг",
+            "price": 800,
+            "imageUrl": "/assets/images/my/Шезлонг2.png"
+        },
+        {
+            "guid": "04959400-3612-4852-BE77-15E8EFEBE3C1",
+            "type": "Module",
+            "name": "Складное кресло",
+            "description": "Столик с 2 пуфиками",
+            "price": 400,
+            "imageUrl": "/assets/images/my/Шезлонг3.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8119",
+            "type": "Module",
+            "name": "Качели",
+            "description": "Качели",
+            "price": 1500,
+            "imageUrl": "/assets/images/my/Качели.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8112",
+            "type": "Module",
+            "name": "Веранда",
+            "description": "Веранда",
+            "price": 3500,
+            "imageUrl": "/assets/images/my/Веранда.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8113",
+            "type": "Module",
+            "name": "Кровать",
+            "description": "Кровать",
+            "price": 3500,
+            "imageUrl": "/assets/images/my/Кровать.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8114",
+            "type": "Module",
+            "name": "Кресло",
+            "description": "Кресло",
+            "price": 500,
+            "imageUrl": "/assets/images/my/Кресло1.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8115",
+            "type": "Module",
+            "name": "Кресло",
+            "description": "Кресло",
+            "price": 500,
+            "imageUrl": "/assets/images/my/Кресло2.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8116",
+            "type": "Module",
+            "name": "Кресло",
+            "description": "Кресло",
+            "price": 500,
+            "imageUrl": "/assets/images/my/Кресло3.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8120",
+            "type": "Module",
+            "name": "Подвесное кресло",
+            "description": "Подвесное кресло",
+            "price": 500,
+            "imageUrl": "/assets/images/my/Подвесное_кресло.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8121",
+            "type": "Module",
+            "name": "Зонт",
+            "description": "Зонт 1",
+            "price": 100,
+            "imageUrl": "/assets/images/my/Зонт1.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8122",
+            "type": "Module",
+            "name": "Зонт",
+            "description": "Зонт 2",
+            "price": 100,
+            "imageUrl": "/assets/images/my/Зонт2.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8123",
+            "type": "Module",
+            "name": "Зонт",
+            "description": "Зонт 3",
+            "price": 100,
+            "imageUrl": "/assets/images/my/Зонт3.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8124",
+            "type": "Module",
+            "name": "Зонт",
+            "description": "Зонт 4",
+            "price": 100,
+            "imageUrl": "/assets/images/my/Зонт4.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8125",
+            "type": "Module",
+            "name": "Стол",
+            "description": "Стол 1",
+            "price": 1000,
+            "imageUrl": "/assets/images/my/Стол1.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8126",
+            "type": "Module",
+            "name": "Стол",
+            "description": "Стол 2",
+            "price": 1000,
+            "imageUrl": "/assets/images/my/Стол2.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8127",
+            "type": "Module",
+            "name": "Столик",
+            "description": "Столик",
+            "price": 1000,
+            "imageUrl": "/assets/images/my/Столик.png"
+        },
+        {
+            "guid": "64FDFE9B-9DB6-4360-8340-5DE054DC8128",
+            "type": "Module",
+            "name": "Столик",
+            "description": "Столик 2",
+            "price": 1000,
+            "imageUrl": "/assets/images/my/Столик2.png"
+        },
+        {
+            "guid": "2AE18D2A-98D7-4B23-8BD4-2D798348BAFB",
+            "type": "Technical",
+            "name": "Туалет",
+            "description": "Платный туалет",
+            "imageUrl": "/assets/images/my/туалет.png"
+        },
+        {
+            "guid": "2AE18D2A-98D7-4B23-8BD4-2D798348BAF1",
+            "type": "Technical",
+            "name": "Тумба",
+            "description": "Тумба",
+            "imageUrl": "/assets/images/my/Тумба.png"
+        },
+        {
+            "guid": "BFB61486-46AC-4975-9DA6-D13DC0413233",
+            "type": "Technical",
+            "name": "Кабинка для переодевания",
+            "description": "Кабинка для переодевания",
+            "imageUrl": "/assets/images/my/раздевалка.png"
+        },
+        {
+            "guid": "BFB61486-46AC-4975-9DA6-D13DC0413234",
+            "type": "Technical",
+            "name": "Растение",
+            "description": "Растение",
+            "imageUrl": "/assets/images/my/Растение1.png"
+        },
+        {
+            "guid": "BFB61486-46AC-4975-9DA6-D13DC0413235",
+            "type": "Technical",
+            "name": "Растение",
+            "description": "Растение",
+            "imageUrl": "/assets/images/my/Растение2.png"
+        },
+        {
+            "guid": "BFB61486-46AC-4975-9DA6-D13DC0413236",
+            "type": "Technical",
+            "name": "Стойка с растениями",
+            "description": "Растение",
+            "imageUrl": "/assets/images/my/Стойка_с_растениями.png"
+        },
+        {
+            "guid": "273835FE-55D8-47D8-8DA9-3156BBBDF48E",
+            "type": "Technical",
+            "name": "Пляжный душ",
+            "description": "Пляжный душ",
+            "imageUrl": "/assets/images/my/душ.png"
+        },
+        {
+            "guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB0",
+            "type": "Label",
+            "name": "H2",
+            "imageUrl": "/assets/images/my/Label_H2.png"
+        },
+        {
+            "guid": "992AB291-AC4E-4E4C-9CA3-9C4143843FB1",
+            "type": "Label",
+            "name": "Text",
+            "imageUrl": "/assets/images/my/Label_txt.png"
+        },
+        {
+            "guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C3B",
+            "type": "Landscape",
+            "name": "Дорожка",
+            "description": "Дорожка",
+            "imageUrl": "/assets/images/my/дорожка1.png"
+        },
+        {
+            "guid": "395335BC-1C3C-4E33-AFBD-55EA3FEC9C4B",
+            "type": "Landscape",
+            "name": "Дорожка_поворот",
+            "description": "Дорожка поворот",
+            "imageUrl": "/assets/images/my/дорожка2.png"
+        },
+        {
+            "guid": "395335BC-1C3C-4E33-AFBD-55EA3FE39C4B",
+            "type": "Landscape",
+            "name": "Дорожка_перекресток",
+            "description": "Дорожка перектесток",
+            "imageUrl": "/assets/images/my/дорожка3.png"
+        }
+    ],
+    "modules": [
+            <%  let _lenght = modules.len(); %>
+            <%  for (i, object) in modules.iter().enumerate() { %>
+                { 
+                    "guid": <%= object.id %>,
+                    "name": <%= object.title %>,
+                    "objectName": "Module",
+                    "typeModulesGuid": <%= object.type_id %>,
+                    "width": <%= object._width %>,
+                    "height": <%= object._height %>,
+                    "left": <%= object._left %> *1,
+                    "top": <%= object._top %> *1,
+                    "label": <%= i %>,
+                    "price": <%= object.price %> + "",
+                    "angle": <%= object._angle %> *1,
+                    "fontColor": <%= object.font_color %>,
+                    "fontSize": <%= object.font_size %>,
+                    "backColor": <%= object.back_color %>
+                } <% if (i + 1) != _lenght { %>,<% } %>
+            <% } %>
+        ],
+}
+    console.log("incomming modules", data["modules"]);
     var canvas = document.getElementById('scheme-canvas');
     var selectForm = document.forms.selectedModuleSettings;
-    let schemeData = new SchemeData(JSONObject);
+    let schemeData = new SchemeData(data);
     //test data
     let observerPlace = new Observer('Place observer');
     observerPlace.subscribe(schemeData.place);
@@ -202,9 +507,9 @@
                     price:      first_list[i]["_price"]*1,
                     width:      first_list[i]["_width"],
                     height:     first_list[i]["_height"],
-                    left:       first_list[i]["_left"],
-                    top:        first_list[i]["_top"],
-                    angle:      first_list[i]["_angle"],
+                    left:       first_list[i]["_left"].toFixed(),
+                    top:        first_list[i]["_top"].toFixed(),
+                    angle:      first_list[i]["_angle"].toFixed(),
                     font_color: first_list[i]["_fontColor"],
                     font_size:  first_list[i]["_fontSize"],
                     back_color: first_list[i]["_backColor"],
@@ -219,6 +524,17 @@
 
         console.log("current list", _module);
         console.log("__data", __data);
+
+        link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+        link.open( 'POST', "/place/" + plase_id + "/create_modules/", true );
+        link.setRequestHeader('Content-Type', 'application/json');
+    
+        link.onreadystatechange = function () {
+        if ( link.readyState == 4 && link.status == 200 ) {
+            console.log("ok!!")
+        }
+        link.send(__data);
     }
 
 </script>

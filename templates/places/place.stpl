@@ -409,11 +409,11 @@
                     "typeModulesGuid": <%= object.type_id %>,
                     "width": <%= object._width %>,
                     "height": <%= object._height %>,
-                    "left": <%= object._left %>,
-                    "top": <%= object._top %>,
+                    "left": <%= object._left %> *1,
+                    "top": <%= object._top %> *1,
                     "label": <%= i %>,
                     "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %>,
+                    "angle": <%= object._angle %> *1,
                     "fontColor": <%= object.font_color %>,
                     "fontSize": <%= object.font_size %>,
                     "backColor": <%= object.back_color %>
@@ -423,6 +423,9 @@
         "bookings": []
     }
     //var JSONObject = JSON.parse(data);
+
+    console.log("incomming modules", data["modules"]);
+    
     var JSONObject = data;
     var canvas = document.getElementById('scheme-canvas');
     var selectForm = document.forms.bookingSettings;

@@ -128,7 +128,7 @@
                     "height": <%= object._height %>,
                     "left": <%= object._left %>.toFixed(),
                     "top": <%= object._top %>.toFixed(),
-                    "label": <%= counter %>,
+                    "label":  counter,
                     "price": <%= object.price %> + "",
                     "angle": <%= object._angle %>.toFixed(),
                     "fontColor": <%= object.font_color %> + "",

@@ -115,10 +115,11 @@
 
     var modules_22 = [];
     <% for object in modules.iter() { %>
+        var counter = 1;
         var parsed_object = JSON.parse(<%= object.id %>);
         console.log("object id ", <%= object.id %>);
         console.log("parsed_object id ", parsed_object);
-        modules_22.push ({ 
+        modules_22.push ({
                     "guid": parsed_object,
                     "name": <%= object.title %> + "",
                     "objectName": "Module",
@@ -127,30 +128,15 @@
                     "height": <%= object._height %>,
                     "left": <%= object._left %>.toFixed(),
                     "top": <%= object._top %>.toFixed(),
-                    "label": <%= i %>,
+                    "label": <%= counter %>,
                     "price": <%= object.price %> + "",
                     "angle": <%= object._angle %>.toFixed(),
                     "fontColor": <%= object.font_color %> + "",
                     "fontSize": <%= object.font_size %> + "",
                     "backColor": <%= object.back_color %> + ""
-                })
+                });
+            counter += 1;
     <% } %>
-                { 
-                    "guid": <%= object.id %> + "",
-                    "name": <%= object.title %> + "",
-                    "objectName": "Module",
-                    "typeModulesGuid": <%= object.type_id %> + "",
-                    "width": <%= object._width %>,
-                    "height": <%= object._height %>,
-                    "left": <%= object._left %>.toFixed(),
-                    "top": <%= object._top %>.toFixed(),
-                    "label": <%= i %>,
-                    "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %>.toFixed(),
-                    "fontColor": <%= object.font_color %> + "",
-                    "fontSize": <%= object.font_size %> + "",
-                    "backColor": <%= object.back_color %> + ""
-                }
     var data = {
         "version": "0.1",
         "place": {

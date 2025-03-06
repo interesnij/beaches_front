@@ -113,6 +113,44 @@
     import { SchemeViewer } from '/assets/js/scheme-viewer.js';
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
+    var modules_22 = [];
+    <% for object in modules.iter() { %>
+        var parsed_object = JSON.parse(<% object.id %>);
+        console.log("object id ", <% object.id %>);
+        console.log("parsed_object id ", parsed_object);
+        modules_22.push ({ 
+                    "guid": parsed_object,
+                    "name": <%= object.title %> + "",
+                    "objectName": "Module",
+                    "typeModulesGuid": <%= object.type_id %> + "",
+                    "width": <%= object._width %>,
+                    "height": <%= object._height %>,
+                    "left": <%= object._left %>.toFixed(),
+                    "top": <%= object._top %>.toFixed(),
+                    "label": <%= i %>,
+                    "price": <%= object.price %> + "",
+                    "angle": <%= object._angle %>.toFixed(),
+                    "fontColor": <%= object.font_color %> + "",
+                    "fontSize": <%= object.font_size %> + "",
+                    "backColor": <%= object.back_color %> + ""
+                })
+    <% } %>
+                { 
+                    "guid": <%= object.id %> + "",
+                    "name": <%= object.title %> + "",
+                    "objectName": "Module",
+                    "typeModulesGuid": <%= object.type_id %> + "",
+                    "width": <%= object._width %>,
+                    "height": <%= object._height %>,
+                    "left": <%= object._left %>.toFixed(),
+                    "top": <%= object._top %>.toFixed(),
+                    "label": <%= i %>,
+                    "price": <%= object.price %> + "",
+                    "angle": <%= object._angle %>.toFixed(),
+                    "fontColor": <%= object.font_color %> + "",
+                    "fontSize": <%= object.font_size %> + "",
+                    "backColor": <%= object.back_color %> + ""
+                }
     var data = {
         "version": "0.1",
         "place": {
@@ -399,27 +437,7 @@
                 "imageUrl": "/assets/images/my/дорожка3.png"
             }
         ],
-        "modules": [
-            <%  let _lenght = modules.len(); %>
-            <%  for (i, object) in modules.iter().enumerate() { %>
-                { 
-                    "guid": <%= object.id %> + "",
-                    "name": <%= object.title %> + "",
-                    "objectName": "Module",
-                    "typeModulesGuid": <%= object.type_id %> + "",
-                    "width": <%= object._width %>,
-                    "height": <%= object._height %>,
-                    "left": <%= object._left %>.toFixed(),
-                    "top": <%= object._top %>.toFixed(),
-                    "label": <%= i %>,
-                    "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %>.toFixed(),
-                    "fontColor": <%= object.font_color %> + "",
-                    "fontSize": <%= object.font_size %> + "",
-                    "backColor": <%= object.back_color %> + ""
-                } <% if (i + 1) != _lenght { %>,<% } %>
-            <% } %>
-        ],,
+        "modules": modules_22,
         "bookings": []
     }
     //var JSONObject = JSON.parse(data);

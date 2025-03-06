@@ -115,8 +115,8 @@
 
     var modules_22 = [];
     <% for object in modules.iter() { %>
-        var parsed_object = JSON.parse(<% object.id %>);
-        console.log("object id ", <% object.id %>);
+        var parsed_object = JSON.parse(<%= object.id %>);
+        console.log("object id ", <%= object.id %>);
         console.log("parsed_object id ", parsed_object);
         modules_22.push ({ 
                     "guid": parsed_object,

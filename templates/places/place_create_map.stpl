@@ -462,6 +462,7 @@
                 } <% if (i + 1) != _lenght { %>,<% } %>
             <% } %>
         ],
+        "bookings": []
 }
     console.log("incomming modules", data["modules"]);
     var canvas = document.getElementById('scheme-canvas');

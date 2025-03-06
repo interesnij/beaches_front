@@ -100,7 +100,7 @@
                         <input type="text" id="settingsLabel" required size="10" />
                     </div>
                     <div>
-                        <label for="settingsPrice">Цена</label>
+                        <label for="settingsPrice">Стоимость</label>
                         <input type="text" id="settingsPrice" required size="10" />
                     </div>
                     <div>
@@ -508,14 +508,14 @@
                     price:      first_list[i]["_price"]*1,
                     width:      first_list[i]["_width"],
                     height:     first_list[i]["_height"],
-                    left:       first_list[i]["_left"].toFixed(),
-                    top:        first_list[i]["_top"].toFixed(),
-                    angle:      first_list[i]["_angle"].toFixed(),
+                    left:       first_list[i]["_left"].toFixed(0),
+                    top:        first_list[i]["_top"].toFixed(0),
+                    angle:      first_list[i]["_angle"].toFixed(0),
                     font_color: first_list[i]["_fontColor"],
                     font_size:  first_list[i]["_fontSize"],
                     back_color: first_list[i]["_backColor"],
                     image:      filtered[0]["_imageUrl"],
-                };
+                }; 
                 modules2.push(_module);
         }
         var __data = {
@@ -526,7 +526,7 @@
         console.log("current list", _module);
         console.log("__data", __data);
 
-        link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+        var link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
         link.open( 'POST', "/place/" + plase_id + "/create_modules/", true );
         link.setRequestHeader('Content-Type', 'application/json');

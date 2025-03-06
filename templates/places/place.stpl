@@ -114,27 +114,23 @@
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
     var modules_22 = [];
-    var counter = 1;
-    <% for object in modules.iter() { %>
-        console.log("object id ", <%= object.id %>);
-        console.log("parsed_object id ", parsed_object);
+    <% for (i, object) in modules.iter().enumerate() { %>
         modules_22.push ({
                     "guid": "<%= object.id %>",
-                    "name": <%= object.title %>,
+                    "name": "<%= object.title %>",
                     "objectName": "Module",
-                    "typeModulesGuid": <%= object.type_id %> + "",
+                    "typeModulesGuid": "<%= object.type_id %>",
                     "width": <%= object._width %>,
                     "height": <%= object._height %>,
-                    "left": <%= object._left %>.toFixed(),
-                    "top": <%= object._top %>.toFixed(),
-                    "label":  counter,
-                    "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %>.toFixed(),
-                    "fontColor": <%= object.font_color %> + "",
-                    "fontSize": <%= object.font_size %> + "",
-                    "backColor": <%= object.back_color %> + ""
+                    "left": <%= object._left %>,
+                    "top": <%= object._top %>,
+                    "label":  "<%= i %>",
+                    "price": "<%= object.price %>",
+                    "angle": "<%= object._angle %>,
+                    "fontColor": "<%= object.font_color %>",
+                    "fontSize": "<%= object.font_size %>",
+                    "backColor": "<%= object.back_color %>"
                 });
-            counter += 1;
     <% } %>
     var data = {
         "version": "0.1",

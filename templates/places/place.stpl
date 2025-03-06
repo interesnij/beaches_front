@@ -114,11 +114,11 @@
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
     var modules_f = []
-    
+
             <%  let _lenght = modules.len(); %>
             <%  let _label = _lenght + 1; %>
             <%  for (i, object) in modules.iter().enumerate() { %>
-                guid = <%= object.id %> + "";
+                var guid = <%= object.id %> + "";
                 modules_f.push({ 
                     "guid": guid,
                     "name": String(<%= object.title %>),

@@ -493,7 +493,7 @@
         var modules_list = schemeData["typeModulesList"]["list"];
         console.log("modules_list", schemeData["typeModulesList"]["list"]);
         var plase_id = id;
-        var modules = [];
+        var modules2 = [];
         for (var i = 0; i < first_list.length; i++){
             var filtered = modules_list.filter(function (item) {
                 return item._guid === first_list[i]["_typeModulesGuid"];
@@ -515,11 +515,11 @@
                     back_color: first_list[i]["_backColor"],
                     image:      filtered[0]["_imageUrl"],
                 };
-                modules.push(_module);
+                modules2.push(_module);
         }
         var __data = {
             plase_id: plase_id,
-            modules:  modules,
+            modules:  modules2,
         };
 
         console.log("current list", _module);

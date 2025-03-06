@@ -164,7 +164,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
     let orders:  Vec<RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
-    if resp.is_ok() { 
+    if resp.is_ok() {  
         let data = resp.expect("E.");
         object = data.place;
         modules = data.modules;
@@ -184,6 +184,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
         modules = Vec::new();
         orders = Vec::new();
     }
+
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         
@@ -192,10 +193,14 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
         struct Template {
             request_user: AuthResp2,
             object:       Place,
+            modules:      Vec<crate::utils::Module>,
+            orders:       Vec<RespOrderJson>,
         }
         let body = Template {
             request_user: _request_user,
             object:       object,
+            modules:      modules,
+            orders:       orders,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

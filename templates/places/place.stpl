@@ -113,31 +113,6 @@
     import { SchemeViewer } from '/assets/js/scheme-viewer.js';
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
-    var modules_f = []
-
-            <%  let _lenght = modules.len(); %>
-            <%  let _label = _lenght + 1; %>
-            <%  let guid = object.id.to_string(); %>
-            <%  for (i, object) in modules.iter().enumerate() { %>
-                modules_f.push(JSON.stringify({ 
-                    "guid": <%= guid %>,
-                    "name": String(<%= object.title %>),
-                    "objectName": "Module",
-                    "typeModulesGuid": String(<%= object.type_id %>),
-                    "width": String(<%= object._width %>),
-                    "height": String(<%= object._height %>),
-                    "left": String(<%= object._left %>),
-                    "top": String(<%= object._top %>),
-                    "label": <%= _label %>,
-                    "price": String(<%= object.price %>),
-                    "angle": String(<%= object._angle %>),
-                    "fontColor": String(<%= object.font_color %>),
-                    "fontSize": String(<%= object.font_size %>),
-                    "backColor": String(<%= object.back_color %>)
-                }));
-                
-            <% } %>
-
     var data = {
         "version": "0.1",
         "place": {
@@ -424,7 +399,27 @@
                 "imageUrl": "/assets/images/my/дорожка3.png"
             }
         ],
-        "modules": modules_f,
+        "modules": [
+            <%  let _lenght = modules.len(); %>
+            <%  for (i, object) in modules.iter().enumerate() { %>
+                { 
+                    "guid": <%= object.id %> + "",
+                    "name": <%= object.title %> + "",
+                    "objectName": "Module",
+                    "typeModulesGuid": <%= object.type_id %> + "",
+                    "width": <%= object._width %>,
+                    "height": <%= object._height %>,
+                    "left": <%= object._left %>.toFixed(),
+                    "top": <%= object._top %>.toFixed(),
+                    "label": <%= i %>,
+                    "price": <%= object.price %> + "",
+                    "angle": <%= object._angle %>.toFixed(),
+                    "fontColor": <%= object.font_color %> + "",
+                    "fontSize": <%= object.font_size %> + "",
+                    "backColor": <%= object.back_color %> + ""
+                } <% if (i + 1) != _lenght { %>,<% } %>
+            <% } %>
+        ],,
         "bookings": []
     }
     //var JSONObject = JSON.parse(data);

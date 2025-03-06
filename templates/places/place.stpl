@@ -401,22 +401,24 @@
         ],
         "modules": [
             <%  let _lenght = modules.len(); %>
+            <%  let _label = _lenght + 1; %>
             <%  for (i, object) in modules.iter().enumerate() { %>
+
                 { 
-                    "guid": <%= object.id %> + "",
-                    "name": <%= object.title %> + "",
+                    "guid": String(<%= object.id %>),
+                    "name": String(<%= object.title %>),
                     "objectName": "Module",
-                    "typeModulesGuid": <%= object.type_id %> + "",
-                    "width": <%= object._width %>,
-                    "height": <%= object._height %>,
-                    "left": <%= object._left %>.toFixed(),
-                    "top": <%= object._top %>.toFixed(),
-                    "label": <%= i %>,
-                    "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %>.toFixed(),
-                    "fontColor": <%= object.font_color %> + "",
-                    "fontSize": <%= object.font_size %> + "",
-                    "backColor": <%= object.back_color %> + ""
+                    "typeModulesGuid": String(<%= object.type_id %>),
+                    "width": String(<%= object._width %>),
+                    "height": String(<%= object._height %>),
+                    "left": String(<%= object._left %>),
+                    "top": String(<%= object._top %>),
+                    "label": <%= _label %>,
+                    "price": String(<%= object.price %>),
+                    "angle": String(<%= object._angle %>),
+                    "fontColor": String(<%= object.font_color %>),
+                    "fontSize": String(<%= object.font_size %>),
+                    "backColor": String(<%= object.back_color %>)
                 } <% if (i + 1) != _lenght { %>,<% } %>
             <% } %>
         ],

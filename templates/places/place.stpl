@@ -126,7 +126,7 @@
                     "top": <%= object._top %>,
                     "label":  "<%= i %>",
                     "price": "<%= object.price %>",
-                    "angle": "<%= object._angle %>,
+                    "angle": <%= object._angle %>,
                     "fontColor": "<%= object.font_color %>",
                     "fontSize": "<%= object.font_size %>",
                     "backColor": "<%= object.back_color %>"

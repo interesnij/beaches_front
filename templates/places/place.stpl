@@ -114,14 +114,13 @@
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
     var modules_22 = [];
+    var counter = 1;
     <% for object in modules.iter() { %>
-        var counter = 1;
-        var parsed_object = JSON.parse(<%= object.id %>);
         console.log("object id ", <%= object.id %>);
         console.log("parsed_object id ", parsed_object);
         modules_22.push ({
-                    "guid": parsed_object,
-                    "name": <%= object.title %> + "",
+                    "guid": "<%= object.id %>",
+                    "name": <%= object.title %>,
                     "objectName": "Module",
                     "typeModulesGuid": <%= object.type_id %> + "",
                     "width": <%= object._width %>,

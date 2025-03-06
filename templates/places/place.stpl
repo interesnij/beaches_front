@@ -113,12 +113,14 @@
     import { SchemeViewer } from '/assets/js/scheme-viewer.js';
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
-    var modules_f = [
+    var modules_f = []
+    
             <%  let _lenght = modules.len(); %>
             <%  let _label = _lenght + 1; %>
             <%  for (i, object) in modules.iter().enumerate() { %>
-                { 
-                    "guid": String(<%= object.id %>),
+                guid = <%= object.id %> + "";
+                modules_f.push({ 
+                    "guid": guid,
                     "name": String(<%= object.title %>),
                     "objectName": "Module",
                     "typeModulesGuid": String(<%= object.type_id %>),
@@ -132,9 +134,10 @@
                     "fontColor": String(<%= object.font_color %>),
                     "fontSize": String(<%= object.font_size %>),
                     "backColor": String(<%= object.back_color %>)
-                } <% if (i + 1) != _lenght { %>,<% } %>
+                });
+                
             <% } %>
-        ];
+
     var data = {
         "version": "0.1",
         "place": {

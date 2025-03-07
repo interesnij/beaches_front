@@ -442,23 +442,22 @@
         }
     ],
     "modules": [
-            <%  let _lenght = modules.len(); %>
             <%  for (i, object) in modules.iter().enumerate() { %>
                 { 
-                    "guid": <%= object.id %> + "",
-                    "name": <%= object.title %> + "",
+                    "guid": "<%= object.id %>",
+                    "name": "<%= object.title %>",
                     "objectName": "Module",
-                    "typeModulesGuid": <%= object.type_id %> + "",
+                    "typeModulesGuid": "<%= object.type_id %>",
                     "width": <%= object._width %>,
                     "height": <%= object._height %>,
-                    "left": <%= object._left %>.toFixed(),
-                    "top": <%= object._top %>.toFixed(),
-                    "label": <%= i %>,
-                    "price": <%= object.price %> + "",
-                    "angle": <%= object._angle %>.toFixed(),
-                    "fontColor": <%= object.font_color %> + "",
-                    "fontSize": <%= object.font_size %> + "",
-                    "backColor": <%= object.back_color %> + ""
+                    "left": <%= object._left %>,
+                    "top": <%= object._top %>,
+                    "label":  "<%= i %>",
+                    "price": "<%= object.price %>",
+                    "angle": <%= object._angle %>,
+                    "fontColor": "<%= object.font_color %>",
+                    "fontSize": "<%= object.font_size %>",
+                    "backColor": "<%= object.back_color %>"
                 } <% if (i + 1) != _lenght { %>,<% } %>
             <% } %>
         ],

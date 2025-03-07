@@ -154,6 +154,26 @@
     import { SchemeModuleSettings } from '/assets/js/scheme-module-settings.js';
     import { SchemePlaceSettings } from '/assets/js/scheme-place-settings.js';
 
+    var modules_22 = [];
+    <% for (i, object) in modules.iter().enumerate() { %>
+        modules_22.push ({ 
+                    "guid": "<%= object.id %>",
+                    "name": "<%= object.title %>",
+                    "objectName": "Module",
+                    "typeModulesGuid": "<%= object.type_id %>",
+                    "width": <%= object._width %>,
+                    "height": <%= object._height %>,
+                    "left": <%= object._left %>,
+                    "top": <%= object._top %>,
+                    "label":  "<%= i %>",
+                    "price": "<%= object.price %>",
+                    "angle": <%= object._angle %>,
+                    "fontColor": "<%= object.font_color %>",
+                    "fontSize": "<%= object.font_size %>",
+                    "backColor": "<%= object.back_color %>"
+                });
+    <% } %>
+
     //window.addEventListener('load', (event) => {
     var data = {
     "version": "0.1",
@@ -441,26 +461,7 @@
             "imageUrl": "/assets/images/my/дорожка3.png"
         }
     ],
-    "modules": [
-            <%  for (i, object) in modules.iter().enumerate() { %>
-                { 
-                    "guid": "<%= object.id %>",
-                    "name": "<%= object.title %>",
-                    "objectName": "Module",
-                    "typeModulesGuid": "<%= object.type_id %>",
-                    "width": <%= object._width %>,
-                    "height": <%= object._height %>,
-                    "left": <%= object._left %>,
-                    "top": <%= object._top %>,
-                    "label":  "<%= i %>",
-                    "price": "<%= object.price %>",
-                    "angle": <%= object._angle %>,
-                    "fontColor": "<%= object.font_color %>",
-                    "fontSize": "<%= object.font_size %>",
-                    "backColor": "<%= object.back_color %>"
-                } <% if (i + 1) != _lenght { %>,<% } %>
-            <% } %>
-        ],
+    "modules": modules_22,
         "bookings": []
 }
     console.log("incomming modules", data["modules"]);

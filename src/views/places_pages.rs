@@ -13,6 +13,7 @@ use actix_session::Session;
 use crate::utils::{
     get_current_user,
     is_signed_in,
+    save_file,
     Place, UserJson,
     Places, RespOrderJson2s, 
     ModuleTypes, PlaceTypes,
@@ -301,7 +302,7 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
             object = data;
         }
         else {
-            object = Place{
+            object = Place {
             id:      "".to_string(),
             title:   "".to_string(), 
             types:   0,

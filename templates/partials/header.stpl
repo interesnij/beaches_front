@@ -4,8 +4,8 @@
         <div class="header-content-left">
             <div class="header-element">
                 <div class="horizontal-logo">
-                    <a href="/" class="header-logo">
-                        Шезлонгер
+                    <a href="/" class="header-logo" style="font-size: x-large;">
+                        My Place
                     </a>
                 </div>
             </div>

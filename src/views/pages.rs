@@ -20,6 +20,7 @@ pub fn pages_urls(config: &mut web::ServiceConfig) {
     config.route("/about/", web::get().to(about_page));
     config.route("/terms-and-conditions/", web::get().to(terms_page));
     config.route("/privacy-policy/", web::get().to(policy_page));
+    config.route("/business/", web::get().to(business_page));
 }
 
 pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
@@ -97,7 +98,37 @@ pub async fn about_page(session: Session) -> actix_web::Result<HttpResponse> {
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
         Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
     }
-} 
+}
+
+pub async fn business_page(session: Session) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        #[derive(TemplateOnce)]
+        #[template(path = "business.stpl")]
+        struct Template {
+            request_user: AuthResp2,
+        }
+        let body = Template {
+            request_user: _request_user,
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+    else {
+        #[derive(TemplateOnce)]
+        #[template(path = "anon_business.stpl")]
+        struct Template {
+            //types: String,
+        }
+        let body = Template {
+            //types: "anon".to_string(),
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+}
 
 pub async fn not_found_page(session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {

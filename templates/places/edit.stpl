@@ -1,4 +1,39 @@
 <% include!("../partials/h.stpl"); %>
 
- 
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    Редактирование информации
+                </div>
+            </div> 
+            <div class="card-body"> 
+                <form enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">Название объекта</label>
+                        <input type="text" value="<%= object.title %>" id="id_title" name="title" class="form-control" placeholder="Название объекта" aria-label="Title">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Координаты</label>
+                        <% if object.cord.is_some() { %>
+                            <input type="text" value="<%= object.cord.as_deref().unwrap() %>" id="id_cord" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
+                        <% } else { %>
+                            <input type="text" value="" id="id_cord" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
+                        <% } %>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Изображение</label>
+                        <input id="id_image" class="input-md form-control" type="file" name="image" />
+                    </div>
+                    <p class="api_response error"></p>
+                    <div class="col-md-12">
+                        <button type="button" id="edit_place" place_id="<%= object.id %>" class="btn btn-primary">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <% include!("../partials/f.stpl"); %>

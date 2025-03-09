@@ -1,8 +1,8 @@
 
 <aside class="app-sidebar sticky" id="sidebar">
     <div class="main-sidebar-header">
-        <a href="/" class="header-logo">
-            Шезлонгер
+        <a href="/" class="header-logo" style="font-size: x-large;">
+            My Place
         </a>
     </div>
 

@@ -85,3 +85,55 @@ on('body', 'click', '#create_place', function() {
     }};
     link.send(json);
 });
+
+on('body', 'click', '#edit_place', function() {
+    _this = this;
+    form = _this.parentElement.parentElement;
+    response = form.querySelector(".api_response");
+
+	form_data = new FormData(form);
+	if (form.querySelector("#id_image").files.length > 0){
+      image = stringify(form.querySelector("#id_image").files[0]);
+      if (image != {}) {
+	    form_data.append("image", image);
+      }
+	  console.log(image);
+    }
+  
+    if (!form.querySelector("#id_title").value){
+      form.querySelector("#id_title").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Название";
+      response.classList.add("error");
+      return 
+    }
+    else if (!form.querySelector("#id_cord").value){
+      form.querySelector("#id_cord").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Координаты";
+      response.classList.add("error")
+      return
+    } 
+    else {
+      _this.disabled = true;
+    }
+    
+	form_data.append("user_id", ID);
+	form_data.append("type_id", "");
+    object = {};
+    form_data.forEach((value, key) => object[key] = value);
+    json = JSON.stringify(object);
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+    link.open( 'POST', "/place/" + _this.getAttribute("place-id") +"/edit/", true ); 
+    link.setRequestHeader('Content-Type', 'application/json');
+  
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+        window.location.href = "/";
+    }
+    else {
+        _this.disabled = false;
+        response.style.display = "block";
+        response.classList.add("error");
+    }};
+    link.send(json);
+});

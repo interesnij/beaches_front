@@ -124,7 +124,7 @@ on('body', 'click', '#edit_place', function() {
     json = JSON.stringify(object);
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/place/" + _this.getAttribute("place-id") +"/edit/", true ); 
+    link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/edit/", true ); 
     link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {

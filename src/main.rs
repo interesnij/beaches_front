@@ -21,6 +21,7 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || { 
         let _files = Files::new("/assets", "assets/").show_files_listing();
+        let _files2 = Files::new("/media", "media/").show_files_listing();
         App::new()
             .wrap(
                 SessionMiddleware::builder(CookieSessionStore::default(), secret_key.clone())
@@ -29,6 +30,7 @@ async fn main() -> std::io::Result<()> {
             )
             .default_service(web::route().to(not_found_page))
             .service(_files)
+            .service(_files2)
             .configure(routes)
     }) 
     .bind("192.168.0.49:9999")?   // prod

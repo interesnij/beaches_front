@@ -52,7 +52,7 @@
                                 <div class="card p-3 border-primary pricing-card advanced shadow-none">
                                     <div class="p-4 bg-primary rounded-3 d-block text-justified pt-2 text-fixed-white">
                                         <p class="fs-18 fw-semibold mb-1 pe-0">Демо</p>
-                                        <p class="text-justify fw-semibold mb-1"> <span class="fs-15 me-2">₽</span><span class="fs-22 me-1">199</span><span
+                                        <p class="text-justify fw-semibold mb-1"> <span class="fs-15 me-2">₽</span><span class="fs-22 me-1">0</span><span
                                                 class="fs-13">
                                                 </span></p>
                                     </div>
@@ -125,7 +125,7 @@
                                 <div class="card p-3 border border-primary pricing-card advanced reveal revealrotate shadow-none active">
                                     <div class="p-4 bg-primary rounded-3 d-block text-justified pt-2 text-fixed-white">
                                         <p class="fs-18 fw-semibold mb-1 pe-0">Демо</p>
-                                        <p class="text-justify fw-semibold mb-1"> <span class="fs-15 me-2">₽</span><span class="fs-22 me-1">1,299</span><span
+                                        <p class="text-justify fw-semibold mb-1"> <span class="fs-15 me-2">₽</span><span class="fs-22 me-1">0</span><span
                                                 class="fs-13"></p>
                                         
                                     </div>

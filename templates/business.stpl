@@ -1,5 +1,127 @@
 <% include!("partials/h.stpl"); %>
 
+<div class="main-content app-content">
+            <div class="container-fluid">
+<div class="row about-main mb-5 mt-5" style="background-color: rgba(var(--primary-rgb), 0.7);padding: 40px 10px;color: white !important;">
+    <div class="col-lg-8 col-md-8 col-sm-12 text-center">
+        <div class="mb-3">
+            <h5 class="fw-semibold text-fixed-white op-9">Агрегатор мест в Г. Сочи</h5>
+        </div>
+        <h1 class="mb-3 fw-semibold fs-46 text-fixed-white">Стань партнером платформы нового времени</h1>
+        <p class="leading-normal text-fixed-white fs-16">
+            Наши преимущества:<br />
+            Увеличение дохода через онлайн-бронирования<br />
+            Автоматизация управления бронями, условия отмены<br />
+            Мощные инструменты продвижения
+        </p>
+        <p class="leading-normal fs-16 btn-list">
+            <a href="/about/" class="m-1 btn btn-primary">
+                О нас
+                <i class="fe fe-eye ms-2 align-middle"></i>
+            </a>
+            <a href="/business/" class="m-1 btn btn-info">
+                Для бизнеса
+                <i class="fe fe-arrow-right ms-2 align-middle"></i>
+            </a>
+        </p>
+    </div>
+</div>
 
+<section class="section" style="margin-top: 110px;">
+    <div class="container">
+        <p class="fs-12 fw-semibold text-success mb-1 text-center"><span class="landing-section-heading">Прайс</span></p>
+        <div class="d-flex justify-content-center mb-4">
+            <ul class="nav nav-tabs mb-3 tab-style-6 bg-primary-transparent" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pricing-monthly" data-bs-toggle="tab" data-bs-target="#pricing-monthly-pane" type="button" role="tab"
+                        aria-controls="pricing-monthly-pane" aria-selected="false" tabindex="-1">Monthly</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pricing-yearly" data-bs-toggle="tab" data-bs-target="#pricing-yearly-pane" type="button" role="tab"
+                        aria-controls="pricing-yearly-pane" aria-selected="true">Yearly</button>
+                </li>
+            </ul>
+        </div>
+        <div class="card custom-card overflow-hidden shadow-none border-0">
+            <div class="card-body p-0">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane border-0 p-0 active show" id="pricing-monthly-pane" role="tabpanel" aria-labelledby="pricing-monthly" tabindex="0">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                                <div class="card p-3 border-primary pricing-card advanced shadow-none active">
+                                    <div class="p-4 bg-primary rounded-3 d-block text-justified pt-2 text-fixed-white">
+                                        <p class="fs-18 fw-semibold mb-1 pe-0">Демо</p>
+                                        <p class="fs-13 mb-2">Идеальный вариант попробовать</p>
+                                        <p class="fs-13 mb-1 text-fixed-white op-7"></p>
+                                    </div>
+                                    <div class="card-body pt-2">
+                                        <ul class="text-justify pricing-body ps-0 list-unstyled mt-3">
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong> Один объект</strong></li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>Поддержка 24 / 7</li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>Продвижение</li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>Неограниченный доступ</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer text-center border-top-0 py-0">
+                                        <button class="btn btn-primary w-100">
+                                            <span class="ms-4 me-4">Выбрать</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                                <div class="card p-3 pricing-card shadow-none active">
+                                    <div class="card-header d-block text-justified pt-2">
+                                        <p class="fs-18 fw-semibold mb-1">Начальный</p>
+                                    </div>
+                                    <div class="card-body pt-2">
+                                        <ul class="text-justify pricing-body ps-0 list-unstyled mt-3">
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong> Несколько объектов</strong></li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>Поддержка 24 / 7</li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>Усиленное Продвижение</li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>Неограниченный доступ</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer text-center border-top-0 py-0">
+                                        <button class="btn btn-outline-info w-100">
+                                            <span class="ms-4 me-4">Выбрать</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                                <div class="card p-3 pricing-card shadow-none active">
+                                    <div class="card-header d-block text-justified pt-2">
+                                        <p class="fs-18 fw-semibold mb-1">Продвинутый</p>
+                                    </div>
+                                    <div class="card-body pt-2">
+                                        <ul class="text-justify pricing-body ps-0 list-unstyled mt-3">
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong> Несколько объектов</strong></li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>Индивидуальная Поддержка 24 / 7</li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>Усиленное Продвижение</li>
+                                            <li><i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>Неограниченный доступ</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer text-center border-top-0 py-0">
+                                        <button class="btn btn-outline-info w-100">
+                                            <span class="ms-4 me-4">Выбрать</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane border-0 p-0 active show" id="pricing-yearly-pane" role="tabpanel" aria-labelledby="pricing-yearly" tabindex="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<% include!("missia_.stpl"); %>
+<% include!("testimonials_.stpl"); %>
+
+</div>
+        </div>
 <% include!("partials/f.stpl"); %>

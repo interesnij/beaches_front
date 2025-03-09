@@ -2,8 +2,8 @@
 
         <div class="main-content app-content">
             <div class="container-fluid">
-                
-
+                <% include!("missia_.stpl"); %>
+                <% include!("testimonials_.stpl"); %>
             </div>
         </div>
 

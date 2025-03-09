@@ -92,10 +92,6 @@ on('body', 'click', '#edit_place', function() {
     response = form.querySelector(".api_response");
 
 	form_data = new FormData(form);
-	if (form.querySelector("#id_image").files.length > 0){
-      
-  }
-  
     if (!form.querySelector("#id_title").value){
       form.querySelector("#id_title").style.border = "1px #FF0000 solid";
       response.innerHTML = "Введите Название";
@@ -115,6 +111,8 @@ on('body', 'click', '#edit_place', function() {
 	form_data.append("user_id", ID);
   form_data.append("place_id", _this.getAttribute("place_id"));
 	form_data.append("type_id", "");
+  formData.delete('image');
+
     object = {};
     form_data.forEach((value, key) => object[key] = value);
     json = JSON.stringify(object);

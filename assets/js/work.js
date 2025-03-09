@@ -111,7 +111,7 @@ on('body', 'click', '#edit_place', function() {
 	form_data.append("user_id", ID);
   form_data.append("place_id", _this.getAttribute("place_id"));
 	form_data.append("type_id", "");
-  form_data.delete('image');
+  form_data.delete('image'); 
 
     object = {};
     form_data.forEach((value, key) => object[key] = value);
@@ -125,7 +125,7 @@ on('body', 'click', '#edit_place', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
 	      if (form.querySelector("#id_image").files.length > 0){
             new_form_data = new FormData();
-            new_form_data.append(form.querySelector("#id_image").files[0]);
+            new_form_data.append("files", form.querySelector("#id_image").files[0]);
             new_link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
             link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true ); 
             new_link.onreadystatechange = function () {

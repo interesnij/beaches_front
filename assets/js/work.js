@@ -111,7 +111,7 @@ on('body', 'click', '#edit_place', function() {
 	form_data.append("user_id", ID);
   form_data.append("place_id", _this.getAttribute("place_id"));
 	form_data.append("type_id", "");
-  formData.delete('image');
+  form_data.delete('image');
 
     object = {};
     form_data.forEach((value, key) => object[key] = value);

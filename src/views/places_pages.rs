@@ -313,7 +313,7 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
                 modules = Vec::new();
                 orders = Vec::new();
             }
-        }
+        
         #[derive(TemplateOnce)]
         #[template(path = "places/edit.stpl")]
         struct Template {

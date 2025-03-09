@@ -119,12 +119,7 @@ on('body', 'click', '#edit_place', function() {
   new_link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true ); 
   new_link.onreadystatechange = function () {
   if ( new_link.readyState == 4 && new_link.status == 200 ) {
-      console.log("img send!")
-  }}
-  new_link.send(new_form_data);
-
-
-    object = {};
+      object = {};
     form_data.forEach((value, key) => object[key] = value);
     json = JSON.stringify(object);
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
@@ -145,4 +140,6 @@ on('body', 'click', '#edit_place', function() {
         response.classList.add("error");
     }};
     link.send(json);
+  }}
+  new_link.send(new_form_data);
 });

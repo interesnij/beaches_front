@@ -117,7 +117,6 @@ on('body', 'click', '#edit_place', function() {
   files = document.querySelector('#id_image').files;
   for (var x = 0; x < files.length; x++) {
     new_form_data.append("files[]", files[x]);
-    
   }
   console.log(new_form_data);
 

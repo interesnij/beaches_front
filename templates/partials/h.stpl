@@ -1,5 +1,11 @@
 <% include!("mainhead.stpl"); %>
-
+<style>
+._nice {
+    object-fit: cover;
+    height: 250px !important;
+    width: 100%;
+}
+</style>
 </head>
 
 <body> 

@@ -533,7 +533,8 @@
     
         link.onreadystatechange = function () {
         if ( link.readyState == 4 && link.status == 200 ) {
-            console.log("ok!!")
+            console.log("ok!!");
+            alert("Изменения сохранены!")
         }} 
         link.send(JSON.stringify(__data));
     }

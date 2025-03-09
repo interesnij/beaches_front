@@ -32,7 +32,7 @@
         <p><img src="/assets/images/signup_jpg.jpg" class="rounded-3 w-100" alt="image"></p>
     </div>
 
-    <section class="section section-bg " id="features">
+    <section class="section section-bg " style="margin-top: 110px;">
                 <div class="container text-center position-relative">
                     <p class="fs-12 fw-semibold text-success mb-1">
                         <span class="landing-section-heading">FAQ</span>
@@ -59,7 +59,7 @@
                                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
                                     <div class="card features main-features main-features-2 wow p-4"> 
                                         <div> 
-                                            <h5 class="fw-bold">На странице нужного объекта выберите места</h5> 
+                                            <h5 class="fw-bold">Выберите места</h5> 
                                         </div> 
                                     </div> 
                                 </div>
@@ -84,7 +84,7 @@
                 </div>
             </section>
 
-            <section class="section " id="about">
+            <section class="section " style="margin-top: 110px;"">
                 <div class="container text-center">
                     <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Наша миссия</span>
                     </p>
@@ -104,7 +104,7 @@
                             <img src="/assets/images/media/pngs/9.png" alt="" class="img-fluid">
                         </div>
                         <div class="col-xxl-8 col-xl-7 col-lg-7 pt-5 pb-0 px-lg-2 px-5 text-start">
-                            <h4 class="text-lg-start fw-medium mb-4">Все культурные и развлеательные места в г. Сочи - на одной платформе!</h4>
+                            <h4 class="text-lg-start fw-medium mb-4">Все культурные и развлекательные места в г. Сочи - на одной платформе!</h4>
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="d-flex mb-2">
@@ -152,7 +152,7 @@
                     </div>
                 </div>
             </section>
-            <section class="section landing-testimonials section-bg" id="testimonials">
+            <section class="section landing-testimonials section-bg" style="margin-top: 110px;">
                 <div class="container text-center">
                     <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Отзывы</span>
                     </p>

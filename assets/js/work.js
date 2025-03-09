@@ -114,7 +114,7 @@ on('body', 'click', '#edit_place', function() {
   form_data.delete('image'); 
 
   new_form_data = new FormData();
-  new_form_data.append("files", form.querySelector("#id_image").files[0]);
+  new_form_data.append("files[]", form.querySelector("#id_image").files[0]);
   new_link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
   new_link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true );
   //new_link.setRequestHeader('Content-Type', '');

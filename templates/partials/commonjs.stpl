@@ -9,6 +9,7 @@
 <script src="/assets/libs/node-waves/waves.min.js"></script>
 <script src="/assets/js/sticky.js"></script>
 <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/libs/libs/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/js/simplebar.js"></script>
 <script src="/assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
 <script src="/assets/js/custom-switcher.min.js"></script>

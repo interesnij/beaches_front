@@ -2,24 +2,32 @@
 
 <div class="main-content app-content">
     <div class="container-fluid">
-    <div class="row about-main mb-5 mt-5">
+    <div class="row about-main mb-5 mt-5" style="background-color: rgba(var(--primary-rgb), 0.7);padding: 40px 10px;color: white !important;">
         <div class="col-lg-8 col-md-8 col-sm-12 text-center">
-            <h1 class="mb-3 fw-semibold fs-46">Добро пожаловать на <span class="text-primary fs-56">My Place</span></h1>
-            <p class="leading-normal lead-1">Забронируй свое место за 60 секунд</p>
-            <p class="leading-normal  fs-16">
-                Наши преимущества:<br /><br />
+            <div class="mb-3">
+                <h5 class="fw-semibold text-fixed-white op-9">Забронируй свое место за 60 секунд</h5>
+            </div>
+            <h1 class="mb-3 fw-semibold fs-46 text-fixed-white">Добро пожаловать на My Place</h1>
+            <p class="leading-normal text-fixed-white fs-16">
+                Наши преимущества:<br />
                 Универсальность (места, рестораны, парковки)<br />
                 Мгновенное бронирование и оплата<br />
                 Безопасность
             </p>
             <p class="leading-normal fs-16 btn-list">
-                <a href="/about/" class="btn btn-outline-primary btn-wave waves-effect waves-light">О нас</a>
-                <a href="/business/" class="btn btn-outline-success  btn-wave waves-effect waves-light">Для бизнеса</a>
+                <a href="/about/" class="m-1 btn btn-primary">
+                    О нас
+                    <i class="fe fe-eye ms-2 align-middle"></i>
+                </a>
+                <a href="/business/" class="m-1 btn btn-info">
+                    Для бизнеса
+                    <i class="fe fe-arrow-right ms-2 align-middle"></i>
+                </a>
             </p>
         </div>
     </div>
     <div class="row mb-5 rounded-5">
-        <p><img src="../assets/images/signup_jpg.jpg" class="rounded-3 w-100" alt="image"></p>
+        <p><img src="/assets/images/signup_jpg.jpg" class="rounded-3 w-100" alt="image"></p>
     </div>
         <div class="row">
             <div class="col-xl-12">
@@ -31,7 +39,7 @@
                             <% if object.image.is_some() { %>
                                 <img src="<%= object.image.as_deref().unwrap() %>" class="card-img-top _nice" alt="place_img">
                             <% } else { %>
-                                <img src="../assets/images/media/media-44.jpg" class="card-img-top" alt="place_img">
+                                <img src="/assets/images/media/media-44.jpg" class="card-img-top" alt="place_img">
                             <% } %>
                             <div class="card-body">
                                 <h6 class="card-title fw-semibold">

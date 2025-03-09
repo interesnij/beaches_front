@@ -1,26 +1,305 @@
 <% include!("partials/h.stpl"); %>
 
+
 <div class="main-content app-content">
     <div class="container-fluid">
-    <div class="row about-main mb-5 mt-5">
+    <div class="row about-main mb-5 mt-5" style="background-color: rgba(var(--primary-rgb), 0.7);padding: 40px 10px;color: white !important;">
         <div class="col-lg-8 col-md-8 col-sm-12 text-center">
-            <h1 class="mb-3 fw-semibold fs-46">Добро пожаловать на <span class="text-primary fs-56">My Place</span></h1>
-            <p class="leading-normal lead-1">Забронируй свое место за 60 секунд</p>
-            <p class="leading-normal  fs-16">
-                Наши преимущества:<br /><br />
+            <div class="mb-3">
+                <h5 class="fw-semibold text-fixed-white op-9">Забронируй свое место за 60 секунд</h5>
+            </div>
+            <h1 class="mb-3 fw-semibold fs-46 text-fixed-white">Добро пожаловать на My Place</h1>
+            <p class="leading-normal text-fixed-white fs-16">
+                Наши преимущества:<br />
                 Универсальность (места, рестораны, парковки)<br />
                 Мгновенное бронирование и оплата<br />
                 Безопасность
             </p>
             <p class="leading-normal fs-16 btn-list">
-                <a href="/about/" class="btn btn-outline-primary btn-wave waves-effect waves-light">О нас</a>
-                <a href="/business/" class="btn btn-outline-success  btn-wave waves-effect waves-light">Для бизнеса</a>
+                <a href="/about/" class="m-1 btn btn-primary">
+                    О нас
+                    <i class="fe fe-eye ms-2 align-middle"></i>
+                </a>
+                <a href="/business/" class="m-1 btn btn-info">
+                    Для бизнеса
+                    <i class="fe fe-arrow-right ms-2 align-middle"></i>
+                </a>
             </p>
         </div>
     </div>
+
     <div class="row mb-5 rounded-5">
-        <p><img src="../assets/images/signup_jpg.jpg" class="rounded-3 w-100" alt="image"></p>
+        <p><img src="/assets/images/signup_jpg.jpg" class="rounded-3 w-100" alt="image"></p>
     </div>
+
+    <section class="section section-bg " id="features">
+                <div class="container text-center position-relative">
+                    <p class="fs-12 fw-semibold text-success mb-1">
+                        <span class="landing-section-heading">FAQ</span>
+                    </p>
+                    <div class="landing-title"></div>
+                    <h3 class="fw-semibold mb-2">Как это работает</h3>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7">
+                            <p class="text-muted fs-15 mb-5 fw-normal">
+                                Мы используем лучший пользовательский опыт своего дела. Никаких лишних движений, все просто:
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row  g-2 justify-content-center">
+                        <div class="col-xl-12">
+                            <div class="row justify-content-evenly">
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="card features main-features main-features-4 p-4 active" data-wow-delay="0.1s"> 
+                                        <div> 
+                                            <h5 class="fw-bold">Создайте аккаунт</h5> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="card features main-features main-features-2 wow p-4"> 
+                                        <div> 
+                                            <h5 class="fw-bold">На странице нужного объекта выберите места</h5> 
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="card features main-features main-features-3 wow p-4"> 
+                                        <div> 
+                                            <h5 class="fw-bold">Оплатите стоимость</h5> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="card features main-features main-features-4 wow fadeInUp reveal revealleft p-4 active"> 
+                                        <div> 
+                                            <h5 class="fw-bold">Получите доступ</h5> 
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section " id="about">
+                <div class="container text-center">
+                    <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Наша миссия</span>
+                    </p>
+                    <div class="landing-title"></div>
+                    <h3 class="fw-semibold mb-2">Мы хотим создать лучший агрегатор заказов мест в Сочи</h3>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7">
+                            <p class="text-muted fs-15 mb-3 fw-normal">
+                                Это будет максимально удобно как желающим приятно провести время в нашем прекрасном городе, 
+                                так и для предпринимателей, осуществляющих услуги аренды мест на пляжах, в ресторанах,
+                                на парковках, в кинотеатрах, и т.д.
+                            </p>
+                        </div>
+                    </div> 
+                    <div class="row justify-content-center align-items-center mx-0">
+                        <div class="col-xxl-4 col-xl-5 col-lg-5 text-center text-lg-start">
+                            <img src="/assets/images/media/pngs/9.png" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-xxl-8 col-xl-7 col-lg-7 pt-5 pb-0 px-lg-2 px-5 text-start">
+                            <h4 class="text-lg-start fw-medium mb-4">Все культурные и развлеательные места в г. Сочи - на одной платформе!</h4>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="d-flex mb-2">
+                                        <span>
+                                            <i class="bx bxs-badge-check text-primary fs-18"></i>
+                                        </span>
+                                        <div class="ms-2">
+                                            <h6 class="fw-medium mb-0">Надежность и безопасность</h6>
+                                            <p class="text-muted mb-3">
+                                                Мы выбираем только проверенных поставщиков, лучшие технологии в нашем ПО
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="d-flex mb-2">
+                                        <span>
+                                            <i class="bx bxs-badge-check text-primary fs-18"></i>
+                                        </span>
+                                        <div class="ms-2">
+                                            <h6 class="fw-medium mb-0">Клиентоориентированность</h6>
+                                            <p class=" text-muted mb-3">
+                                                Вы всегда правы. В случае непредвиденной ситуации наша техподдержка и менеджеры в считанные минуты 
+                                                придут к вам на помощь.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="d-flex mb-2">
+                                        <span>
+                                            <i class="bx bxs-badge-check text-primary fs-18"></i>
+                                        </span>
+                                        <div class="ms-2">
+                                            <h6 class="fw-medium mb-0">Гибкие и современные программы лояльности</h6>
+                                            <p class=" text-muted">
+                                                Приятные скидки самых разных направлений и свойств, система рейтингов мест и пользователей, 
+                                                конкурсы и розыгрыши, бонусные программы - все это ждет вас.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </section>
+            <section class="section landing-testimonials section-bg" id="testimonials">
+                <div class="container text-center">
+                    <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Отзывы</span>
+                    </p>
+                    <div class="landing-title"></div>
+                    <h3 class="fw-semibold mb-2">Что о нас говорят наши клиенты</h3>
+                    <div class="swiper pagination-dynamic text-start swiper-initialized swiper-horizontal swiper-pointer-events">
+                        <div class="swiper-wrapper" id="swiper-wrapper-01aefce10d145c220" aria-live="off" style="transform: translate3d(-3140.67px, 0px, 0px); transition-duration: 0ms;">
+                            
+                            <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/1.jpg" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Спасибо команде My Place за замечательную производительную платформу! Все летает. Мы получаем на одну треть заказов
+                                                с вашей помощью.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Александр Груздев</p>
+                                            <p class="mb-0 fs-11 text-muted">Gruzdeff Place</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/11.jpg" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Хорошее приложение. Зашел, выбрал, победил. Успехов проекту.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Антон Горягин</p>
+                                            <p class="mb-0 fs-11 text-muted">Клиент</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/15.jpg" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Редко пишу отзывы, но тут душа не выдержала. Реально хотела зацепиться за какой-нибудь косяк, 
+                                                а все отзывается как надо. Мое потение.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Алиса Гордон</p>
+                                            <p class="mb-0 fs-11 text-muted">Клиент</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/11.jpg" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Благодарю за хорошую продуманность и оптимизацию. У вас лучший конструктор в стране. 
+                                                Пользоваться очень удобно, даже менеджер не нужен. Всех благ.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Алексей Шварц</p>
+                                            <p class="mb-0 fs-11 text-muted">"Шезлонги люкс"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="../assets/images/faces/15.jpg" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Я поражена. Ваша техподдержка вышла на связь и помогла разобраться с заказом места в кафе за три минуты.
+                                                 Вот это мастера. Ваш постоянный клиент теперь.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Наталия Царева</p>
+                                            <p class="mb-0 fs-11 text-muted">Клиент</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="swiper-pagination mt-4 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-bullets-dynamic" style="width: 140px;"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1" style="left: -56px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-prev-prev" tabindex="0" role="button" aria-label="Go to slide 3" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-prev" tabindex="0" role="button" aria-label="Go to slide 4" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main" tabindex="0" role="button" aria-label="Go to slide 5" style="left: -56px;" aria-current="true"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next" tabindex="0" role="button" aria-label="Go to slide 6" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next-next" tabindex="0" role="button" aria-label="Go to slide 7" style="left: -56px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 8" style="left: -56px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 9" style="left: -56px;"></span></div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+            </section>
         <div class="row">
             <div class="col-xl-12">
                 <div class="row row-cols-1 row-cols-md-4 g-4">

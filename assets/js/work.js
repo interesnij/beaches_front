@@ -40,13 +40,6 @@ on('body', 'click', '#create_place', function() {
     response = form.querySelector(".api_response");
 
 	form_data = new FormData(form);
-	if (form.querySelector("#id_image").files.length > 0){
-      image = stringify(form.querySelector("#id_image").files[0]);
-      if (image != {}) {
-	    form_data.append("image", image);
-      }
-	  console.log(image);
-    }
   
     if (!form.querySelector("#id_title").value){
       form.querySelector("#id_title").style.border = "1px #FF0000 solid";

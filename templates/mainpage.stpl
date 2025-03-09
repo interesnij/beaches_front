@@ -84,7 +84,7 @@
                 </div>
             </section>
 
-            <section class="section " style="margin-top: 110px;"">
+            <section class="section " style="margin-top: 110px;">
                 <div class="container text-center">
                     <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Наша миссия</span>
                     </p>
@@ -101,7 +101,7 @@
                     </div> 
                     <div class="row justify-content-center align-items-center mx-0">
                         <div class="col-xxl-4 col-xl-5 col-lg-5 text-center text-lg-start">
-                            <img src="/assets/images/media/pngs/9.png" alt="" class="img-fluid">
+                            <img src="/assets/images/XXXL.webp" alt="img" class="img-fluid">
                         </div>
                         <div class="col-xxl-8 col-xl-7 col-lg-7 pt-5 pb-0 px-lg-2 px-5 text-start">
                             <h4 class="text-lg-start fw-medium mb-4">Все культурные и развлекательные места в г. Сочи - на одной платформе!</h4>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
             </section>
-            <section class="section landing-testimonials section-bg" style="margin-top: 110px;">
+            <section class="section landing-testimonials section-bg" style="margin-top: 110px; margin-bottom: 110px;">
                 <div class="container text-center">
                     <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Отзывы</span>
                     </p>
@@ -166,7 +166,7 @@
                                     <div class="card-body">
                                         <div class="testimonia text-center">
                                             <span class="avatar avatar-xl avatar-rounded mb-1">
-                                                <img src="/assets/images/faces/1.jpg" alt="">
+                                                <img src="/assets/images/faces/100.jpg" alt="">
                                             </span>
                                             <div class="d-flex align-items-center justify-content-center mb-2">
                                                 <span class="text-warning d-block">
@@ -193,7 +193,7 @@
                                     <div class="card-body">
                                         <div class="testimonia text-center">
                                             <span class="avatar avatar-xl avatar-rounded mb-1">
-                                                <img src="/assets/images/faces/11.jpg" alt="">
+                                                <img src="/assets/images/faces/101.jpg" alt="">
                                             </span>
                                             <div class="d-flex align-items-center justify-content-center mb-2">
                                                 <span class="text-warning d-block">
@@ -219,7 +219,7 @@
                                     <div class="card-body">
                                         <div class="testimonia text-center">
                                             <span class="avatar avatar-xl avatar-rounded mb-1">
-                                                <img src="/assets/images/faces/15.jpg" alt="">
+                                                <img src="/assets/images/faces/102.jpg" alt="">
                                             </span>
                                             <div class="d-flex align-items-center justify-content-center mb-2">
                                                 <span class="text-warning d-block">
@@ -246,7 +246,7 @@
                                     <div class="card-body">
                                         <div class="testimonia text-center">
                                             <span class="avatar avatar-xl avatar-rounded mb-1">
-                                                <img src="/assets/images/faces/11.jpg" alt="">
+                                                <img src="/assets/images/faces/103.jpg" alt="">
                                             </span>
                                             <div class="d-flex align-items-center justify-content-center mb-2">
                                                 <span class="text-warning d-block">
@@ -272,7 +272,7 @@
                                     <div class="card-body">
                                         <div class="testimonia text-center">
                                             <span class="avatar avatar-xl avatar-rounded mb-1">
-                                                <img src="../assets/images/faces/15.jpg" alt="">
+                                                <img src="../assets/images/faces/405.jpg" alt="">
                                             </span>
                                             <div class="d-flex align-items-center justify-content-center mb-2">
                                                 <span class="text-warning d-block">

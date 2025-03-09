@@ -127,7 +127,7 @@ on('body', 'click', '#edit_place', function() {
             new_form_data = new FormData();
             new_form_data.append("files", form.querySelector("#id_image").files[0]);
             new_link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
-            link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true ); 
+            new_link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true ); 
             new_link.onreadystatechange = function () {
             if ( new_link.readyState == 4 && new_link.status == 200 ) {
                 console.log("img send!")

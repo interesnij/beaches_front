@@ -294,6 +294,7 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let object:  Place;
+        let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
         let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
             if resp.is_ok() { 
                 let data = resp.expect("E.");

@@ -293,24 +293,26 @@ pub async fn create_place_page(session: Session) -> actix_web::Result<HttpRespon
 pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let object: Place;
-        let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-        let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone()).await;
-        if resp.is_ok() { 
-            let data = resp.expect("E.");
-            object = data;
-        }
-        else {
-            object = Place {
-            id:      "".to_string(),
-            title:   "".to_string(), 
-            types:   0,
-            created: chrono::Local::now().naive_utc(),
-            user_id: "".to_string(),
-            type_id: "".to_string(),
-            image:   None,
-            cord:    None,
-        };
+        let object:  Place;
+        let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
+            if resp.is_ok() { 
+                let data = resp.expect("E.");
+                object = data.place;
+            }
+            else { 
+                object = Place {
+                    id:      "".to_string(),
+                    title:   "".to_string(), 
+                    types:   0,
+                    created: chrono::Local::now().naive_utc(),
+                    user_id: "".to_string(),
+                    type_id: "".to_string(),
+                    image:   None,
+                    cord:    None,
+                };
+                modules = Vec::new();
+                orders = Vec::new();
+            }
         }
         #[derive(TemplateOnce)]
         #[template(path = "places/edit.stpl")]

@@ -1,0 +1,148 @@
+<section class="section landing-testimonials section-bg" style="margin-top: 110px; margin-bottom: 110px;">
+                <div class="container text-center">
+                    <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Отзывы</span>
+                    </p>
+                    <div class="landing-title"></div>
+                    <h3 class="fw-semibold mb-2">Что о нас говорят наши клиенты</h3>
+                    <div class="swiper pagination-dynamic text-start swiper-initialized swiper-horizontal swiper-pointer-events">
+                        <div class="swiper-wrapper" id="swiper-wrapper-01aefce10d145c220" aria-live="off" style="transform: translate3d(-3140.67px, 0px, 0px); transition-duration: 0ms;">
+                            
+                            <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/100.png" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Спасибо команде My Place за замечательную производительную платформу! Все летает. Мы получаем на одну треть заказов
+                                                с вашей помощью.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Александр Груздев</p>
+                                            <p class="mb-0 fs-11 text-muted">Gruzdeff Place</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/101.png" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Хорошее приложение. Зашел, выбрал, победил. Успехов проекту.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Антон Горягин</p>
+                                            <p class="mb-0 fs-11 text-muted">Клиент</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/102.png" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Редко пишу отзывы, но тут душа не выдержала. Реально хотела зацепиться за какой-нибудь косяк, 
+                                                а все отзывается как надо. Мое потение.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Алиса Гордон</p>
+                                            <p class="mb-0 fs-11 text-muted">Клиент</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="/assets/images/faces/103.png" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Благодарю за хорошую продуманность и оптимизацию. У вас лучший конструктор в стране. 
+                                                Пользоваться очень удобно, даже менеджер не нужен. Всех благ.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Алексей Шварц</p>
+                                            <p class="mb-0 fs-11 text-muted">"Шезлонги люкс"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 398.667px; margin-right: 50px;">
+                                <div class="card custom-card testimonial-card shadow-none">
+                                    <div class="card-body">
+                                        <div class="testimonia text-center">
+                                            <span class="avatar avatar-xl avatar-rounded mb-1">
+                                                <img src="../assets/images/faces/405.png" alt="">
+                                            </span>
+                                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                                <span class="text-warning d-block">
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-fill"></i>
+                                                    <i class="ri-star-half-fill"></i>
+                                                </span>
+                                            </div>
+                                            <p class="op-8 mb-4">
+                                                <i class="fa fa-quote-left fs-22 text-primary op-6 me-2"></i>
+                                                Я поражена. Ваша техподдержка вышла на связь и помогла разобраться с заказом места в кафе за три минуты.
+                                                 Вот это мастера. Ваш постоянный клиент теперь.
+                                            </p>
+                                            <p class="mb-0 fw-semibold fs-16">Наталия Царева</p>
+                                            <p class="mb-0 fs-11 text-muted">Клиент</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="swiper-pagination mt-4 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-bullets-dynamic" style="width: 140px;"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1" style="left: -56px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-prev-prev" tabindex="0" role="button" aria-label="Go to slide 3" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-prev" tabindex="0" role="button" aria-label="Go to slide 4" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main" tabindex="0" role="button" aria-label="Go to slide 5" style="left: -56px;" aria-current="true"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next" tabindex="0" role="button" aria-label="Go to slide 6" style="left: -56px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next-next" tabindex="0" role="button" aria-label="Go to slide 7" style="left: -56px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 8" style="left: -56px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 9" style="left: -56px;"></span></div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+            </section>

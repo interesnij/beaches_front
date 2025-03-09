@@ -24,7 +24,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Изображение</label>
-                        <input id="id_image" class="input-md form-control" type="file" name="image" />
+                        <input id="id_image" multiple class="input-md form-control" type="file" name="image" />
                     </div>
                     <p class="api_response error"></p>
                     <div class="col-md-12">

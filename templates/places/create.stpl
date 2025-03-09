@@ -18,10 +18,6 @@
                         <label class="form-label">Координаты</label>
                         <input type="text" id="id_cord" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Изображение</label>
-                        <input id="id_image" class="input-md form-control" type="file" name="image" />
-                    </div>
                     <p class="api_response error"></p>
                     <div class="col-md-12">
                         <button type="button" id="create_place" class="btn btn-primary">Создать</button>

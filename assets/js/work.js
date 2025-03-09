@@ -114,7 +114,7 @@ on('body', 'click', '#edit_place', function() {
   form_data.delete('image'); 
 
   new_form_data = new FormData();
-  files = document.getElementById('id_image').files;
+  files = document.querySelector('#id_image').files;
   for (var x = 0; x < files.length; x++) {
     new_form_data.append("files[]", files[x]);
   }

@@ -19,7 +19,7 @@
                     <a href="/" class="side-menu__item"><span class="side-menu__label">Главная</span></a>
                 </li>
                 
-                <% if admin == true |  { %>
+                <% if admin == true  { %>
                     <li class="slide">
                         <a href="/places/" class="side-menu__item"><span class="side-menu__label">Мои объекты</span></a>
                     </li>

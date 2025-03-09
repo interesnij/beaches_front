@@ -93,12 +93,8 @@ on('body', 'click', '#edit_place', function() {
 
 	form_data = new FormData(form);
 	if (form.querySelector("#id_image").files.length > 0){
-      image = stringify(form.querySelector("#id_image").files[0]);
-      if (image != {}) {
-	    form_data.append("image", image);
-      }
-	  console.log(image);
-    }
+      
+  }
   
     if (!form.querySelector("#id_title").value){
       form.querySelector("#id_title").style.border = "1px #FF0000 solid";
@@ -129,6 +125,17 @@ on('body', 'click', '#edit_place', function() {
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
+	      if (form.querySelector("#id_image").files.length > 0){
+            new_form_data = new FormData();
+            new_form_data.append(form.querySelector("#id_image").files[0]);
+            new_link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+            link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true ); 
+            new_link.onreadystatechange = function () {
+            if ( new_link.readyState == 4 && new_link.status == 200 ) {
+                console.log("img send!")
+            }}
+            new_link.send(new_form_data);
+        }
         window.location.href = "/";
     }
     else {

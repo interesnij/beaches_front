@@ -1,4 +1,119 @@
 <% include!("../partials/anon_h.stpl"); %>
+<style>
+    .canvas-holder {
+        width: 100%;
+        height: 700px;
+        position: relative;
+    }
+</style>
+<script src="/assets/js/scheme-designer-viewer.js"></script>
+<script src="/assets/js/scheme-select-module.js"></script>
+<script src="/assets/js/scheme-viewer.js"></script>
 
- 
+ <div class="main-content app-content">
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <div class="my-auto">
+                        <h5 class="page-title fs-21 mb-1"><%= object.title %></h5>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><%= object.title %></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body h-100">
+                                <div class="row ">
+                                    <div class=" col-xl-5 col-lg-12 col-md-12">
+                                        <div class="product-carousel  border br-5">
+                                            <div id="Slider" class="carousel slide" data-bs-ride="false">
+                                                <div class="carousel-inner py-3">
+                                                    <div class="carousel-item active">
+                                                    <% if object.image.is_some() { %>
+                                                        <img src="<%= object.cord.as_deref().unwrap() %>" class="img-fluid mx-auto d-block" alt="place_img">
+                                                    <% } else { %>
+                                                        <img src="../assets/images/media/media-44.jpg" class="img-fluid mx-auto d-block" alt="place_img">
+                                                    <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
+                                        <h5 class="product-title mb-1"><%= object.title %></h5>
+                                        <p class="text-muted fs-13 mb-1">
+                                            <% if object.cord.is_some() { %>
+                                                <%= object.cord.as_deref().unwrap() %>
+                                            <% } %>
+                                        </p>
+                                        <div class="rating mb-1">
+                                            <div class="stars">
+                                                <span class="bx bxs-star fs-17 align-center checked"></span>
+                                                <span class="bx bxs-star fs-17 align-center checked"></span>
+                                                <span class="bx bxs-star fs-17 align-center checked"></span>
+                                                <span class="bx bxs-star fs-17 align-center text-muted"></span>
+                                                <span class="bx bxs-star fs-17 align-center text-muted"></span>
+                                            </div>
+                                            <span class="review-no">41 reviews</span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+                <!-- Start::row-2 -->
+                <div class="related-products-ltr-l" style="margin-bottom:50px">
+                <div class="container" style="max-width: 1600px; max-height: 800px; min-width: 800px; min-height: 400px;">
+                        <div style="text-align: center;">
+                            <h2 id="placeName">Схема пляжа</h2>
+                            <form name="bookingSettings" style="display: flex; text-align: justify;">
+                                <div><label for="booking-date">Дата:</label>
+                                    <input type="date" id="bookingDate" name="booking-date" />
+                                </div>
+                                <div>
+                                    <label for="booking-time-start">Время начала:</label>
+                                    <input type="time" id="bookingTimeStart" name="time-start" required />
+                                </div>
+                                <div>
+                                    <label for="booking-time-end">Время окончания:</label>
+                                    <input type="time" id="bookingTimeEnd" name="time-end" min="09:30" max="18:00" required />
+                                </div>
+                            </form>
+                            <div style="height: 600px;">
+                                <canvas id="scheme-canvas" style="border: 1px solid #ccc;">
+                                    Ваш браузер не поддерживает элемент canvas.
+                                </canvas>
+                            </div>
+
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-sm-12" style="margin-bottom: 20px;margin-top: 15px;text-align: right">
+                                        <button class="btn btn-info">
+                                            <a href="/login/">
+                                                Войти в систему
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 <% include!("../partials/anon_f.stpl"); %>

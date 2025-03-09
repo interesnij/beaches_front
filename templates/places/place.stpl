@@ -38,7 +38,11 @@
                                             <div id="Slider" class="carousel slide" data-bs-ride="false">
                                                 <div class="carousel-inner py-3">
                                                     <div class="carousel-item active">
-                                                        <img src="/assets/images/ecommerce/13.png" alt="img" class="img-fluid mx-auto d-block">
+                                                    <% if object.image.is_some() { %>
+                                                        <img src="<%= object.cord.as_deref().unwrap() %>" class="img-fluid mx-auto d-block" alt="place_img">
+                                                    <% } else { %>
+                                                        <img src="../assets/images/media/media-44.jpg" class="img-fluid mx-auto d-block" alt="place_img">
+                                                    <% } %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,6 +66,7 @@
                                             <span class="review-no">41 reviews</span>
                                         </div>
                                         <a href="/place/<%= object.id %>/create_map/">Изменить модули</a>
+                                         | 
                                         <a href="/place/<%= object.id %>/edit/">Изменить инфо</a>
                                     </div>
                                 </div>

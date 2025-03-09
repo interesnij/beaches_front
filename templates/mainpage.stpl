@@ -9,7 +9,11 @@
                     <div class="col">
                         <a href="/place/<%= object.id %>/">
                         <div class="card custom-card">
-                            <img src="../assets/images/media/media-44.jpg" class="card-img-top" alt="place_img">
+                            <% if object.image.is_some() { %>
+                                <img src="<%= object.cord.as_deref().unwrap() %>" class="card-img-top" alt="place_img">
+                            <% } else { %>
+                                <img src="../assets/images/media/media-44.jpg" class="card-img-top" alt="place_img">
+                            <% } %>
                             <div class="card-body">
                                 <h6 class="card-title fw-semibold">
                                     <%= object.title %>

@@ -310,8 +310,6 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
                     image:   None,
                     cord:    None,
                 };
-                modules = Vec::new();
-                orders = Vec::new();
             }
         
         #[derive(TemplateOnce)]

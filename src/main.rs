@@ -21,7 +21,7 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || { 
         let _files = Files::new("/assets", "assets/").show_files_listing();
-        let _files2 = Files::new("/media", "media/").show_files_listing();
+        let _files2 = Files::new("/media", "beaches_front/media/").show_files_listing();
         App::new()
             .wrap(
                 SessionMiddleware::builder(CookieSessionStore::default(), secret_key.clone())

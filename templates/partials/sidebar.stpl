@@ -18,10 +18,8 @@
                 <li class="slide">
                     <a href="/" class="side-menu__item"><span class="side-menu__label">Главная</span></a>
                 </li>
-                <li>
-                    <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
-                </li>
-                <% if admin == true { %>
+                
+                <% if admin == true |  { %>
                     <li class="slide">
                         <a href="/places/" class="side-menu__item"><span class="side-menu__label">Мои объекты</span></a>
                     </li>
@@ -34,6 +32,9 @@
                     <li>
                         <a href="/orders/" class="side-menu__item"><span class="side-menu__label">Мои заказы</span></a>
                     </li>
+                    <li>
+                        <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
+                    </li>
                 <% } else if partner == true { %>
                     <li class="slide">
                         <a href="/places/" class="side-menu__item"><span class="side-menu__label">Мои объекты</span></a>
@@ -42,7 +43,7 @@
                         <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Мои клиенты</span></a>
                     </li>
                     <li>
-                        <a href="/orders/" class="side-menu__item"><span class="side-menu__label">Мои заказы</span></a>
+                        <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
                     </li>
                 <% } else { %>
                     <li>

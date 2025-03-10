@@ -9,7 +9,7 @@
                 </div>
             </div> 
             <div class="card-body"> 
-                <form enctype="multipart/form-data">
+                <form>
                     <div class="mb-3">
                         <label class="form-label">Название объекта</label>
                         <input type="text" value="<%= object.title %>" id="id_title" name="title" class="form-control" placeholder="Название объекта" aria-label="Title">
@@ -21,10 +21,6 @@
                         <% } else { %>
                             <input type="text" value="" id="id_cord" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
                         <% } %>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Изображение</label>
-                        <input id="id_image" multiple class="input-md form-control" type="file" name="image" />
                     </div>
                     <p class="api_response error"></p>
                     <div class="col-md-12">

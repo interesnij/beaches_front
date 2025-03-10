@@ -25,7 +25,15 @@
 								<div class="ps-0">
 									<div class="main-profile-overview">
 										<div class="main-img-user profile-user user-profile">
-											<img alt="" src="../assets/images/faces/6.jpg">
+											<% if request_user.image.is_some() { %>
+												<img alt="img" src="<%= request_user.image.as_deref().unwrap() %>">
+											<% } else { %>
+												<img alt="img" src="/assets/images/faces/6.jpg">
+											<% } %>
+											<form>
+												<input style="display:none" name="image" id="id_user_image" class="input-md form-control" type="file" />
+											</form> 
+											<span class="change_user_avatar" style="margin-top:15px; cursor:pointer">Установить аватар</span>
 										</div>
 										<div class="d-flex justify-content-between mb-4">
 											<div>

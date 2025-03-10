@@ -104,41 +104,42 @@ on('body', 'click', '#edit_place', function() {
 	form_data.append("user_id", ID);
   form_data.append("place_id", _this.getAttribute("place_id"));
 	form_data.append("type_id", "");
-  form_data.delete('image'); 
 
-  new_form_data = new FormData();
-  files = document.querySelector('#id_image').files;
-  for (var x = 0; x < files.length; x++) {
-    new_form_data.append("files[]", files[x]);
-  }
-  console.log(new_form_data);
-
-  new_link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
-  new_link.open( 'POST', "https://back.my-demo.ru/edit_place/" + _this.getAttribute("place_id") +"/img/", true );
-  //new_link.setRequestHeader('Content-Type', '');
-  new_link.onreadystatechange = function () {
-  if ( new_link.readyState == 4 && new_link.status == 200 ) {
-      object = {};
-    form_data.forEach((value, key) => object[key] = value);
-    json = JSON.stringify(object);
-    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
+  link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/edit/", true ); 
-    link.setRequestHeader('Content-Type', 'application/json');
+  link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/edit/", true ); 
+  link.setRequestHeader('Content-Type', 'application/json');
   
-    link.onreadystatechange = function () {
-    if ( link.readyState == 4 && link.status == 200 ) {
-	      if (form.querySelector("#id_image").files.length > 0){
-            
+  link.onreadystatechange = function () {
+  if ( link.readyState == 4 && link.status == 200 ) {
+      window.location.href = "/place/" + _this.getAttribute("place_id") + "/";
+  } 
+  else {
+      _this.disabled = false;
+      response.style.display = "block";
+      response.classList.add("error");
+  }};
+  link.send(json);
+});
+
+
+on('body', 'click', '.change_user_avatar', function() {
+  this.previousElementSibling.querySelector("input").click();
+});
+
+on('body', 'change', '#id_user_image', function() {
+    form = this.parentElement;
+    form_data = new FormData(form);
+    link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    link_.open('POST', "https://back.my-demo.ru/change_avatar/", true);
+    link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    link_.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.location.href == "/profile/";
         }
-        window.location.href = "/";
-    }
-    else {
-        _this.disabled = false;
-        response.style.display = "block";
-        response.classList.add("error");
-    }};
-    link.send(json);
-  }}
-  new_link.send(new_form_data);
+    }; 
+    link_.send(form_data);
 });

@@ -41,9 +41,13 @@ pub async fn upload_files (
         .request_from(&url, req.head())
         .send_stream(body)
         .await 
-    {   
-        Ok(resp) => println!("Ok: {:?}", resp),
-        Err(err) => println!("err: {:?}", err),
+    {
+        Ok(resp) => {
+            let status = resp.status();
+            println!("<= [{status}] {url}", status = status.as_u16());
+            println!("Ok: {}", resp)
+        },
+        Err(err) => println!("url {}", err),
     }
     //Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(""))
     //else {

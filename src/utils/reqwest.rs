@@ -85,7 +85,7 @@ where
     T: DeserializeOwned + 'static + std::fmt::Debug + Send,
     //T: DeserializeOwned + 'static + Send,
 {
-    request(url, reqwest::Method::GET, &(), uuid).await
+    request(url, reqwest::Method::GET, &(), uuid, header).await
 }
 
 /// Post request with a body
@@ -96,5 +96,5 @@ where
     //T: DeserializeOwned + 'static + Send,
     //U: Serialize, 
 {
-    request(url, reqwest::Method::POST, body, uuid).await
+    request(url, reqwest::Method::POST, body, uuid, header).await
 }

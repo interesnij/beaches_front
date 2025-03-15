@@ -116,7 +116,8 @@ pub async fn login(session: Session, data: Json<LoginUser>) -> Json<Resp> {
     let res = request_post::<LoginUser, AuthResp2> (
         URL.to_owned() + &"/login/".to_string(),
         &data, 
-        "".to_string()
+        "".to_string(),
+        "application/json".to_string()
     ).await;
 
     match res {
@@ -149,7 +150,8 @@ pub async fn signup(req: HttpRequest, session: Session, data: Json<NewUser>) -> 
     let res = request_post::<NewUser, AuthResp2> (
         URL.to_owned() + &"/signup/".to_string(),
         &l_data,
-        "".to_string()
+        "".to_string(),
+        "application/json".to_string()
     ).await;
 
     match res {

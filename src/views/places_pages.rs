@@ -97,7 +97,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
     let modules: Vec<crate::utils::Module>;
     let orders:  Vec<RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-    let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
+    let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
         object = data.place;
@@ -163,7 +163,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
     let modules: Vec<crate::utils::Module>;
     let orders:  Vec<RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-    let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
+    let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() {  
         let data = resp.expect("E.");
         object = data.place;
@@ -217,7 +217,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
         let _request_user = get_current_user(&session).expect("E.");
         let object: Place;
         let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-        let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone()).await;
+        let resp = crate::utils::request_get::<Place>(url, _request_user.uuid.clone(), "application/json".to_string()).await;
         if resp.is_ok() {  
             let data = resp.expect("E.");
             object = data;
@@ -237,7 +237,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
 
         let object_list: Vec<UserJson>;
         let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/managers/".to_string();
-        let resp = crate::utils::request_get::<Vec<UserJson>>(url, _request_user.uuid.clone()).await;
+        let resp = crate::utils::request_get::<Vec<UserJson>>(url, _request_user.uuid.clone(), "application/json".to_string()).await;
         if resp.is_ok() { 
             let data = resp.expect("E.");
             object_list = data;
@@ -295,7 +295,7 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
         let _request_user = get_current_user(&session).expect("E.");
         let object:  Place;
         let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
-        let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string()).await;
+        let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
             if resp.is_ok() { 
                 let data = resp.expect("E.");
                 object = data.place;
@@ -338,7 +338,8 @@ pub async fn create_place(session: Session, data: Json<PlaceJson>) -> actix_web:
         let res = crate::utils::request_post::<PlaceJson, ()> (
             URL.to_owned() + &"/create_place/".to_string(),
             &data,  
-            _request_user.uuid
+            _request_user.uuid,
+            "application/json".to_string()
         ).await;
 
         return match res {
@@ -355,7 +356,8 @@ pub async fn edit_place(session: Session, data: Json<EditPlaceJson>, id: web::Pa
         let res = crate::utils::request_post::<EditPlaceJson, ()> (
             url,
             &data, 
-            _request_user.uuid
+            _request_user.uuid,
+            "application/json".to_string()
         ).await;
 
         return match res {
@@ -373,7 +375,8 @@ pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> a
         let res = crate::utils::request_post::<CreateModuleJson, ()> (
             url, 
             &data,  
-            _request_user.uuid
+            _request_user.uuid,
+            "application/json".to_string()
         ).await;
 
         return match res {

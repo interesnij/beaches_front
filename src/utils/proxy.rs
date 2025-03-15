@@ -45,12 +45,12 @@ pub async fn upload_files (
         Ok(resp) => {
             let status = resp.status();
             println!("<= [{status}] {url}", status = status.as_u16());
-            Ok()
+            HttpResponse::Ok().body("ok")
             //println!("Ok: {}", resp)
         },
         Err(err) => {
             println!("err");
-            Ok()
+            HttpResponse::Ok().body("ой-ёй")
         },
     }
     //Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(""))

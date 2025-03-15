@@ -42,20 +42,8 @@ pub async fn upload_files (
         .send_stream(body)
         .await 
     {  
-        //Ok(resp) => {
-        //    let status = resp.status();
-        //    println!("<= [{status}] {url}", status = status.as_u16());
-        //    let mut resp_builder = HttpResponse::build(status);
-        //    for header in resp.headers() {
-        //        resp_builder.insert_header(header);
-        //    }
-        //    resp_builder.insert_header(("enctype", "multipart/form-data"));
-        //    resp_builder.streaming(resp.into_stream())
-        //}
-        //Err(err) => {
-        //   println!("url {}", err);
-        //    HttpResponse::build(StatusCode::BAD_GATEWAY).body("Bad Gateway")
-        //}
+        Ok(resp) => todo!(),
+        Err(err) => todo!(),
     } 
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(""))
     //else {

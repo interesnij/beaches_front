@@ -50,7 +50,8 @@ pub async fn upload_files (
                 resp_builder.insert_header(header);
             }
             resp_builder.insert_header(("enctype", "multipart/form-data"));
-            Ok(HttpResponse::Ok().body("ok"))
+            resp_builder.streaming(resp.into_stream())
+            //Ok(HttpResponse::Ok().body("ok"))
             //println!("Ok: {}", resp)
         },
         Err(err) => {

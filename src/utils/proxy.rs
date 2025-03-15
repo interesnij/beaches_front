@@ -8,11 +8,6 @@ use actix_web::{
 use awc::http::StatusCode;
 use clap::Parser;
 use futures::TryStreamExt;
-use log::{
-    debug, 
-    //info, 
-    warn
-};
 use serde::Deserialize;
 use crate::utils::URL;
 use std::str;
@@ -34,11 +29,10 @@ pub async fn upload_files (
     path:        web::Path<String>,
     http_client: Data<awc::Client>,
     req:         HttpRequest,
-    state:       web::Data<AppState>,
 ) -> impl Responder {
     let url = format!(
         "{to}{path}", 
-        to = STATIC_SERVER.to_string(),
+        to = URL.to_string(),
         path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
     );
         

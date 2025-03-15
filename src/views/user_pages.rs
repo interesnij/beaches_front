@@ -59,7 +59,8 @@ pub async fn change_avatar(session: Session, data: FileR) -> actix_web::Result<H
         let client = Client::new();
         let res = client.post(url)
             .body(data)
-            .send()?;
+            .send()
+            .await?;
 
         //let res = crate::utils::request_post::<CreateModuleJson, ()> (
         //    url, 

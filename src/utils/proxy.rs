@@ -29,7 +29,7 @@ pub async fn upload_files (
     path:        web::Path<String>,
     http_client: Data<awc::Client>,
     req:         HttpRequest,
-) -> impl Responder {
+) -> actix_web::Result<HttpResponse> {
     let url = format!(
         "{to}{path}", 
         to = URL.to_string(),
@@ -56,8 +56,8 @@ pub async fn upload_files (
         //   println!("url {}", err);
         //    HttpResponse::build(StatusCode::BAD_GATEWAY).body("Bad Gateway")
         //}
-        HttpResponse::Ok().body("оk")
-    }
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    } 
     //else {
     //    println!("ой-ёй");
     //    HttpResponse::Ok().body("ой-ёй")

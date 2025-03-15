@@ -137,7 +137,7 @@ on('body', 'change', '#id_user_image', function() {
     form = this.parentElement;
     form_data = new FormData(form);
     link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    link_.open('POST', "https://back.my-demo.ru/change_avatar/", true);
+    link_.open('POST', "/create/upload_files/", true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

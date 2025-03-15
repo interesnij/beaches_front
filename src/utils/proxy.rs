@@ -50,7 +50,8 @@ pub async fn upload_files (
             for header in resp.headers() {
                 resp_builder.insert_header(header);
             }
-            //resp_builder.insert_header(("enctype", "multipart/form-data"));
+            resp_builder.insert_header(("enctype", "multipart/form-data"));
+            resp_builder.insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"));
             Ok(resp_builder.streaming(resp.into_stream()))
             //Ok(HttpResponse::Ok().body("ok"))
             //println!("Ok: {}", resp)

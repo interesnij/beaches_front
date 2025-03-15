@@ -11,7 +11,7 @@ use clap::Parser;
 use serde::Deserialize;
 use crate::utils::URL;
 use std::str;
-use futures_util::stream::try_stream::TryStreamExt;
+use futures::TryStreamExt;
 
 
 #[derive(Clone, Parser)]

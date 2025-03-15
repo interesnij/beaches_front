@@ -37,7 +37,7 @@ pub async fn upload_files (
     );
         
     println!("=> {url}");
-    return match http_client
+    let res = match http_client
         .request_from(&url, req.head())
         .send_stream(body)
         .await 
@@ -56,8 +56,8 @@ pub async fn upload_files (
         //   println!("url {}", err);
         //    HttpResponse::build(StatusCode::BAD_GATEWAY).body("Bad Gateway")
         //}
-        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
     } 
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(""))
     //else {
     //    println!("ой-ёй");
     //    HttpResponse::Ok().body("ой-ёй")

@@ -45,6 +45,11 @@ pub async fn upload_files (
         Ok(resp) => {
             let status = resp.status();
             println!("<= [{status}] {url}", status = status.as_u16());
+            let mut resp_builder = HttpResponse::build(status);
+            for header in resp.headers() {
+                resp_builder.insert_header(header);
+            }
+            resp_builder.insert_header(("enctype", "multipart/form-data"));
             Ok(HttpResponse::Ok().body("ok"))
             //println!("Ok: {}", resp)
         },

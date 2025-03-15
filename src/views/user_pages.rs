@@ -51,16 +51,19 @@ pub struct FileR {
     pub image:   File, 
 }
 
-pub async fn change_avatar(session: Session, data: FileR) -> actix_web::Result<HttpResponse> {
+use actix_multipart::{Field, Multipart};
+use futures::StreamExt;
+
+pub async fn change_avatar(mut payload: Multipart, session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");
         let url = URL.to_string() + &"/change_avatar/".to_string();
 
         let client = Client::new();
         let res = client.post(url)
-            .body(data)
+            .body(payload)
             .send()
-            .await?;
+            .await?; 
 
         //let res = crate::utils::request_post::<CreateModuleJson, ()> (
         //    url, 

@@ -19,6 +19,41 @@ use serde::{Deserialize, Serialize};
 pub const URL: &str = "https://back.my-demo.ru";
 
 
+#[derive(Deserialize, Serialize, Debug)]
+pub struct ImageForm {
+    pub image: String,
+}
+pub async fn image_form(payload: &mut Multipart) -> ImageForm {
+    let mut form: ImageForm = ImageForm {
+        image: "".to_string(),
+    }; 
+
+    while let Some(item) = payload.next().await {
+        let mut field: Field = item.expect("split_payload err");
+
+        if field.name() == "image" {
+            let _new_path = field.content_disposition().get_filename().unwrap();
+            if _new_path != "" {
+                let file = UploadedFiles::new(_new_path.to_string());
+                let file_path = file.path.clone();
+                let mut f = web::block(move || std::fs::File::create(&file_path).expect("E"))
+                    .await
+                    .unwrap(); 
+                while let Some(chunk) = field.next().await {
+                    let data = chunk.unwrap();
+                    f = web::block(move || f.write_all(&data).map(|_| f))
+                        .await
+                        .unwrap()
+                        .expect("E");
+                };
+                
+                form.image = file.path.clone().replace("/beaches_front","");
+            }
+        }
+    }
+    form
+}
+
 // временная метка
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Time {

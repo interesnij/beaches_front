@@ -7,7 +7,7 @@ use actix_web::{
 };
 use awc::http::StatusCode;
 use clap::Parser;
-use futures::TryStreamExt;
+//use futures::TryStreamExt;
 use serde::Deserialize;
 use crate::utils::URL;
 use std::str;
@@ -51,14 +51,14 @@ pub async fn upload_files (
             }
             resp_builder.insert_header(("enctype", "multipart/form-data"));
             resp_builder.streaming(resp.into_stream())
-            }
+        }
         Err(err) => {
             println!("url {}", err);
             HttpResponse::build(StatusCode::BAD_GATEWAY).body("Bad Gateway")
         }
     }
-    else {
-        println!("ой-ёй");
-        HttpResponse::Ok().body("ой-ёй")
-    }
+    //else {
+    //    println!("ой-ёй");
+    //    HttpResponse::Ok().body("ой-ёй")
+    //}
 }

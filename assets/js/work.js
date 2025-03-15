@@ -129,6 +129,9 @@ on('body', 'click', '#edit_place', function() {
 on('body', 'click', '.change_user_avatar', function() {
   this.previousElementSibling.querySelector("input").click();
 });
+on('body', 'click', '.change_place_avatar', function() {
+  this.previousElementSibling.querySelector("input").click();
+});
 
 on('body', 'change', '#id_user_image', function() {
     form = this.parentElement;
@@ -139,6 +142,21 @@ on('body', 'change', '#id_user_image', function() {
     link_.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.location.href == "/profile/";
+        }
+    }; 
+    link_.send(form_data);
+});
+
+on('body', 'change', '#id_place_image', function() {
+    form = this.parentElement;
+    id = this.getAttribute("data-id");
+    form_data = new FormData(form);
+    link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    link_.open('POST', "https://back.my-demo.ru/edit_place/" + id + "/img/", true);
+    link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    link_.onreadystatechange = function() { 
+        if (this.readyState == 4 && this.status == 200) {
+            document.location.href == "/place/" + id + "/";
         }
     }; 
     link_.send(form_data);

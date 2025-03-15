@@ -33,10 +33,10 @@
 											<form>
 												<input style="display:none" name="image" id="id_user_image" class="input-md form-control" type="file" />
 											</form> 
-											<span class="change_user_avatar" style="margin-top:15px; cursor:pointer">Установить аватар</span>
+											<span class="change_user_avatar" style="margin-top:15px; cursor:pointer">+</span>
 										</div>
 										<div class="d-flex justify-content-between mb-4">
-											<div>
+											<div> 
 												<h5 class="main-profile-name"><%= request_user.first_name %> <%= request_user.last_name %></h5>
 											</div>
 										</div>

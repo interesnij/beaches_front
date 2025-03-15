@@ -19,7 +19,6 @@ use crate::views::AuthResp2;
 
 pub fn user_urls(config: &mut web::ServiceConfig) {
     config.route("/profile/", web::get().to(profile_page));
-    config.route("/change_avatar/", web::post().to(change_avatar));
 }
 
 
@@ -49,33 +48,4 @@ use std::fs::File;
 
 pub struct FileR {
     pub image:   File, 
-}
-
-use actix_multipart::{Field, Multipart};
-use futures::StreamExt;
-
-pub async fn change_avatar(mut payload: Multipart, session: Session) -> actix_web::Result<HttpResponse> {
-    if is_signed_in(&session) { 
-        let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/change_avatar/".to_string();
-
-        let client = Client::new();
-        let res = client.post(url)
-            .body(payload)
-            .send()
-            .await?; 
-
-        //let res = crate::utils::request_post::<CreateModuleJson, ()> (
-        //    url, 
-        //    &data,  
-        //    _request_user.uuid,
-        //    "application/json".to_string()
-        //).await;
-
-        return match res {
-            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
-            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
-        }
-    }
-    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }

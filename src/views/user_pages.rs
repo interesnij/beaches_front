@@ -12,7 +12,7 @@ use actix_session::Session;
 use crate::utils::{
     get_current_user,
     is_signed_in,
-    RespOrderJsons, Times,
+    RespOrderJsons, Times, URL,
 };
 use crate::views::AuthResp2;
 
@@ -44,10 +44,9 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
     }
 }
 
-use reqwest::blocking::Client;
+use reqwest::Client;
 use std::fs::File;
 
-#[derive(Deserialize, Serialize, Debug)]
 pub struct FileR {
     pub image:   File, 
 }

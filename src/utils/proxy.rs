@@ -1,0 +1,70 @@
+use actix_web::{
+    web,
+    HttpRequest,
+    HttpResponse,
+    Responder, 
+    web::Data,
+};
+use awc::http::StatusCode;
+use clap::Parser;
+use futures::TryStreamExt;
+use log::{
+    debug, 
+    //info, 
+    warn
+};
+use serde::Deserialize;
+use crate::utils::URL;
+use std::str;
+
+
+#[derive(Clone, Parser)]
+pub struct ConfigToStaticServer {
+    #[clap(short, long, default_value = "https://my-demo.ru")]             // наш ip
+    pub address: String,
+    #[clap(short, long, default_value = "443")]                            // наш порт
+    pub port: u16,
+    #[clap(short, long, default_value = URL)] // адрес, на который будем перенаправлять запросы
+    pub to: String,
+}
+
+
+pub async fn upload_files (
+    body:        web::Payload,
+    path:        web::Path<String>,
+    http_client: Data<awc::Client>,
+    req:         HttpRequest,
+    state:       web::Data<AppState>,
+) -> impl Responder {
+    let url = format!(
+        "{to}{path}", 
+        to = STATIC_SERVER.to_string(),
+        path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
+    );
+        
+    println!("=> {url}");
+    return match http_client
+        .request_from(&url, req.head())
+        .send_stream(body)
+        .await 
+    {  
+        Ok(resp) => {
+            let status = resp.status();
+            println!("<= [{status}] {url}", status = status.as_u16());
+            let mut resp_builder = HttpResponse::build(status);
+            for header in resp.headers() {
+                resp_builder.insert_header(header);
+            }
+            resp_builder.insert_header(("enctype", "multipart/form-data"));
+            resp_builder.streaming(resp.into_stream())
+            }
+        Err(err) => {
+            println!("url {}", err);
+            HttpResponse::build(StatusCode::BAD_GATEWAY).body("Bad Gateway")
+        }
+    }
+    else {
+        println!("ой-ёй");
+        HttpResponse::Ok().body("ой-ёй")
+    }
+}

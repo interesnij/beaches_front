@@ -3,6 +3,7 @@ use actix_web::{
     HttpServer,
     web,
     cookie::Key,
+    web::Data,
 };
 mod views;
 mod utils;
@@ -18,11 +19,21 @@ async fn main() -> std::io::Result<()> {
     use actix_files::Files;
     use std::time::Duration;
     let secret_key = Key::generate();
+    use clap::Parser;
+    use crate::utils::{
+        upload_files,
+        ConfigToStaticServer,
+    };
 
-    HttpServer::new(move || { 
+    let config_to_static_server = ConfigToStaticServer::parse();
+
+    HttpServer::new(move || {
+        let http_client = awc::Client::default();
         let _files = Files::new("/assets", "assets/").show_files_listing();
         let _files2 = Files::new("/media", "media/").show_files_listing();
         App::new()
+            .app_data(Data::new(config_to_static_server.clone()))
+            .app_data(Data::new(http_client))
             .wrap(
                 SessionMiddleware::builder(CookieSessionStore::default(), secret_key.clone())
                     .cookie_secure(false)
@@ -32,7 +43,8 @@ async fn main() -> std::io::Result<()> {
             .service(_files)
             .service(_files2)
             .configure(routes)
-    }) 
+            .service(web::resource("/create{path:.*}").to(upload_files))
+    })
     .bind("192.168.0.49:9999")?   // prod
     .run()
     .await

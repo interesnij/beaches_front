@@ -1,9 +1,11 @@
 mod auth;
 mod reqwest;
+mod proxy;
 
 pub use self::{
     auth::*,
     reqwest::*,
+    proxy::*,
 };
 use actix_web::{
     HttpRequest,

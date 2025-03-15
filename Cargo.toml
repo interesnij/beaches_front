@@ -11,7 +11,7 @@ serde_json = "*"
 diesel = { version = "1.4.4", features = ["chrono", "postgres", "r2d2", "uuidv07", "serde_json"] }
 dotenv = "0.15.0"
 chrono = { version = "0.4", features = ["serde"] }
-futures = "v0.3.31" 
+futures = "0.3.31" 
 derive_more = "0.99.5"
 actix-session = { version = "0.7.1", features = ["cookie-session"] }
 actix-rt = "^1.1.1"

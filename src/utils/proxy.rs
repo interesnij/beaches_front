@@ -37,15 +37,15 @@ pub async fn upload_files (
     );
         
     println!("=> {url}");
-    let res = match http_client
+    match http_client
         .request_from(&url, req.head())
         .send_stream(body)
         .await 
     {  
         Ok(resp) => todo!(),
         Err(err) => todo!(),
-    } 
-    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(""))
+    }
+    //Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(""))
     //else {
     //    println!("ой-ёй");
     //    HttpResponse::Ok().body("ой-ёй")

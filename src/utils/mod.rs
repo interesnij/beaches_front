@@ -18,7 +18,7 @@ use actix_web::{
 use serde::{Deserialize, Serialize};
 
 
-pub const URL: &str = "https://back.my-demo.ru";
+pub const URL: &str = "http://back.my-demo.ru";
 
 // временная метка
 #[derive(Debug, Deserialize, Serialize)]

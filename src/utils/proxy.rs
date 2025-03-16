@@ -36,8 +36,9 @@ pub async fn upload_files (
         path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
     );
 
-    println!("req.head: {:?}", req.head());
     println!("=> {url}");
+    println!("");
+    println!("");
     match http_client
         .request_from(
             &url, 
@@ -51,12 +52,20 @@ pub async fn upload_files (
         Ok(resp) => {
             let status = resp.status();
             println!("<= [{status}] {url}", status = status.as_u16());
+            println!("");
+            println!("========================================");
+            println!("");
+            println!("req.head: {:?}", req.head());
             let mut resp_builder = HttpResponse::build(status);
             for header in resp.headers() {
                 resp_builder.insert_header(header);
             }
             resp_builder.insert_header(("ContentType", "multipart/form-data"));
             resp_builder.insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"));
+            println!("");
+            println!("========================================");
+            println!("");
+            println!("resp.head: {:?}", resp.headers());
             Ok(resp_builder.streaming(resp.into_stream()))
         }, 
         Err(err) => {

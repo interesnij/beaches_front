@@ -11,7 +11,6 @@ use serde::Deserialize;
 use crate::utils::URL;
 use std::str;
 use futures::TryStreamExt;
-use awc::http::StatusCode;
 
 
 #[derive(Clone, Parser)]

@@ -7,20 +7,20 @@ use actix_web::{
 };
 use awc::http::StatusCode;
 use clap::Parser;
-//use futures::TryStreamExt;
 use serde::Deserialize;
 use crate::utils::URL;
 use std::str;
 use futures::TryStreamExt;
+use awc::http::StatusCode;
 
 
 #[derive(Clone, Parser)]
 pub struct ConfigToStaticServer {
-    #[clap(short, long, default_value = "192.168.0.49")]             // наш ip
+    #[clap(short, long, default_value = "79.174.82.18")]             // наш ip
     pub address: String,
     #[clap(short, long, default_value = "9999")]                     // наш порт
-    pub port: u16,
-    #[clap(short, long, default_value = "192.168.0.49:8120")] // адрес, на который будем перенаправлять запросы
+    pub port: u16, 
+    #[clap(short, long, default_value = "79.174.82.18:8120")] // адрес, на который будем перенаправлять запросы
     pub to: String, 
 }
 
@@ -31,7 +31,7 @@ pub async fn upload_files (
     http_client: Data<awc::Client>,
     req:         HttpRequest,
 ) -> actix_web::Result<HttpResponse> {
-    let url = format!(
+    let url = format!( 
         "{to}{path}", 
         to = URL.to_string(),
         path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
@@ -55,7 +55,7 @@ pub async fn upload_files (
             Ok(resp_builder.streaming(resp.into_stream()))
             //Ok(HttpResponse::Ok().body("ok"))
             //println!("Ok: {}", resp)
-        },
+        }, 
         Err(err) => {
             println!("err");
             Ok(HttpResponse::Ok().body("ой-ёй"))

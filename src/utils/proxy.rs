@@ -37,20 +37,12 @@ pub async fn upload_files (
     );
 
     println!("req.head: {:?}", req.head());
-
-    let mut map = HeaderMap::new();
-    map.insert("ContentType", HeaderValue::from_static("multipart/form-data"));
-    map.insert("secret", HeaderValue::from_static("multipart/form-data"));
-
     println!("=> {url}");
     match http_client
         .request_from(
             &url, 
-            //req.head()
-            map
+            req.head()
         )
-        .insert_header(("ContentType", "multipart/form-data"))
-        .insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"))
         .send_stream(body)
         .await 
     {
@@ -64,8 +56,6 @@ pub async fn upload_files (
             resp_builder.insert_header(("ContentType", "multipart/form-data"));
             resp_builder.insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"));
             Ok(resp_builder.streaming(resp.into_stream()))
-            //Ok(HttpResponse::Ok().body("ok"))
-            //println!("Ok: {}", resp)
         }, 
         Err(err) => {
             println!("err");

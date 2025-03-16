@@ -36,7 +36,7 @@ pub async fn upload_files (
         path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
     );
 
-    println!("req.head {head}", head = req.head());
+    println!("req.head: {:?}", req.head());
         
     println!("=> {url}");
     match http_client

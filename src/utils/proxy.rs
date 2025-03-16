@@ -25,11 +25,15 @@ pub struct ConfigToStaticServer {
 
 
 pub async fn upload_files (
+    session:     Session,
     body:        web::Payload,
     path:        web::Path<String>,
     http_client: Data<awc::Client>,
     req:         HttpRequest,
 ) -> actix_web::Result<HttpResponse> {
+    if !is_signed_in(&session) {
+        Ok(HttpResponse::Ok().body("403"))
+    }
     let url = format!( 
         "{to}{path}", 
         to = "http://79.174.82.18:8120".to_string(),

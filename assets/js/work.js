@@ -137,7 +137,7 @@ on('body', 'change', '#id_user_image', function() {
     form = this.parentElement;
     form_data = new FormData(form);
     link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    link_.open('POST', "/create/upload_files/", true);
+    link_.open('POST', "/create/upload_files/?types=user_avatar", true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -152,7 +152,7 @@ on('body', 'change', '#id_place_image', function() {
     id = this.getAttribute("data-id");
     form_data = new FormData(form);
     link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    link_.open('POST', "https://back.my-demo.ru/edit_place/" + id + "/img/", true);
+    link_.open('POST', "/create/upload_files/?types=place_avatar&id=" + id, true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.setRequestHeader('ContentType', 'multipart/form-data');
     link_.setRequestHeader('secret', ID);

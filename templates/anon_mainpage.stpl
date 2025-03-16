@@ -15,8 +15,8 @@
                 Безопасность
             </p>
             <p class="leading-normal fs-16 btn-list">
-                <a href="/about/" class="m-1 btn btn-primary">
-                    О нас
+                <a href="/places/" class="m-1 btn btn-primary">
+                    Выбрать места
                     <i class="fe fe-eye ms-2 align-middle"></i>
                 </a>
                 <a href="/business/" class="m-1 btn btn-info">
@@ -33,30 +33,6 @@
     <% include!("faq_.stpl"); %>
         <% include!("missia_.stpl"); %>
         <% include!("testimonials_.stpl"); %>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <% for object in object_list { %>
-                    <div class="col">
-                        <a href="/place/<%= object.id %>/">
-                        <div class="card custom-card">
-                            <% if object.image.is_some() { %>
-                                <img src="<%= object.image.as_deref().unwrap() %>" class="card-img-top _nice" alt="place_img">
-                            <% } else { %>
-                                <img src="/assets/images/media/media-44.jpg" class="card-img-top" alt="place_img">
-                            <% } %>
-                            <div class="card-body">
-                                <h6 class="card-title fw-semibold">
-                                    <%= object.title %>
-                                </h6>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <% } %>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

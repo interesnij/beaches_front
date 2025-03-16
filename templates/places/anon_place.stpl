@@ -20,6 +20,7 @@
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="/places/">Все объекты</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><%= object.title %></li>
                             </ol>
                         </nav>

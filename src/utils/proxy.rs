@@ -5,7 +5,7 @@ use actix_web::{
     Responder, 
     web::Data,
 };
-use awc::http::StatusCode;
+use awc::http::{StatusCode, header::HeaderMap};
 use clap::Parser;
 use serde::Deserialize;
 use crate::utils::URL;
@@ -37,12 +37,17 @@ pub async fn upload_files (
     );
 
     println!("req.head: {:?}", req.head());
-        
+
+    let mut map = HeaderMap::new();
+    map.insert("ContentType", HeaderValue::from_static("multipart/form-data"));
+    map.insert("secret", HeaderValue::from_static("multipart/form-data"));
+
     println!("=> {url}");
     match http_client
         .request_from(
             &url, 
             //req.head()
+            map
         )
         .insert_header(("ContentType", "multipart/form-data"))
         .insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"))

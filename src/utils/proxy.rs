@@ -40,7 +40,10 @@ pub async fn upload_files (
         
     println!("=> {url}");
     match http_client
-        .request_from(&url, req.head())
+        .request_from(
+            &url, 
+            //req.head()
+        )
         .insert_header(("ContentType", "multipart/form-data"))
         .insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"))
         .send_stream(body)

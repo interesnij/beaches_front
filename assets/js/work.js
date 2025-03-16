@@ -149,7 +149,7 @@ on('body', 'change', '#id_user_image', function() {
 
 on('body', 'change', '#id_place_image', function() {
     form = this.parentElement;
-    id = this.getAttribute("data-id");
+    id = form.getAttribute("data-id");
     form_data = new FormData(form);
     link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     link_.open('POST', "/create/upload_files/?types=place_avatar&id=" + id, true);

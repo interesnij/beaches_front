@@ -155,7 +155,7 @@ on('body', 'change', '#id_place_image', function() {
     link_.open('POST', "https://back.my-demo.ru/edit_place/" + id + "/img/", true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.setRequestHeader('ContentType', 'multipart/form-data');
-    link_.setRequestHeader('secret', 'ID');
+    link_.setRequestHeader('secret', ID);
     link_.onreadystatechange = function() { 
         if (this.readyState == 4 && this.status == 200) {
             document.location.href == "/place/" + id + "/";

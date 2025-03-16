@@ -31,8 +31,8 @@ pub async fn upload_files (
     req:         HttpRequest,
 ) -> actix_web::Result<HttpResponse> {
     let url = format!( 
-        "{to}{path}", 
-        to = URL.to_string(),
+        {to}{path}, 
+        to = "79.174.82.18:8120".to_string(),
         path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
     );
         

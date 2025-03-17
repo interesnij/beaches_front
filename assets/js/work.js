@@ -154,8 +154,6 @@ on('body', 'change', '#id_place_image', function() {
     link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     link_.open('POST', "/create/upload_files/?types=place_avatar&id=" + id, true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    link_.setRequestHeader('ContentType', 'multipart/form-data');
-    link_.setRequestHeader('secret', ID);
     link_.onreadystatechange = function() { 
         if (this.readyState == 4 && this.status == 200) {
             document.location.href == "/place/" + id + "/";
@@ -163,3 +161,28 @@ on('body', 'change', '#id_place_image', function() {
     }; 
     link_.send(form_data);
 });
+
+
+function setCookie(name, value, days) {
+  let cookie = `${name}=${encodeURIComponent(value)}`;
+  if (days) {
+      const expiry = new Date();
+      expiry.setDate(expiry.getDate() + days);
+      cookie += `; expires=${expiry.toUTCString()}`;
+  }
+  document.cookie = cookie + "; path=/";
+};
+
+function set_background(color) {
+  setCookie("background", color, 120);
+}
+
+
+on('body', 'click', '.light-layout', function() {
+  if (document.getAttribute("data-theme-mode") == "dark") {
+    set_background("light");
+  }
+  else {
+    set_background("dark");
+  }
+})

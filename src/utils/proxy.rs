@@ -28,7 +28,7 @@ struct ImageParams {
     pub types: Option<String>,
 }
 #[derive(Deserialize, Serialize, Debug)]
-pub struct UuidUser {
+pub struct IdUser {
     pub id: String,
 }
 
@@ -101,7 +101,7 @@ pub async fn upload_files (
                     id: _request_user.uuid.clone(),
                 };
 
-                let res = crate::utils::request_post::<UuidUser, crate::views::AuthResp2> (
+                let res = crate::utils::request_post::<IdUser, crate::views::AuthResp2> (
                     URL.to_owned() + &"/get_user_data/".to_string(),
                     &data,  
                     "".to_string(),

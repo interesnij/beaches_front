@@ -141,7 +141,7 @@ on('body', 'change', '#id_user_image', function() {
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.location.href == "/profile/";
+            location.reload();
         }
     }; 
     link_.send(form_data);
@@ -156,7 +156,7 @@ on('body', 'change', '#id_place_image', function() {
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.onreadystatechange = function() { 
         if (this.readyState == 4 && this.status == 200) {
-            document.location.href == "/place/" + id + "/";
+            location.reload();
         }
     }; 
     link_.send(form_data);

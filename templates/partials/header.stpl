@@ -156,7 +156,7 @@
                     <li>
                         <div class="main-header-profile bg-primary menu-header-content text-fixed-white user_info"
                             data-er="<%= request_user.perm %>"
-                            data-id="<%= request_user.uuid %>"
+                            data-id="<%= request_user.id %>"
                             first-name="<%= request_user.first_name %>"
                             last-name="<%= request_user.last_name %>"
                             secret="<%= request_user.uuid %>"

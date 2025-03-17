@@ -181,8 +181,9 @@ function set_background(color) {
 on('body', 'click', '.header-theme-mode', function() {
   html = document.documentElement;
   console.log("html", html);
+  console.log("data-theme-mode", html.getAttribute("data-theme-mode"));
 
-  if (html.getAttribute("data-theme-mode") == "dark") {
+  if (html.getAttribute("data-theme-mode") == "light") {
     set_background("light");
   }
   else {

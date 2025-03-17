@@ -104,8 +104,8 @@
 										<div class="row">
 											<% if orders.len() > 0 { %>
 												<% for object in orders { %>
-													<% let _place = object.place %>
-													<% let _order = object.order %>
+													<% let _place = object.place; %>
+													<% let _order = object.order; %>
 													<div class="card custom-card">
 														<div class="row g-0">
 															<div class="col-md-4">

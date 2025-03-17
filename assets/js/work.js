@@ -201,8 +201,8 @@ on('body', 'click', '#edit_user_info', function() {
   response = form.querySelector(".api_response");
 
 	form_data = new FormData(form);
-    if (!form.querySelector("#first_name").value){
-      form.querySelector("#first_name").style.border = "1px #FF0000 solid";
+    if (!form.querySelector("#id_first_name").value){
+      form.querySelector("#id_first_name").style.border = "1px #FF0000 solid";
       response.innerHTML = "Введите Имя";
       response.classList.add("error");
       return 

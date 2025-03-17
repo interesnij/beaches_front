@@ -179,7 +179,8 @@ function set_background(color) {
 
 
 on('body', 'click', '.light-layout', function() {
-  if (document.getAttribute("data-theme-mode") == "dark") {
+  html = document.documentElement;
+  if (html.getAttribute("data-theme-mode") == "dark") {
     set_background("light");
   }
   else {

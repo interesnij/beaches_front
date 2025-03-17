@@ -15,16 +15,17 @@
         }
 
         function get_background() {
+            html = document.documentElement;
             background = getCookie("background");
             if (background == "dark") {
-                document.setAttribute("data-theme-mode", "dark");
-                document.setAttribute("data-header-styles", "dark");
-                document.setAttribute("data-menu-styles", "dark");
+                html.setAttribute("data-theme-mode", "dark");
+                html.setAttribute("data-header-styles", "dark");
+                html.setAttribute("data-menu-styles", "dark");
             }
             else {
-                document.setAttribute("data-theme-mode", "light");
-                document.setAttribute("data-header-styles", "light");
-                document.setAttribute("data-menu-styles", "light");
+                html.setAttribute("data-theme-mode", "light");
+                html.setAttribute("data-header-styles", "light");
+                html.setAttribute("data-menu-styles", "light");
             }
         }
         get_background();

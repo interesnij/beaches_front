@@ -2,6 +2,34 @@
         <% include!("footer.stpl"); %>
 
     </div>
+    <script>
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let c = cookies[i].trim().split('=');
+                if (c[0] === name) {
+                    return c[1];
+                }
+            }
+            return "";
+        }
+
+        function get_background() {
+            html = document.documentElement;
+            background = getCookie("background");
+            if (background == "dark") {
+                html.setAttribute("data-theme-mode", "dark");
+                html.setAttribute("data-header-styles", "dark");
+                html.setAttribute("data-menu-styles", "dark");
+            }
+            else {
+                html.setAttribute("data-theme-mode", "light");
+                html.setAttribute("data-header-styles", "light");
+                html.setAttribute("data-menu-styles", "light");
+            }
+        }
+        get_background();
+    </script>
     <% include!("commonjs.stpl"); %>
 
     <!-- Custom JS -->

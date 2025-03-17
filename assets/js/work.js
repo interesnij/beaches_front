@@ -178,11 +178,11 @@ function set_background(color) {
 }
 
 
-on('body', 'click', '.light-layout', function() {
+on('body', 'click', '.header-theme-mode', function() {
   html = document.documentElement;
   console.log("html", html);
 
-  if (html.getAttribute("data-theme-mode") != "dark") {
+  if (html.getAttribute("data-theme-mode") == "dark") {
     set_background("light");
   }
   else {

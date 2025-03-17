@@ -31,6 +31,7 @@
                                     <h6 class="card-title fw-semibold">
                                         <%= object.title %>
                                     </h6>
+                                    <p><%= object.user_id %></p>
                                 </div>
                             </div>
                             </a>

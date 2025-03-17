@@ -145,6 +145,7 @@ on('body', 'change', '#id_user_image', function() {
         }
     }; 
     link_.send(form_data);
+    location.reload();
 });
 
 on('body', 'change', '#id_place_image', function() {
@@ -160,6 +161,7 @@ on('body', 'change', '#id_place_image', function() {
         }
     }; 
     link_.send(form_data);
+    location.reload();
 });
 
 

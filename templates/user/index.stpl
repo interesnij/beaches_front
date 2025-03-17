@@ -1,5 +1,7 @@
 <% include!("../partials/h.stpl"); %>
 
+<% let admin = request_user.is_superuser(); %>
+<% let partner = request_user.is_partner(); %>
 <div class="main-content app-content">
             <div class="container-fluid">
 

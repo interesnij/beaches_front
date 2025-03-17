@@ -119,8 +119,8 @@ pub struct RespOrderJsons {
 pub struct OrderListJson {
     pub object_id:  String,
     pub price:      i32,
-    pub time_start: String,
-    pub time_end:   String,
+    pub time_start: crono::NaiveDateTime, 
+    pub time_end:   crono::NaiveDateTime,
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PlaceListJson {

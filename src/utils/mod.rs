@@ -124,6 +124,7 @@ pub struct OrderListJson {
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PlaceListJson {
+    pub id:    String,
     pub title: String,
     pub image: Option<String>,
     pub cord:  Option<String>,

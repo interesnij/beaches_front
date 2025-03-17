@@ -54,10 +54,12 @@
 										<li class="">
 											<a href="#home" data-bs-toggle="tab" class="active" aria-expanded="true" aria-selected="true" role="tab"> <span class="visible-xs"><i class="las la-user-circle fs-16 me-1"></i></span> <span class="hidden-xs">Инфо</span> </a>
 										</li>
+										<% if admin | partner { %>
 										<li class="">
 											<a href="#gallery" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-images fs-15 me-1"></i></span>
 												<span class="hidden-xs">Объекты</span> </a>
 										</li>
+										<% } %>
 										<li class="">
 											<a href="#friends01" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-life-ring fs-16 me-1"></i></span>
 												<span class="hidden-xs">Заказы</span> </a>
@@ -72,57 +74,68 @@
 									<div class="tab-pane border-0 p-0 active show" id="home" role="tabpanel">
 										<h4 class="fs-15 text-uppercase mb-3">ID <%= request_user.uuid %></h4>
                                         <h4 class="fs-15 text-uppercase mb-3">Статус - пользователь</h4>
-									</div> 
+									</div>
+									<% if admin | partner { %>
 									<div class="tab-pane border-0 p-0" id="gallery" role="tabpanel">
                                         <div class="row">
-                                            <!--
-                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                                                <div class="card overflow-hidden">
-													<a href="../assets/images/media/media-71.jpg" class="glightbox card shadow-none" data-gallery="gallery1">
-														<img src="../assets/images/media/media-71.jpg" alt="image">
-													</a>
-													<h4 class="text-center fs-14 mt-3 mb-0">Gallary Image</h4>
-													<div class="ga-border"></div>
-													<p class="text-muted text-center"><small>Photography</small></p>
-												</div>
-                                            </div>
-											-->
-											Пока нет объектов
-                                        </div>
-									</div>
-									<div class="tab-pane border-0 p-0" id="friends01" role="tabpanel">
-										<div class="row">
-											Пока нет заказов
-											<!--
-											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
-												<div class="card custom-card border shadow-none">
-													<div class="card-body  user-lock text-center">
-														<div class="dropdown float-end">
-															<a href="javascript:void(0);" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu shadow"> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-message-square me-2"></i>
-																	Message</a> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="javascript:void(0);"><i class="fe fe-trash-2 me-2"></i> Delete</a>
-															</div>
-														</div>
-														<a href="profile.html">
-															<img alt="avatar" class="rounded-circle" src="../assets/images/faces/1.jpg">
-															<h5 class="fs-16 mb-0 mt-3 text-dark fw-semibold">James Thomas</h5>
-															<span class="text-muted">Web designer</span>
-															<div class="mt-3 d-flex mx-auto text-center justify-content-center">
-																<span class="btn btn-icon btn-outline-primary rounded-circle border me-3">
-																	<i class="bx bxl-facebook fs-18 align-middle"></i>
-																</span>
-																<span class="btn btn-icon btn-outline-primary rounded-circle border me-3">
-																	<i class="bx bxl-twitter fs-18 align-middle"></i>
-																</span>
-																<span class="btn btn-icon btn-outline-primary rounded-circle border">
-																	<i class="bx bxl-linkedin fs-18 align-middle"></i>
-																</span>
-															</div>
+											<% if places.len() > 0 { %>
+												<% for object in places { %>
+												<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+													<div class="card overflow-hidden">
+														<a href="/place/<%= object.id %>/" class="card shadow-none">
+															<% if object.image.is_some() { %>
+																<img src="<%= object.image.as_deref().unwrap() %>" alt="image">
+															<% } else { %>
+																<img src="../assets/images/media/media-71.jpg" alt="image">
+															<% } %>
 														</a>
+														<h4 class="text-center fs-14 mt-3 mb-0"><%= object.title %></h4>
+														<div class="ga-border"></div>
 													</div>
 												</div>
-											</div>
-											-->
+												<% } %>
+											<% } else { %>
+												Пока нет объектов
+											<% } %>
+                                        </div>
+									</div>
+									<% } %>
+									<div class="tab-pane border-0 p-0" id="friends01" role="tabpanel">
+										<div class="row">
+											<% if orders.len() > 0 { %>
+												<% for object in orders { %>
+													<% let _place = object.place %>
+													<% let _order = object.order %>
+													<div class="card custom-card">
+														<div class="row g-0">
+															<div class="col-md-4">
+																<% if _place.image.is_some() { %>
+																	<img src="<%= _place.image.as_deref().unwrap() %>" class="img-fluid rounded-start h-100 w-100" alt="img">
+																<% } else { %>
+																	<img src="/assets/images/media/media-44.jpg" class="img-fluid rounded-start h-100 w-100" alt="place img">
+																<% } %>
+															</div>
+															<div class="col-md-8">
+																<div class="card-header">
+																	<div class="card-title"><%= _place.title %></div>
+																</div>
+																<div class="card-body">
+																	<p class="card-text">Стоимость - <%= _order.price %></p>
+																	<p class="card-text">Время начала - <%= _order.time_start.format("%d-%m-%Y в %H:%M").to_string() %></p>
+																	<p class="card-text">Время окончания - <%= _order.time_end.format("%d-%m-%Y в %H:%M").to_string() %></p>
+																</div>
+																<div class="card-footer">
+																	<p class="card-text">
+																		<% if _place.cord.is_some() { %><%= _place.cord.as_deref().unwrap() %><% } else { %>Координаты неизвестны<% } %>
+																	</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												<% } %>
+											<% } else { %>
+												Пока нет заказов
+											<% } %>
 										</div>
 									</div>
 									<div class="tab-pane border-0 p-0" id="settings" role="tabpanel">

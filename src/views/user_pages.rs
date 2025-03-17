@@ -24,7 +24,7 @@ pub fn user_urls(config: &mut web::ServiceConfig) {
 
 #[derive(Deserialize, Debug)]
 pub struct ProfileJson {
-    pub orders: Vec<crate::utils::OrderListJson>,
+    pub orders: Vec<crate::utils::RespOrderJson2>,
     pub places: Vec<crate::utils::PlaceListJson>,
 } 
 

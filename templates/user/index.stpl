@@ -103,7 +103,7 @@
 									<div class="tab-pane border-0 p-0" id="friends01" role="tabpanel">
 										<div class="row">
 											<% if orders.len() > 0 { %>
-												<% for object in orders { %>
+												<% for object in orders { %> 
 													<% let _place = object.place; %>
 													<% let _order = object.order; %>
 													<div class="card custom-card">

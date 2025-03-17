@@ -17,7 +17,7 @@
         function get_background() {
             html = document.documentElement;
             background = getCookie("background");
-            if (background == "dark") {
+            if (background != "dark") {
                 html.setAttribute("data-theme-mode", "dark");
                 html.setAttribute("data-header-styles", "dark");
                 html.setAttribute("data-menu-styles", "dark");

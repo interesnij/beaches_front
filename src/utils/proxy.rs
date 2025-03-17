@@ -100,7 +100,7 @@ pub async fn upload_files (
             if types == "user_avatar".to_string() {
                 let _request_user = crate::utils::get_current_user(&session).expect("E.");
                 let data = IdUser {
-                    id: _request_user.uuid.clone(),
+                    id: _request_user.id.clone(),
                 };
 
                 let res = crate::utils::request_post::<IdUser, crate::views::AuthResp2> (

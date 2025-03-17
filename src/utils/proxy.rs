@@ -95,7 +95,6 @@ pub async fn upload_files (
                 types = "".to_string();
             }
             if types == "user_avatar".to_string() {
-                //&session.purge();
                 let _request_user = crate::utils::get_current_user(&session).expect("E.");
                 let data = UuidUser {
                     id: _request_user.uuid.clone(),
@@ -111,6 +110,7 @@ pub async fn upload_files (
                 match res {
                     Ok(user) => {
                         if user.id != "".to_string() {
+                            &session.purge();
                             crate::utils::set_current_user(&session, &user);
                         }
                     },

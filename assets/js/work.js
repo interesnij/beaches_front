@@ -140,12 +140,14 @@ on('body', 'change', '#id_user_image', function() {
     link_.open('POST', "/create/upload_files/?types=user_avatar", true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.onreadystatechange = function() {
+        console.log("this.readyState", this.readyState);
+        console.log("this.status", this.status);
         if (this.readyState == 4 && this.status == 200) {
+            console.log("reload");
             location.reload();
         }
     }; 
     link_.send(form_data);
-    location.reload();
 });
 
 on('body', 'change', '#id_place_image', function() {
@@ -161,7 +163,6 @@ on('body', 'change', '#id_place_image', function() {
         }
     }; 
     link_.send(form_data);
-    location.reload();
 });
 
 

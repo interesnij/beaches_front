@@ -86,6 +86,16 @@ impl AuthResp2 {
     pub fn is_manager(&self) -> bool {
         return self.perm == 2;
     }
+    pub fn get_status(&self) -> String {
+        return match self.perm {
+            1 => "Пользователь",
+            2 => "Менеджер объекта",
+            3 => "Вы подали заявку на партнерство",
+            4 => "Владелец объекта",
+            5 => "Модератор сайта",
+            10 => "Суперпользователь",
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize, Debug)]

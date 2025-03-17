@@ -193,3 +193,52 @@ on('body', 'click', '.header-theme-mode', function() {
     set_background("dark");
   }
 })
+
+
+on('body', 'click', '#edit_user_info', function() {
+  _this = this;
+  form = _this.parentElement;
+  response = form.querySelector(".api_response");
+
+	form_data = new FormData(form);
+    if (!form.querySelector("#first_name").value){
+      form.querySelector("#first_name").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Имя";
+      response.classList.add("error");
+      return 
+    }
+    else if (!form.querySelector("#id_last_name").value){
+      form.querySelector("#id_last_name").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите фамилию";
+      response.classList.add("error")
+      return
+    } 
+    else if (!form.querySelector("#id_email").value){
+      form.querySelector("#id_email").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите почту";
+      response.classList.add("error")
+      return
+    } 
+    else {
+      _this.disabled = true;
+    }
+
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
+  link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+  link.open( 'POST', "/edit_user/", true ); 
+  link.setRequestHeader('Content-Type', 'application/json');
+  
+  link.onreadystatechange = function () {
+  if ( link.readyState == 4 && link.status == 200 ) {
+      alert("Сохранено");
+  } 
+  else {
+      _this.disabled = false;
+      response.style.display = "block";
+      response.classList.add("error");
+  }};
+  link.send(json);
+});

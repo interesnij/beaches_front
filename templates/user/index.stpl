@@ -74,8 +74,8 @@
 								</div>
 								<div class="tab-content border border-top-0 p-4 br-dark">
 									<div class="tab-pane border-0 p-0 active show" id="home" role="tabpanel">
-										<h4 class="fs-15 text-uppercase mb-3">ID <%= request_user.uuid %></h4>
-                                        <h4 class="fs-15 text-uppercase mb-3">Статус - пользователь</h4>
+										<p class="fs-15 text-uppercase mb-3">ID <%= request_user.uuid %></p>
+                                        <p class="fs-15 text-uppercase mb-3">Статус - <%= request_user.get_status() %></p>
 									</div>
 									<% if admin == true || partner == true { %>
 									<div class="tab-pane border-0 p-0" id="gallery" role="tabpanel">
@@ -144,21 +144,21 @@
 										<form>
 												<div class="form-group mb-3">
                                                     <label class="form-label">Ваше имя</label> 
-													<input class="form-control" name="first_name" id="id_first_name" placeholder="Введите Ваше имя" type="text">
+													<input class="form-control" value="<%= request_user.first_name %>" name="first_name" id="id_first_name" placeholder="Введите Ваше имя" type="text">
                                                 </div>
 												<div class="form-group mb-3">
                                                     <label class="form-label">Ваша фамилия</label> 
-													<input class="form-control" name="last_name" id="id_last_name" placeholder="Введите Вашу фамилию" type="text">
+													<input class="form-control" value="<%= request_user.last_name %>" name="last_name" id="id_last_name" placeholder="Введите Вашу фамилию" type="text">
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Email</label> 
-													<input class="form-control" name="email" id="id_email" placeholder="Введите Вашу почту" type="email">
+													<input class="form-control" value="<%= request_user.email %>" name="email" id="id_email" placeholder="Введите Вашу почту" type="email">
                                                 </div>
                                                 
-                                                <button id="edit" type="button" class="btn btn-primary btn-block w-100">Изменить</button>
+                                                <button id="edit_user_info" type="button" class="btn btn-primary btn-block w-100">Изменить</button>
                                                 <p class="api_response fw-medium mb-4 fs-17"></p>
-                                            </form>
-									</div>
+                                        </form>
+									</div> 
 								</div>
 							</div>
 						</div>

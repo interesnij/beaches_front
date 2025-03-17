@@ -19,6 +19,7 @@ use crate::views::AuthResp2;
 
 pub fn user_urls(config: &mut web::ServiceConfig) {
     config.route("/profile/", web::get().to(profile_page));
+    config.route("/edit_user/", web::post().to(edit_user));
 }
 
 
@@ -64,4 +65,29 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
     else {
         crate::views::auth_page(session).await
     }
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct EditUserJson { 
+    pub first_name: String,
+    pub last_name:  String,
+    pub email:      String,
+}
+pub async fn edit_user(session: Session, data: Json<EditUserJson>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/edit_user/".to_string() + &id.clone() + &"/".to_string();
+        let res = crate::utils::request_post::<EditUserJson, ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }

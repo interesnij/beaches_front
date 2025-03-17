@@ -28,9 +28,8 @@ struct ImageParams {
     pub types: Option<String>,
 }
 #[derive(Deserialize, Serialize, Debug)]
-pub struct LoginUser2 {
-    pub email:    String,
-    pub password: String,
+pub struct UuidUser {
+    pub id: String,
 }
 
 pub async fn upload_files (
@@ -98,13 +97,12 @@ pub async fn upload_files (
             if types == "user_avatar".to_string() {
                 //&session.purge();
                 let _request_user = crate::utils::get_current_user(&session).expect("E.");
-                let data = LoginUser2 {
-                    email:    _request_user.email.clone(),
-                    password: _request_user.password.clone(),
+                let data = UuidUser {
+                    id: _request_user.uuid.clone(),
                 };
 
-                let res = crate::utils::request_post::<LoginUser2, crate::views::AuthResp2> (
-                    URL.to_owned() + &"/login/".to_string(),
+                let res = crate::utils::request_post::<UuidUser, crate::views::AuthResp2> (
+                    URL.to_owned() + &"/get_user_data/".to_string(),
                     &data,  
                     "".to_string(),
                     "application/json".to_string()

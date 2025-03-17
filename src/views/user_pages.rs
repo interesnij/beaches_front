@@ -31,7 +31,7 @@ pub struct ProfileJson {
 pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let orders: Vec<crate::utils::OrderListJson>;
+        let orders: Vec<crate::utils::RespOrderJson2>;
         let places:  Vec<crate::utils::PlaceListJson>;
         let url = URL.to_string() + &"/profile/".to_string();
         let resp = crate::utils::request_get::<ProfileJson>(url, _request_user.uuid.clone(), "application/json".to_string()).await;
@@ -49,7 +49,7 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
         #[template(path = "user/index.stpl")]
         struct Template {
             request_user: AuthResp2,
-            orders:       Vec<crate::utils::OrderListJson>,
+            orders:       Vec<crate::utils::RespOrderJson2>,
             places:       Vec<crate::utils::PlaceListJson>,
         }
         let body = Template {

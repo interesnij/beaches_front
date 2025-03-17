@@ -22,10 +22,10 @@ pub fn user_urls(config: &mut web::ServiceConfig) {
 }
 
 
-#[derive(Serialize)]
+#[derive(Deserialize, Debug)]
 pub struct ProfileJson {
-    pub orders: crate::utils::OrderListJson,
-    pub places: crate::utils::PlaceListJson,
+    pub orders: Vec<crate::utils::OrderListJson>,
+    pub places: Vec<crate::utils::PlaceListJson>,
 } 
 
 pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {

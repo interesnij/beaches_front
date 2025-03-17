@@ -115,7 +115,7 @@ pub async fn upload_files (
                         println!("data send");
                         if user.id != "".to_string() {
                             println!("session reload");
-                            &session.purge();
+                            //&session.purge();
                             crate::utils::set_current_user(&session, &user);
                         }
                     },

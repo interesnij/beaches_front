@@ -74,24 +74,42 @@ pub struct EditUserJson {
     pub last_name:  String,
     pub email:      String,
 }
+#[derive(Deserialize, Serialize, Debug)]
+pub struct IdUser {
+    pub id: String,
+}
 pub async fn edit_user(session: Session, data: Json<EditUserJson>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let url = URL.to_string() + &"/edit_user/".to_string();
-        let res = crate::utils::request_post::<EditUserJson, ()> (
+        let res = crate::utils::request_post::<EditUserJson, crate::views::AuthResp2> (
             url,
             &data, 
             _request_user.uuid,
             "application/json".to_string()
         ).await;
 
-        return match res {
-            Ok(user) => {
-                crate::utils::set_current_user(&session, &user);
-                Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
-            },
-            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
-        }
+        let data = IdUser {
+            id: _request_user.id.clone(),
+        };
+        let res = crate::utils::request_post::<IdUser, crate::views::AuthResp2> (
+            URL.to_owned() + &"/get_user_data/".to_string(),
+            &data,  
+            "".to_string(),
+            "application/json".to_string()
+        ).await;
+
+                match res {
+                    Ok(user) => {
+                        println!("data send");
+                        if user.id != "".to_string() {
+                            println!("session reload");
+                            //&session.purge();
+                            crate::utils::set_current_user(&session, &user);
+                        }
+                    },
+                    Err(_) => (),
+                }
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }

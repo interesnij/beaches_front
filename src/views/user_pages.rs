@@ -86,7 +86,10 @@ pub async fn edit_user(session: Session, data: Json<EditUserJson>) -> actix_web:
         ).await;
 
         return match res {
-            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Ok(user) => {
+                crate::utils::set_current_user(&session, &user);
+                Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            },
             Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
         }
     }

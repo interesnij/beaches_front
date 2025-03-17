@@ -96,7 +96,7 @@ pub async fn upload_files (
             }
             if types == "user_avatar".to_string() {
                 let _request_user = crate::utils::get_current_user(&session).expect("E.");
-                let data = UuidUser {
+                let data = IdUser {
                     id: _request_user.uuid.clone(),
                 };
 

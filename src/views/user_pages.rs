@@ -5,6 +5,7 @@ use actix_web::{
     web,
     error::InternalError,
     http::StatusCode,
+    web::Json,
 };
 use sailfish::TemplateOnce;
 use serde::{Serialize, Deserialize};
@@ -76,7 +77,7 @@ pub struct EditUserJson {
 pub async fn edit_user(session: Session, data: Json<EditUserJson>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/edit_user/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/edit_user/".to_string();
         let res = crate::utils::request_post::<EditUserJson, ()> (
             url,
             &data, 

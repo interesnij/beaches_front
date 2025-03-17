@@ -78,7 +78,9 @@ pub async fn upload_files (
             println!("========================================");
             println!("");
             println!("resp.head: {:?}", resp.headers());
-
+            println!("");
+            println!("========================================");
+            println!("");
 
             let params_some = web::Query::<ImageParams>::from_query(&req.query_string());
             let types: String;
@@ -94,6 +96,7 @@ pub async fn upload_files (
             else {
                 types = "".to_string();
             }
+            println!("types: {}", types);
             if types == "user_avatar".to_string() {
                 let _request_user = crate::utils::get_current_user(&session).expect("E.");
                 let data = IdUser {
@@ -109,7 +112,9 @@ pub async fn upload_files (
 
                 match res {
                     Ok(user) => {
+                        println!("data send");
                         if user.id != "".to_string() {
+                            println!("session reload");
                             &session.purge();
                             crate::utils::set_current_user(&session, &user);
                         }

@@ -7,7 +7,7 @@ use actix_web::{
 };
 use awc::http::{StatusCode, header::HeaderMap};
 use clap::Parser;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use crate::utils::URL;
 use std::str;
 use futures::TryStreamExt;
@@ -23,6 +23,15 @@ pub struct ConfigToStaticServer {
     pub to: String, 
 }
 
+#[derive(Debug, Deserialize)]
+struct ImageParams {
+    pub types: Option<String>,
+}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct LoginUser2 {
+    pub email:    String,
+    pub password: String,
+}
 
 pub async fn upload_files (
     session:     actix_session::Session,
@@ -63,7 +72,7 @@ pub async fn upload_files (
             let mut resp_builder = HttpResponse::build(status);
             for header in resp.headers() {
                 resp_builder.insert_header(header);
-            } 
+            }  
             //resp_builder.insert_header(("ContentType", "multipart/form-data"));
             //resp_builder.insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"));
             println!("");
@@ -71,9 +80,45 @@ pub async fn upload_files (
             println!("");
             println!("resp.head: {:?}", resp.headers());
 
-            let _request_user = crate::utils::get_current_user(&session).expect("E.");
-            &session.purge();
-            crate::utils::set_current_user(&session, &_request_user);
+
+            let params_some = web::Query::<ImageParams>::from_query(&req.query_string());
+            let types: String;
+            if params_some.is_ok() {
+                let params = params_some.unwrap();
+                if params.types.is_some() {
+                    types = params.types.as_deref().unwrap().to_string();
+                }
+                else {
+                    types = "".to_string();
+                }
+            }
+            else {
+                types = "".to_string();
+            }
+            if types == "user_avatar".to_string() {
+                //&session.purge();
+                let _request_user = get_current_user(&session).expect("E.");
+                let data = LoginUser2 {
+                    email:    _request_user.email.clone(),
+                    password: _request_user.password.clone(),
+                }
+
+                let res = request_post::<LoginUser, crate::views::AuthResp2> (
+                    URL.to_owned() + &"/login/".to_string(),
+                    &data,  
+                    "".to_string(),
+                    "application/json".to_string()
+                ).await;
+
+                match res {
+                    Ok(user) => {
+                        if user.id != "".to_string() {
+                            crate::utils::set_current_user(&session, &user);
+                        }
+                    },
+                    Err(_) => (),
+                }
+            }
 
             Ok(resp_builder.streaming(resp.into_stream()))
         }, 

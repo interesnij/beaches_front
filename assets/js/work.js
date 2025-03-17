@@ -180,7 +180,9 @@ function set_background(color) {
 
 on('body', 'click', '.light-layout', function() {
   html = document.documentElement;
-  if (html.getAttribute("data-theme-mode") == "dark") {
+  console.log("html", html);
+
+  if (html.getAttribute("data-theme-mode") != "dark") {
     set_background("light");
   }
   else {

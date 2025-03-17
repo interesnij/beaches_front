@@ -56,7 +56,7 @@
 										<li class="">
 											<a href="#home" data-bs-toggle="tab" class="active" aria-expanded="true" aria-selected="true" role="tab"> <span class="visible-xs"><i class="las la-user-circle fs-16 me-1"></i></span> <span class="hidden-xs">Инфо</span> </a>
 										</li>
-										<% if admin == true | partner == true { %>
+										<% if admin == true || partner == true { %>
 										<li class="">
 											<a href="#gallery" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-images fs-15 me-1"></i></span>
 												<span class="hidden-xs">Объекты</span> </a>
@@ -77,7 +77,7 @@
 										<h4 class="fs-15 text-uppercase mb-3">ID <%= request_user.uuid %></h4>
                                         <h4 class="fs-15 text-uppercase mb-3">Статус - пользователь</h4>
 									</div>
-									<% if admin == true | partner == true { %>
+									<% if admin == true || partner == true { %>
 									<div class="tab-pane border-0 p-0" id="gallery" role="tabpanel">
                                         <div class="row">
 											<% if places.len() > 0 { %>

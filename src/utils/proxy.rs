@@ -97,13 +97,13 @@ pub async fn upload_files (
             }
             if types == "user_avatar".to_string() {
                 //&session.purge();
-                let _request_user = get_current_user(&session).expect("E.");
+                let _request_user = crate::utils::get_current_user(&session).expect("E.");
                 let data = LoginUser2 {
                     email:    _request_user.email.clone(),
                     password: _request_user.password.clone(),
-                }
+                };
 
-                let res = request_post::<LoginUser, crate::views::AuthResp2> (
+                let res = crate::utils::request_post::<LoginUser2, crate::views::AuthResp2> (
                     URL.to_owned() + &"/login/".to_string(),
                     &data,  
                     "".to_string(),

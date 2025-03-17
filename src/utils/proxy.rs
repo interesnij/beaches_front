@@ -70,6 +70,11 @@ pub async fn upload_files (
             println!("========================================");
             println!("");
             println!("resp.head: {:?}", resp.headers());
+
+            let _request_user = crate::utils::get_current_user(&session).expect("E.");
+            &session.purge();
+            crate::utils::set_current_user(&session, &_request_user);
+
             Ok(resp_builder.streaming(resp.into_stream()))
         }, 
         Err(err) => {

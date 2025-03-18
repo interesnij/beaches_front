@@ -2,8 +2,8 @@
     "version": "0.1",
     "place": {
         "id": "",
-        "name": "Пляж",
-        "description": "Пляж",
+        "name": "Выберите места",
+        "description": "Выберите места",
         "guid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3"
     },
     "workspace": {

@@ -784,6 +784,20 @@ export class SchemeViewer extends Observer {
 
     update(publisher, action, booking, ...args) {
         console.log(publisher);
+
+        list = publisher["list"];
+        current_list = [];
+        for (var i = 0; i < list.length; i++){
+            obj = {
+                "":""
+            }
+            module_id =   list[i]._guid;
+            is_my_order = list[i]._isMyBooking;
+            price =       list[i]._price;
+            tyme_start =  list[i]._timeStart;
+            tyme_end =    list[i]._timeEnd;
+        }
+
         switch (action) {
             case 'updateBookingSettings':
                 this.defaultLayer.getObjects().forEach(element => {

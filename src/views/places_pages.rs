@@ -31,6 +31,8 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/create_place/", web::post().to(create_place));
     config.route("/place/{id}/edit/", web::post().to(edit_place));
     config.route("/place/create_modules/", web::post().to(create_modules));
+    config.route("/create_order/", web::post().to(create_order));
+    config.route("/delete_order/", web::post().to(delete_order));
 }
 
 
@@ -373,6 +375,57 @@ pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> a
         let _request_user = get_current_user(&session).expect("E.");
         let url = URL.to_string() + &"/create_modules/".to_string();
         let res = crate::utils::request_post::<CreateModuleJson, ()> (
+            url, 
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
+#[derive(Seerialize, Deserialize)]
+pub struct OrderJson { 
+    pub title:      String,
+    pub place_id:   String,
+    pub object_id:  String,
+    pub price:      i32,
+    pub time_start: String,
+    pub time_end:   String, 
+} 
+pub async fn create_order(session: Session, Json<Vec<OrderJson>>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) { 
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/create_order/".to_string();
+        let res = crate::utils::request_post::<Vec<OrderJson>, ()> (
+            url, 
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct OrderIdsJson {  
+    pub ids: Vec<String>,
+}
+pub async fn delete_order(session: Session, Json<OrderIdsJson>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) { 
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/delete_order/".to_string();
+        let res = crate::utils::request_post::<OrderIdsJson, ()> (
             url, 
             &data,  
             _request_user.uuid,

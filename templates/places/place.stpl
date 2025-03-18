@@ -85,7 +85,7 @@
                 <!-- Start::row-2 -->
                 <div class="related-products-ltr-l" style="margin-bottom:50px">
                 <div class="container" style="max-width: 1600px; max-height: 800px; min-width: 800px; min-height: 400px;">
-                        <div style="text-align: center;">
+                        <div style="text-align: center;margin-bottom:10px">
                             <h2 id="placeName">Схема пляжа</h2>
                             <form name="bookingSettings" style="display: flex; text-align: justify;">
                                 <div style="font-size: 20px;">
@@ -148,8 +148,8 @@
         "version": "0.1",
         "place": {
             "id": "",
-            "name": "Пляж",
-            "description": "Плаж",
+            "name": "Выберите места",
+            "description": "Выберите места",
             "guid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3"
         },
         "workspace": {

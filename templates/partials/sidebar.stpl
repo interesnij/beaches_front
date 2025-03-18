@@ -19,37 +19,29 @@
                     <a href="/" class="side-menu__item"><span class="side-menu__label">Главная</span></a>
                 </li>
                 
-                <% if admin == true  { %>
+                <% if admin { %>
                     <li class="slide">
-                        <a href="/places/" class="side-menu__item"><span class="side-menu__label">Мои объекты</span></a>
+                        <a href="/places/" class="side-menu__item"><span class="side-menu__label">Объекты</span></a>
                     </li>
                     <li>
-                        <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Мои клиенты</span></a>
+                        <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Клиенты</span></a>
                     </li>
                     <li>
-                        <a href="/partners/" class="side-menu__item"><span class="side-menu__label">Мои партнеры</span></a>
-                    </li>
-                    <li>
-                        <a href="/orders/" class="side-menu__item"><span class="side-menu__label">Мои заказы</span></a>
+                        <a href="/partners/" class="side-menu__item"><span class="side-menu__label">Партнеры</span></a>
                     </li>
                     <li>
                         <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
                     </li>
-                <% } else if partner == true { %>
+                <% } else if partner { %>
                     <li class="slide">
-                        <a href="/places/" class="side-menu__item"><span class="side-menu__label">Мои объекты</span></a>
+                        <a href="/places/" class="side-menu__item"><span class="side-menu__label">Объекты</span></a>
                     </li>
                     <li>
-                        <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Мои клиенты</span></a>
+                        <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Клиенты</span></a>
                     </li>
                     <li>
                         <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
                     </li>
-                <% } else { %>
-                    <li>
-                        <a href="/orders/" class="side-menu__item"><span class="side-menu__label">Мои заказы</span></a>
-                    </li>
-                    
                 <% } %>
                 <li class="slide">
                     <a href="/places/" class="side-menu__item"><span class="side-menu__label">Объекты</span></a>

@@ -59,12 +59,12 @@
 										<% if admin == true || partner == true { %>
 										<li class="">
 											<a href="#gallery" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-images fs-15 me-1"></i></span>
-												<span class="hidden-xs">Объекты</span> </a>
+												<span class="hidden-xs">Мои объекты</span> </a>
 										</li>
 										<% } %>
 										<li class="">
 											<a href="#friends01" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-life-ring fs-16 me-1"></i></span>
-												<span class="hidden-xs">Заказы</span> </a>
+												<span class="hidden-xs">Мои заказы</span> </a>
 										</li>
                                         <li class="">
 											<a href="#settings" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-life-ring fs-16 me-1"></i></span>

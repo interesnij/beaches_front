@@ -99,22 +99,17 @@
                                     <label for="booking-time-end">Время окончания:</label>
                                     <input type="time" id="bookingTimeEnd" name="time-end" min="09:30" max="18:00" required />
                                 </div>
+                                <div>
+                                    <button disabled data-guid="<%= object.id %>" id="save" type="button" class="btn btn-info">
+                                        Сделать заказ
+                                    </button>
+                                </div>
                             </form>
                             <div style="height: 600px;">
                                 <canvas id="scheme-canvas" style="border: 1px solid #ccc;">
                                     Ваш браузер не поддерживает элемент canvas.
                                 </canvas>
                             </div>
-
-                            <div class="well">
-                                <div class="row">
-                                    <div class="col-sm-12" style="margin-bottom: 20px;margin-top: 15px;text-align: right">
-                                        <button data-guid="<%= object.id %>" id="save" type="button" class="btn btn-info">
-                                            Сделать заказ
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> 
                         </div>
                     </div>
                 </div>

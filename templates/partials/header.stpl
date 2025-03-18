@@ -146,7 +146,11 @@
             <div class="header-element headerProfile-dropdown">
                 <!-- Start::header-link|dropdown-toggle -->
                 <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    <img src="/assets/images/faces/6.jpg" alt="img" width="37" height="37" class="rounded-circle">
+                    <% if request_user.image.is_some() { %>
+                        <img src="<%= request_user.image.as_deref().unwrap() %>" alt="img" width="37" height="37" class="rounded-circle _nice_small">
+                    <% } else { %>
+                        <img src="/assets/images/faces/6.jpg" alt="img" width="37" height="37" class="rounded-circle">
+                    <% } %> 
                 </a>
                 <!-- End::header-link|dropdown-toggle -->
                 <ul 
@@ -171,17 +175,13 @@
                     </li>
                     <li><a class="dropdown-item d-flex" href="/profile/"><i class="bx bx-user-circle fs-18 me-2 op-7"></i>Профиль</a></li>
                     
-                    <% if admin == true { %>
-                        <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои объекты </a></li>
-                        <li><a class="dropdown-item d-flex" href="/clients/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои клиенты </a></li>
-                        <li><a class="dropdown-item d-flex" href="/partners/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои партнеры </a></li>
-                        <li><a class="dropdown-item d-flex" href="/orders/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои заказы </a></li>
-                    <% } else if partner == true { %>   
-                        <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои объекты </a></li>
-                        <li><a class="dropdown-item d-flex" href="/clients/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои клиенты </a></li>
-                        <li><a class="dropdown-item d-flex" href="/orders/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои заказы </a></li>
-                    <% } else { %>
-                        <li><a class="dropdown-item d-flex" href="/orders/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Мои заказы </a></li>
+                    <% if admin { %>
+                        <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Объекты </a></li>
+                        <li><a class="dropdown-item d-flex" href="/clients/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Клиенты </a></li>
+                        <li><a class="dropdown-item d-flex" href="/partners/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Партнеры </a></li>
+                    <% } else if partner { %>   
+                        <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Объекты </a></li>
+                        <li><a class="dropdown-item d-flex" href="/clients/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Клиенты </a></li>
                     <% } %>
                     <li><a class="dropdown-item d-flex logout_hundler" style="cursor:pointer"><i class="bx bx-log-out fs-18 me-2 op-7"></i>Выйти</a></li>
                 </ul>

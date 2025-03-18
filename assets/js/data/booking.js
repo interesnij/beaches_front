@@ -13,6 +13,7 @@ export class Booking extends Publisher {
         this._timeStart = TimeHelper.getFullDateTime(booking.date, booking.timeStart);
         this._timeEnd = TimeHelper.getFullDateTime(booking.date, booking.timeEnd);
         this._isMyBooking = booking.isMyBooking;
+        this._price = booking.price;
     }
 
 
@@ -24,7 +25,8 @@ export class Booking extends Publisher {
             date: TimeHelper.stringDate(this.date),
             timeStart: TimeHelper.stringTime(this.timeStart),
             timeEnd: TimeHelper.stringTime(this.timeEnd),
-            isMyBooking: this.isMyBooking
+            isMyBooking: this.isMyBooking,
+            price: this.price
         }
     }
 
@@ -96,5 +98,9 @@ export class Booking extends Publisher {
             this._isMyBooking = value;
             this.notifyObservers(this);
         }
+    }
+
+    get price() {
+        return this._price;
     }
 }

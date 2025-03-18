@@ -16,6 +16,7 @@ export class SchemePlaceSettings extends Observer {
         this.form.placeGuid.value = this.schemeData.place.guid;
 
 
+
         this.form.placeName.onchange = (() => {
             this.schemeData.place.name = this.form.placeName.value;
         });

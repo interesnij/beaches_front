@@ -457,13 +457,15 @@ export class SchemeViewer extends Observer {
 
     clickFunctionBooking(schemeObject, schemeDesigner, view, e) {
         var objectParams = schemeObject.getParams();
-
+        console.log("objectParams", objectParams);
+        let _price = objectParams.price * (this.schemeData.bookingSettings.timeEnd - this.schemeData.bookingSettings.timeStart) / 3600000;
         this.schemeData.bookingList.addBookingItem({
             moduleGuid: objectParams.guid,
             date: this.schemeData.bookingSettings.date,
             timeStart: TimeHelper.stringTime(this.schemeData.bookingSettings.timeStart),
             timeEnd: TimeHelper.stringTime(this.schemeData.bookingSettings.timeEnd),
-            isMyBooking: true
+            isMyBooking: true,
+            price: _price.toFixed(2)
         });
         //objectParams.isMyBooking = true;
     }

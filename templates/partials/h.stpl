@@ -5,6 +5,11 @@
     height: 250px !important;
     width: 100%;
 }
+._nice_small {
+    object-fit: cover;
+    height: 37px !important;
+    width: 100%;
+}
 </style>
 </head>
 

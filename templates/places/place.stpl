@@ -88,18 +88,19 @@
                         <div style="text-align: center;">
                             <h2 id="placeName">Схема пляжа</h2>
                             <form name="bookingSettings" style="display: flex; text-align: justify;">
-                                <div><label for="booking-date">Дата:</label>
+                                <div style="font-size: 20px;">
+                                    <label for="booking-date">Дата:</label>
                                     <input type="date" id="bookingDate" name="booking-date" />
                                 </div>
-                                <div>
-                                    <label for="booking-time-start">Время начала:</label>
+                                <div style="margin-left: 15px;font-size: 20px;">
+                                    <label for="booking-time-start">Начало:</label>
                                     <input type="time" id="bookingTimeStart" name="time-start" required />
                                 </div>
-                                <div>
-                                    <label for="booking-time-end">Время окончания:</label>
+                                <div style="margin-left: 15px;font-size: 20px;">
+                                    <label for="booking-time-end">Окончание:</label>
                                     <input type="time" id="bookingTimeEnd" name="time-end" min="09:30" max="18:00" required />
                                 </div>
-                                <div>
+                                <div style="margin-left: 15px;font-size: 20px;">
                                     <button disabled data-guid="<%= object.id %>" id="save" type="button" class="btn btn-info">
                                         Сделать заказ
                                     </button>

@@ -87,7 +87,7 @@
                 <div class="container" style="max-width: 1600px; max-height: 800px; min-width: 800px; min-height: 400px;">
                         <div style="text-align: center;margin-bottom:10px">
                             <h2 id="placeName">Схема пляжа</h2>
-                            <form name="bookingSettings" style="display: flex; text-align: justify;">
+                            <form name="bookingSettings" style="display: flex; text-align: justify; margin-bottom:50px;">
                                 <div style="font-size: 20px;">
                                     <label for="booking-date">Дата:</label>
                                     <input type="date" id="bookingDate" name="booking-date" />

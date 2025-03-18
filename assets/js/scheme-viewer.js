@@ -784,19 +784,23 @@ export class SchemeViewer extends Observer {
 
     update(publisher, action, booking, ...args) {
         console.log(publisher);
+        console.log("bucking list", publisher);
 
-        list = publisher["list"];
+        list = publisher.list;
+        place_id = document.body.querySelector("#save").getAttribute("data-guid");
         current_list = [];
         for (var i = 0; i < list.length; i++){
             obj = {
-                "":""
-            }
-            module_id =   list[i]._guid;
-            is_my_order = list[i]._isMyBooking;
-            price =       list[i]._price;
-            tyme_start =  list[i]._timeStart;
-            tyme_end =    list[i]._timeEnd;
+                "title":"title",
+                "place_id":place_id,
+                "object_id":list[i]._guid,
+                "price":list[i]._price,
+                "time_start":list[i]._timeStart,
+                "tyme_end":list[i]._timeEnd,
+            };
+            current_list.push(obj);
         }
+        console.log("current_list", "current_list");
 
         switch (action) {
             case 'updateBookingSettings':

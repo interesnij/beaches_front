@@ -398,7 +398,7 @@ pub struct OrderJson {
     pub time_start: String,
     pub time_end:   String, 
 } 
-pub async fn create_order(session: Session, Json<Vec<OrderJson>>) -> actix_web::Result<HttpResponse> {
+pub async fn create_order(session: Session, data: Json<Vec<OrderJson>>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");
         let url = URL.to_string() + &"/create_order/".to_string();
@@ -421,7 +421,7 @@ pub async fn create_order(session: Session, Json<Vec<OrderJson>>) -> actix_web::
 pub struct OrderIdsJson {  
     pub ids: Vec<String>,
 }
-pub async fn delete_order(session: Session, Json<OrderIdsJson>) -> actix_web::Result<HttpResponse> {
+pub async fn delete_order(session: Session, data: Json<OrderIdsJson>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");
         let url = URL.to_string() + &"/delete_order/".to_string();

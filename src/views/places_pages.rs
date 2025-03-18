@@ -389,7 +389,7 @@ pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> a
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
 
-#[derive(Seerialize, Deserialize)]
+#[derive(Seerialize, Deserialize, Debug)]
 pub struct OrderJson { 
     pub title:      String,
     pub place_id:   String,
@@ -417,7 +417,7 @@ pub async fn create_order(session: Session, Json<Vec<OrderJson>>) -> actix_web::
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct OrderIdsJson {  
     pub ids: Vec<String>,
 }

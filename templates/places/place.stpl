@@ -456,48 +456,30 @@
     function saveSchemeData() {
         let str = JSON.stringify(schemeData, null, 2);
         console.log("schemeData", schemeData);
-        console.log("schemeData str", str);
-        try {
-            console.log('str["bookingList"]', str["bookingList"]);
-        } catch {null};
-        try {
-            console.log('str["bookingList"]["list"]', str["bookingList"]["list"]);
-        } catch {null};
-        try {
-            console.log('schemeData["bookingList"]', schemeData["bookingList"]);
-        } catch {null};
+
         try {
             console.log('schemeData["bookingList"]["list"]', schemeData["bookingList"]["list"]);
         } catch {null};
 
         try {
-            console.log('str.bookingList', str.bookingList);
-        } catch {null};
-        try {
-            console.log('str.bookingList.list', str.bookingList.list);
-        } catch {null};
-        try {
-            console.log('schemeData.bookingList', schemeData.bookingList);
-        } catch {null};
-        try {
             console.log('schemeData.bookingList.list', schemeData.bookingList.list);
-        } catch {null};
-
-        list = str["bookingList"]["list"];
-        place_id = document.body.querySelector("#save").getAttribute("data-guid");
-        current_list = [];
-        for (var i = 0; i < list.length; i++){
-            obj = {
-                "title":"title",
-                "place_id":place_id,
-                "object_id":list[i]._guid,
-                "price":list[i]._price,
-                "time_start":list[i]._timeStart,
-                "tyme_end":list[i]._timeEnd,
+            list = schemeData.bookingList.list;
+            list = str["bookingList"]["list"];
+            place_id = document.body.querySelector("#save").getAttribute("data-guid");
+            current_list = [];
+            for (var i = 0; i < list.length; i++) {
+                obj = {
+                    "title":"title",
+                    "place_id":place_id,
+                    "object_id":list[i]._guid,
+                    "price":list[i]._price,
+                    "time_start":list[i]._timeStart,
+                    "tyme_end":list[i]._timeEnd,
+                };
+                current_list.push(obj);
             };
-            current_list.push(obj);
-        }
-        console.log("current_list", "current_list");
+            console.log("current_list", current_list);
+        } catch {null};
     }
 </script>
 <% include!("../partials/f.stpl"); %>

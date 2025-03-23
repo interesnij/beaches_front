@@ -451,11 +451,10 @@
 
 
     var but = document.getElementById('save');
-    but.addEventListener("click", function () { saveSchemeData(); });
+    but.addEventListener("click", function () { saveSchemeData(this.getAttribute("data-guid")); });
 
-    function saveSchemeData() {
+    function saveSchemeData(place_id) {
             console.log('schemeData.bookingList.list', schemeData.bookingList.list);
-            place_id = document.body.querySelector("#save").getAttribute("data-guid");
             current_list = [];
             for (var i = 0; i < schemeData.bookingList.list.length; i++) {
                 obj = {

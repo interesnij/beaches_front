@@ -454,11 +454,6 @@
     but.addEventListener("click", function () { saveSchemeData(); });
 
     function saveSchemeData() {
-        try {
-            console.log('schemeData["bookingList"]["list"]', schemeData["bookingList"]["list"]);
-        } catch {null};
-
-        try {
             console.log('schemeData.bookingList.list', schemeData.bookingList.list);
             list = schemeData.bookingList.list;
             place_id = document.body.querySelector("#save").getAttribute("data-guid");
@@ -475,7 +470,6 @@
                 current_list.push(obj);
             };
             console.log("current_list", current_list);
-        } catch {null};
     }
 </script>
 <% include!("../partials/f.stpl"); %>

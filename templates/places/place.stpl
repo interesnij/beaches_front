@@ -101,7 +101,7 @@
                                     <input type="time" id="bookingTimeEnd" name="time-end" min="09:30" max="18:00" required />
                                 </div>
                                 <div style="margin-left: 15px;font-size: 20px;">
-                                    <button disabled data-guid="<%= object.id %>" id="save" type="button" class="btn btn-info">
+                                    <button data-guid="<%= object.id %>" id="save" type="button" class="btn btn-info">
                                         Сделать заказ
                                     </button>
                                 </div>
@@ -456,7 +456,7 @@
     function saveSchemeData() {
         let str = JSON.stringify(schemeData, null, 2);
         console.log(schemeData);
-        list = schemeData["bookingList"]["list"];
+        list = str["bookingList"]["list"];
         place_id = document.body.querySelector("#save").getAttribute("data-guid");
         current_list = [];
         for (var i = 0; i < list.length; i++){

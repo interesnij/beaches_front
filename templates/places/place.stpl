@@ -455,15 +455,16 @@
 
     function saveSchemeData(place_id) {
             console.log('schemeData.bookingList.list', schemeData.bookingList.list);
-            current_list = [];
-            for (var i = 0; i < schemeData.bookingList.list.length; i++) {
+            var current_list = [];
+            var list = schemeData.bookingList.list;
+            for (var i = 0; i < list.length; i++) {
                 obj = {
                     "title":"title",
                     "place_id":place_id,
-                    "object_id":schemeData.bookingList.list[i]._guid,
-                    "price":schemeData.bookingList.list[i]._price,
-                    "time_start":schemeData.bookingList.list[i]._timeStart,
-                    "tyme_end":schemeData.bookingList.list[i]._timeEnd,
+                    "object_id":list[i]._guid,
+                    "price":list[i]._price,
+                    "time_start":list[i]._timeStart,
+                    "tyme_end":list[i]._timeEnd,
                 };
                 current_list.push(obj);
             };

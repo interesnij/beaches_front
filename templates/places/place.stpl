@@ -454,9 +454,6 @@
     but.addEventListener("click", function () { saveSchemeData(); });
 
     function saveSchemeData() {
-        let str = JSON.stringify(schemeData, null, 2);
-        console.log("schemeData", schemeData);
-
         try {
             console.log('schemeData["bookingList"]["list"]', schemeData["bookingList"]["list"]);
         } catch {null};
@@ -464,7 +461,6 @@
         try {
             console.log('schemeData.bookingList.list', schemeData.bookingList.list);
             list = schemeData.bookingList.list;
-            list = str["bookingList"]["list"];
             place_id = document.body.querySelector("#save").getAttribute("data-guid");
             current_list = [];
             for (var i = 0; i < list.length; i++) {

@@ -387,7 +387,7 @@ pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> a
         }
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
-}
+} 
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct OrderJson { 

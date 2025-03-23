@@ -784,38 +784,6 @@ export class SchemeViewer extends Observer {
 
     update(publisher, action, booking, ...args) {
         console.log(publisher);
-        console.log("bucking list", publisher);
-        try {
-            list = publisher.list;
-            console.log("publisher.list");
-        }catch {null};
-        try {
-            list = publisher["list"];
-            console.log("publisher'list'");
-        }catch {null};
-        try {
-            list = publisher[0]["list"];
-            console.log("publisher[0]'list'");
-        }catch {null};
-        try {
-            list = publisher[0]["list"][0];
-            console.log("publisher[0]'list'[0]");
-        }catch {null};
-        place_id = document.body.querySelector("#save").getAttribute("data-guid");
-        current_list = [];
-        for (var i = 0; i < list.length; i++){
-            obj = {
-                "title":"title",
-                "place_id":place_id,
-                "object_id":list[i]._guid,
-                "price":list[i]._price,
-                "time_start":list[i]._timeStart,
-                "tyme_end":list[i]._timeEnd,
-            };
-            current_list.push(obj);
-        }
-        console.log("current_list", "current_list");
-
         switch (action) {
             case 'updateBookingSettings':
                 this.defaultLayer.getObjects().forEach(element => {

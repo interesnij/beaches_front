@@ -474,13 +474,13 @@
             console.log('str.bookingList', str.bookingList);
         } catch {null};
         try {
-            console.log('str.bookingList.list'], str.bookingList.list);
+            console.log('str.bookingList.list', str.bookingList.list);
         } catch {null};
         try {
             console.log('schemeData.bookingList', schemeData.bookingList);
         } catch {null};
         try {
-            console.log('schemeData.bookingList.list'], schemeData.bookingList.list);
+            console.log('schemeData.bookingList.list', schemeData.bookingList.list);
         } catch {null};
 
         list = str["bookingList"]["list"];

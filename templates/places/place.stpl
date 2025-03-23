@@ -458,15 +458,14 @@
             var current_list = [];
             var list = schemeData.bookingList.list;
             for (var i = 0; i < list.length; i++) {
-                obj = {
+                current_list.push({
                     "title":"title",
                     "place_id":place_id,
                     "object_id":list[i]._guid,
                     "price":list[i]._price,
                     "time_start":list[i]._timeStart,
                     "tyme_end":list[i]._timeEnd,
-                };
-                current_list.push(obj);
+                });
             };
             console.log("current_list", current_list);
     }

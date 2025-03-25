@@ -491,7 +491,7 @@
                     "object_id":list[i]._guid,
                     "price":list[i]._price*1,
                     "time_start":list[i]._timeStart.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-                    "tyme_end":list[i]._timeEnd.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+                    "tyme_end":list[i]._timeEnd.toISOString().replace(/T/, ' ').replace(/\..+/, '')
                 });
             }
                 console.log("current_list", current_list);

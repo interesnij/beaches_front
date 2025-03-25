@@ -119,7 +119,11 @@
 															</div>
 															<div class="col-md-8">
 																<div class="card-header">
-																	<div class="card-title"><%= _place.title %></div>
+																	<div class="card-title">
+																		<a href="/place/<%= _order.place_id %>/" class="card shadow-none">
+																			<%= _place.title %>
+																		</a>
+																	</div>
 																</div>
 																<div class="card-body">
 																	<p class="card-text">Стоимость - <%= _order.price %></p>

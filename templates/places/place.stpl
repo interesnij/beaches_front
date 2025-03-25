@@ -147,16 +147,16 @@
     <% } %>
 
     <% for object in orders.iter() { %>
-        var first_list = schemeData["modulesList"]["list"];
-        var modules_list = schemeData["typeModulesList"]["list"];
-        var filtered = modules_list.filter(function (item) {
-            return item._guid === first_list[i]["_typeModulesGuid"];
-        });
+        //var first_list = schemeData["modulesList"]["list"];
+        //var modules_list = schemeData["typeModulesList"]["list"];
+        //var filtered = modules_list.filter(function (item) {
+        //    return item._guid === first_list[i]["_typeModulesGuid"];
+        //});
         orders_22.push ({
             "date": "<%= object.created %>",
             "_guid": "<%= object.object_id %>",
             "_isMyBooking": <%= object.user.id == request_user.id %>,
-            "_moduleGuid": filtered,
+            "_moduleGuid": "",
             "price": "<%= object.price %>",
             "_timeEnd": "<%= object.time_end %>",
             "_timeStart": "<%= object.time_start %>",

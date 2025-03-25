@@ -484,6 +484,7 @@
                         console.log("not _isMyBooking!");
                     }
                 }
+            
                 current_list.push({
                     "title":"title",
                     "place_id":place_id,
@@ -492,6 +493,7 @@
                     "time_start":list[i]._timeStart.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
                     "tyme_end":list[i]._timeEnd.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
                 });
+            }
                 console.log("current_list", current_list);
 
                 var link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );

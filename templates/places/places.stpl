@@ -45,7 +45,8 @@
 </div>
 <% include!("../partials/f.stpl"); %>
 
-<% let first = object_list[0]; %>
+<% if object_list.len() > 0 { %>
+<% let first = &object_list[0]; %>
 <script>
 ymaps.ready(init);
 
@@ -74,3 +75,4 @@ function init() {
     });
 }
 </script>
+<% } %>

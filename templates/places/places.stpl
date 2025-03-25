@@ -46,13 +46,12 @@
 <% include!("../partials/f.stpl"); %>
 
 <% if object_list.len() > 0 { %>
-<% let first = &object_list[0]; %>
 <script>
 ymaps.ready(init);
 
 function init() {
     var myMap;
-    ymaps.geocode('<%= first.cord.as_deref().unwrap() %>').then(function (res) {
+    ymaps.geocode('').then(function (res) {
         myMap = new ymaps.Map('map', {
             center: res.geoObjects.get(0).geometry.getCoordinates(),
             zoom : 12

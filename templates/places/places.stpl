@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <% for object in object_list { %>
+                        <% for object in object_list.iter() { %>
                         <div class="col">
                             <a href="/place/<%= object.id %>/">
                             <div class="card custom-card">
@@ -46,12 +46,14 @@
 <% include!("../partials/f.stpl"); %>
 
 <% if object_list.len() > 0 { %>
+<% let first = &object_list[0]; %>
+
 <script>
 ymaps.ready(init);
 
 function init() {
     var myMap;
-    ymaps.geocode('').then(function (res) {
+    ymaps.geocode('<%= first.cord.as_deref().unwrap() %>').then(function (res) {
         myMap = new ymaps.Map('map', {
             center: res.geoObjects.get(0).geometry.getCoordinates(),
             zoom : 12

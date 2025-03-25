@@ -150,7 +150,7 @@
         orders_22.push ({
             "date": "<%= object.created %>",
             "_guid": "<%= object.object_id %>",
-            "_isMyBooking": <%= object.user_id == request_user.id %>,
+            "_isMyBooking": <%= object.user.id == request_user.id %>,
             "_moduleGuid": "",
             "price": "<%= object.price %>",
             "_timeEnd": "<%= object.time_end %>",

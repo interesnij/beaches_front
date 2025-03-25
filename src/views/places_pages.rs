@@ -80,7 +80,7 @@ pub struct CreateModuleJson {
 pub struct PlaceDataJson {
     pub modules: Vec<crate::utils::Module>,
     pub orders:  Vec<crate::utils::RespOrderJson>,
-    pub place:   Place, 
+    pub place:   Place,  
 }
 
 pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
@@ -89,26 +89,26 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
     let orders:  Vec<crate::utils::RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
-    if resp.is_ok() { 
+    //if resp.is_ok() { 
         let data = resp.expect("E.");
         object = data.place;
         modules = data.modules;
         orders = data.orders;
-    }
-    else { 
-        object = Place{
-            id:      "".to_string(),
-            title:   "".to_string(), 
-            types:   0,
-            created: chrono::Local::now().naive_utc(),
-            user_id: "".to_string(),
-            type_id: "".to_string(),
-            image:   None,
-            cord:    None,
-        };
-        modules = Vec::new();
-        orders = Vec::new();
-    }
+    //}
+    //else { 
+    //    object = Place{
+    //        id:      "".to_string(),
+    //        title:   "".to_string(), 
+    //        types:   0,
+    //        created: chrono::Local::now().naive_utc(),
+    //        user_id: "".to_string(),
+    //        type_id: "".to_string(),
+    //        image:   None,
+    //        cord:    None,
+    //    };
+    //    modules = Vec::new();
+    //    orders = Vec::new();
+    //}
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         

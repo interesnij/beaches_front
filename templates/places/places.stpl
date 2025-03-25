@@ -16,7 +16,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-md-4">
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         <% for object in object_list { %>
                         <div class="col">
@@ -38,6 +38,39 @@
                         <% } %>
                     </div>
                 </div>
+                <div class="col-md-8">
+                    <div id="map"></div>
+                </div>
             </div>
 </div>
 <% include!("../partials/f.stpl"); %>
+
+<script>
+<% let first = &object_list[0]; %>
+ymaps.ready(init);
+
+function init() {
+    var myMap;
+    ymaps.geocode('<%= first.cord.as_deref().unwrap() %>').then(function (res) {
+        myMap = new ymaps.Map('map', {
+            center: res.geoObjects.get(0).geometry.getCoordinates(),
+            zoom : 12
+        }); 
+
+        var addToMap = function(inputAdress) {
+            ymaps.geocode(inputAdress, { //ищем по нужному адресу
+                boundedBy: myMap.getBounds(),
+                results: 1
+            }).then(function(res) {
+                myMap.geoObjects.add(res.geoObjects.get(0));
+            });
+        };
+
+        <% for i in object_list.iter() { %>
+            <% if i.cord.is_some() { %>
+                addToMap("<%= i.cord.as_deref().unwrap() %>");
+            <% } %>
+        <% } %>
+    });
+}
+</script>

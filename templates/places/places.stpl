@@ -45,7 +45,7 @@
 </div>
 <% include!("../partials/f.stpl"); %>
 
-<% let first = &all_places[0]; %>
+<% let first = &object_list[0]; %>
 <script>
 ymaps.ready(init);
 

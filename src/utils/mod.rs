@@ -91,7 +91,7 @@ pub struct UserJson {
     pub email:      String,
     pub level:      i16,
     pub image:      Option<String>,
-}
+}  
 #[derive(Debug, Deserialize, Serialize)]
 pub struct UserJsons {
     pub data: Vec<UserJson>,

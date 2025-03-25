@@ -45,8 +45,8 @@
 </div>
 <% include!("../partials/f.stpl"); %>
 
+<% let first = &all_places[0]; %>
 <script>
-<% let first = &object_list[0]; %>
 ymaps.ready(init);
 
 function init() {
@@ -66,7 +66,7 @@ function init() {
             });
         };
 
-        <% for i in &object_list.iter() { %>
+        <% for i in object_list.iter() { %>
             <% if i.cord.is_some() { %>
                 addToMap("<%= i.cord.as_deref().unwrap() %>");
             <% } %>

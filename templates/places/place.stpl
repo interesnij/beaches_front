@@ -476,6 +476,13 @@
             var current_list = [];
             var list = schemeData.bookingList.list;
             for (var i = 0; i < list.length; i++) {
+                for (var a = 0; a < orders_22.length; i++) {
+                if (orders_22[a]._isMyBooking) {
+                    console.log("_isMyBooking!");
+                }
+                else {
+                    console.log("not _isMyBooking!");
+                }
                 current_list.push({
                     "title":"title",
                     "place_id":place_id,

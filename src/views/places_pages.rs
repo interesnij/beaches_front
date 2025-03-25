@@ -77,27 +77,16 @@ pub struct CreateModuleJson {
 }
 
 #[derive(Deserialize, Serialize, Debug)]
-pub struct RespOrderJson {
-    pub title:      String,
-    pub place_id:   String,
-    pub object_id:  String,
-    pub user:       UserJson,
-    pub price:      i32,
-    pub time_start: String,
-    pub time_end:   String,
-}
-
-#[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceDataJson {
     pub modules: Vec<crate::utils::Module>,
-    pub orders:  Vec<RespOrderJson>,
+    pub orders:  Vec<crate::utils::RespOrderJson>,
     pub place:   Place, 
 }
 
 pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     let object:  Place;
     let modules: Vec<crate::utils::Module>;
-    let orders:  Vec<RespOrderJson>;
+    let orders:  Vec<crate::utils::RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() { 
@@ -129,7 +118,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             request_user: AuthResp2,
             object:       Place,
             modules:      Vec<crate::utils::Module>,
-            orders:       Vec<RespOrderJson>,
+            orders:       Vec<crate::utils::RespOrderJson>,
         }
         let body = Template {
             request_user: _request_user,
@@ -147,7 +136,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         struct Template {
             object:  Place,
             modules: Vec<crate::utils::Module>,
-            orders:  Vec<RespOrderJson>,
+            orders:  Vec<crate::utils::RespOrderJson>,
         }
         let body = Template {
             object:  object,
@@ -163,7 +152,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
 pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     let object:  Place;
     let modules: Vec<crate::utils::Module>;
-    let orders:  Vec<RespOrderJson>;
+    let orders:  Vec<crate::utils::RespOrderJson>;
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() {  
@@ -196,7 +185,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
             request_user: AuthResp2,
             object:       Place,
             modules:      Vec<crate::utils::Module>,
-            orders:       Vec<RespOrderJson>,
+            orders:       Vec<crate::utils::RespOrderJson>,
         }
         let body = Template {
             request_user: _request_user,

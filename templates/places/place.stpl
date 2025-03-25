@@ -126,6 +126,7 @@
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
     var modules_22 = [];
+    var orders_22 = [];
     <% for (i, object) in modules.iter().enumerate() { %>
         modules_22.push ({
                     "guid": "<%= object.id %>",
@@ -143,6 +144,18 @@
                     "fontSize": "<%= object.font_size %>",
                     "backColor": "<%= object.back_color %>"
                 });
+    <% } %>
+
+    <% for object in orders.iter() { %>
+        orders_22.push ({
+            "date": "<%= object.created %>",
+            "_guid": "<%= object.object_id %>",
+            "_isMyBooking": <%= object.user_id == request_user.id %>,
+            "_moduleGuid": "",
+            "price": "<%= object.price %>",
+            "_timeEnd": "<%= object.time_end %>",
+            "_timeStart": "<%= object.time_start %>",
+        });
     <% } %>
     var data = {
         "version": "0.1",
@@ -466,7 +479,7 @@
                     "time_start":list[i]._timeStart.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
                     "tyme_end":list[i]._timeEnd.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
                 });
-            };
+            }; 
             console.log("current_list", current_list);
     }
 </script>

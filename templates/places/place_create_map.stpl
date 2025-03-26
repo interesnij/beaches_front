@@ -157,7 +157,7 @@
     var modules_22 = [];
     <% for (i, object) in modules.iter().enumerate() { %>
         modules_22.push ({ 
-                    "guid": "<%= object.id %>",
+                    "guid": "<%= object.object_id %>",
                     "name": "<%= object.title %>",
                     "objectName": "Module",
                     "typeModulesGuid": "<%= object.type_id %>",

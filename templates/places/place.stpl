@@ -129,7 +129,7 @@
     var orders_22 = [];
     <% for (i, object) in modules.iter().enumerate() { %>
         modules_22.push ({
-                    "guid": "<%= object.id %>",
+                    "guid": "<%= object.object_id %>",
                     "name": "<%= object.title %>",
                     "objectName": "Module",
                     "typeModulesGuid": "<%= object.type_id %>",
@@ -475,15 +475,6 @@
                 return
             }
             for (var i = 0; i < list.length; i++) {
-                //for (var a = 0; a < orders_22.length; i++) {
-                //    if (orders_22[a]._isMyBooking) {
-                //        console.log("_isMyBooking!");
-                //    }
-                //    else {
-                //        console.log("not _isMyBooking!");
-                //    }
-                //}
-            
                 current_list.push({
                     "title":"title",
                     "place_id":place_id,

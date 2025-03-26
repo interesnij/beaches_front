@@ -60,7 +60,7 @@ function init() {
         }); 
 
         var addToMap = function(inputAdress) {
-            ymaps.geocode(inputAdress, { //ищем по нужному адресу
+            ymaps.geocode(inputAdress, {
                 boundedBy: myMap.getBounds(),
                 results: 1
             }).then(function(res) {

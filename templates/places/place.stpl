@@ -147,11 +147,6 @@
     <% } %>
 
     <% for object in orders.iter() { %>
-        //var first_list = schemeData["modulesList"]["list"];
-        //var modules_list = schemeData["typeModulesList"]["list"];
-        //var filtered = modules_list.filter(function (item) {
-        //    return item._guid === first_list[i]["_typeModulesGuid"];
-        //});
         orders_22.push ({
             "date": "<%= object.created %>",
             "_guid": "<%= object.object_id %>",
@@ -475,6 +470,10 @@
             console.log('schemeData.bookingList.list', schemeData.bookingList.list);
             var current_list = [];
             var list = schemeData.bookingList.list;
+            if (orders_22.length > 10) {
+                console.log("Order s too match!");
+                return
+            }
             for (var i = 0; i < list.length; i++) {
                 for (var a = 0; a < orders_22.length; i++) {
                     if (orders_22[a]._isMyBooking) {

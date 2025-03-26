@@ -26,8 +26,6 @@
                     <div class="col-md-12">
                         <button type="button" id="edit_place" place_id="<%= object.id %>" class="btn btn-primary">Сохранить</button>
                     </div>
-
-                    <input type="date" id="bookingDate" name="booking-date" wfd-id="id36">
                 </form>
             </div>
         </div>

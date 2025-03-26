@@ -12,12 +12,9 @@ export class SchemeBookingSettings extends Observer {
         this.form = form;
         this.subscribe(this.bookingSettings);
 
-
-
         this.form.bookingDate.value = TimeHelper.stringDate(this.bookingSettings.date);
         this.form.bookingTimeStart.value = TimeHelper.stringTime(this.bookingSettings.timeStart);
         this.form.bookingTimeEnd.value = TimeHelper.stringTime(this.bookingSettings.timeEnd);
-
 
         this.form.bookingDate.onchange = (() => {
             this.bookingSettings.date = this.form.bookingDate.value;
@@ -34,9 +31,9 @@ export class SchemeBookingSettings extends Observer {
     }
 
 
-    update(publisher, action, ...args) {
-        this.form.bookingDate.value = TimeHelper.stringDate(publisher.date);
-        this.form.bookingTimeStart.value = TimeHelper.stringTime(publisher.timeStart);
-        this.form.bookingTimeEnd.value = TimeHelper.stringTime(publisher.timeEnd);
-    }
+    //update(publisher, action, ...args) {
+    //    this.form.bookingDate.value = TimeHelper.stringDate(publisher.date);
+    //    this.form.bookingTimeStart.value = TimeHelper.stringTime(publisher.timeStart);
+    //    this.form.bookingTimeEnd.value = TimeHelper.stringTime(publisher.timeEnd);
+    //}
 }

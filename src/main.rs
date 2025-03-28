@@ -45,7 +45,7 @@ async fn main() -> std::io::Result<()> {
             .configure(routes)
             .service(web::resource("/create{path:.*}").to(upload_files))
     })
-    .bind("192.168.0.49:9999")?   // prod
+    .bind("192.168.0.127:9999")?   // prod
     .run()
     .await
 } 

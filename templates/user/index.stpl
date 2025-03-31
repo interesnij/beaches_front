@@ -88,7 +88,7 @@
 															<% if object.image.is_some() { %>
 																<img src="<%= object.image.as_deref().unwrap() %>" alt="image">
 															<% } else { %>
-																<img src="../assets/images/media/media-71.jpg" alt="image">
+																<img src="/assets/images/media/media-71.jpg" alt="image">
 															<% } %>
 														</a>
 														<h4 class="text-center fs-14 mt-3 mb-0"><%= object.title %></h4>

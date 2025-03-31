@@ -44,7 +44,7 @@ pub async fn upload_files (
     } 
     let url = format!( 
         "{to}{path}", 
-        to = "http://79.174.82.18:8120".to_string(),
+        to = "http://89.104.67.30:8120".to_string(),
         path = req.uri().path_and_query().map(|p| p.as_str()).unwrap_or("").to_owned()
     );
 

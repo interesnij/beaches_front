@@ -42,7 +42,7 @@
                                                     <% if object.image.is_some() { %>
                                                         <img src="<%= object.image.as_deref().unwrap() %>" class="img-fluid mx-auto d-block" alt="place_img">
                                                     <% } else { %>
-                                                        <img src="../assets/images/media/media-44.jpg" class="img-fluid mx-auto d-block" alt="place_img">
+                                                        <img src="/assets/images/media/media-44.jpg" class="img-fluid mx-auto d-block" alt="place_img">
                                                     <% } %>
                                                     </div>
                                                 </div>

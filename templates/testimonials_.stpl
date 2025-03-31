@@ -118,7 +118,7 @@
                                     <div class="card-body">
                                         <div class="testimonia text-center">
                                             <span class="avatar avatar-xl avatar-rounded mb-1">
-                                                <img src="../assets/images/faces/405.png" alt="">
+                                                <img src="/assets/images/faces/405.png" alt="">
                                             </span>
                                             <div class="d-flex align-items-center justify-content-center mb-2">
                                                 <span class="text-warning d-block">

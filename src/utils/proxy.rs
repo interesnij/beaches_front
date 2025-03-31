@@ -15,11 +15,11 @@ use futures::TryStreamExt;
 
 #[derive(Clone, Parser)]
 pub struct ConfigToStaticServer {
-    #[clap(short, long, default_value = "79.174.82.18")]             // наш ip
+    #[clap(short, long, default_value = "89.104.67.30")]             // наш ip
     pub address: String,
     #[clap(short, long, default_value = "9999")]                     // наш порт
     pub port: u16, 
-    #[clap(short, long, default_value = "79.174.82.18:8120")] // адрес, на который будем перенаправлять запросы
+    #[clap(short, long, default_value = "89.104.67.30:8120")] // адрес, на который будем перенаправлять запросы
     pub to: String, 
 }
 

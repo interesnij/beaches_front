@@ -42,7 +42,7 @@ pub async fn upload_files (
     if !crate::utils::is_signed_in(&session) {
         return Ok(HttpResponse::Ok().body("403"));
     } 
-    let _request_user = get_current_user(&session).expect("E.");
+    let _request_user = crate::utils::get_current_user(&session).expect("E.");
 
     let url = format!( 
         "{to}{path}", 

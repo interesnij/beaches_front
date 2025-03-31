@@ -42,6 +42,8 @@ pub async fn upload_files (
     if !crate::utils::is_signed_in(&session) {
         return Ok(HttpResponse::Ok().body("403"));
     } 
+    let _request_user = get_current_user(&session).expect("E.");
+
     let url = format!( 
         "{to}{path}", 
         to = "http://89.104.67.30:8120".to_string(),
@@ -57,7 +59,7 @@ pub async fn upload_files (
             req.head()
         )
         .insert_header(("ContentType", "multipart/form-data"))
-        .insert_header(("secret", "755553b2016e92e89a704e4a41a19d9d5df901dd66d0850dcb70db0668ddc91c"))
+        .insert_header(("secret", _request_user.uuid))
         .send_stream(body)
         .await 
     {

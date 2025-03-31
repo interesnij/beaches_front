@@ -493,6 +493,7 @@
                 link.onreadystatechange = function () {
                 if ( link.readyState == 4 && link.status == 200 ) {
                     console.log("ok!!");
+                    alert("Заказ сделан.")
                 }} 
                 link.send(JSON.stringify(current_list));
                 

@@ -236,6 +236,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
                 types:   0,
                 created: chrono::Local::now().naive_utc(),
                 user_id: "".to_string(),
+                city_id: 0,
                 type_id: 0,
                 image:   None,
                 cord:    None,
@@ -284,7 +285,7 @@ pub async fn create_place_page(session: Session) -> actix_web::Result<HttpRespon
 
         let cities: Vec<City>;
         let url = URL.to_string() + &"/cities/".to_string() + &id.to_string() + &"/".to_string();
-        let resp = crate::utils::request_get::<City>(url, "".to_string(), "application/json".to_string()).await;
+        let resp = crate::utils::request_get::<Vec<City>>(url, "".to_string(), "application/json".to_string()).await;
         if resp.is_ok() { 
             cities = resp.expect("E.");
         }
@@ -398,6 +399,7 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
                 types:   0,
                 created: chrono::Local::now().naive_utc(),
                 user_id: "".to_string(),
+                city_id: 0,
                 type_id: 0,
                 image:   None,
                 cord:    None,

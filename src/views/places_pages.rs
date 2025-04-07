@@ -56,6 +56,7 @@ pub struct PlaceJson {
     pub title:   String, 
     pub type_id: i16,
     pub user_id: String,
+    pub city_id: i32,
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }
@@ -280,14 +281,26 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
 pub async fn create_place_page(session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
+
+        let cities: Vec<City>;
+        let url = URL.to_string() + &"/cities/".to_string() + &id.to_string() + &"/".to_string();
+        let resp = crate::utils::request_get::<City>(url, "".to_string(), "application/json".to_string()).await;
+        if resp.is_ok() { 
+            cities = resp.expect("E.");
+        }
+        else { 
+            cities = Vec::new();
+        }
         
         #[derive(TemplateOnce)]
         #[template(path = "places/create.stpl")]
         struct Template {
             request_user: AuthResp2,
+            cities:       Vec<City>,
         }
         let body = Template {
             request_user: _request_user,
+            cities:       cities,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

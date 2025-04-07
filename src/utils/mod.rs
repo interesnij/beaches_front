@@ -49,6 +49,7 @@ pub struct Place {
     pub types:   i16,
     pub created: chrono::NaiveDateTime,
     pub user_id: String,
+    pub city_id: i16,
     pub type_id: i16,
     pub image:   Option<String>,
     pub cord:    Option<String>,

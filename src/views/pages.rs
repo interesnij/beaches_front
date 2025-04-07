@@ -18,6 +18,7 @@ use crate::views::AuthResp2;
 pub fn pages_urls(config: &mut web::ServiceConfig) {
     config.route("/", web::get().to(main_page));
     config.route("/places/", web::get().to(places_page));
+    config.route("/places/{type_id}/", web::get().to(places_type_page));
     config.route("/about/", web::get().to(about_page));
     config.route("/terms-and-conditions/", web::get().to(terms_page));
     config.route("/privacy-policy/", web::get().to(policy_page));
@@ -51,8 +52,34 @@ pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
 }
 
 pub async fn places_page(session: Session) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        #[derive(TemplateOnce)]
+        #[template(path = "places/places.stpl")]
+        struct Template {
+            request_user: AuthResp2,
+        }
+        let body = Template {
+            request_user: _request_user,
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+    else {
+        #[derive(TemplateOnce)]
+        #[template(path = "places/anon_places.stpl")]
+        struct Template {}
+        let body = Template {}
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+}
+
+pub async fn places_type_page(session: Session, type_id: web::Path<i16>) -> actix_web::Result<HttpResponse> {
     let object_list: Vec<Place>;
-    let url = URL.to_string() + &"/places/".to_string();
+    let url = URL.to_string() + &"/places/".to_string() + &type_id.to_string();
     let resp = crate::utils::request_get::<Vec<Place>>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
@@ -69,7 +96,7 @@ pub async fn places_page(session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         #[derive(TemplateOnce)]
-        #[template(path = "places/places.stpl")]
+        #[template(path = "places/places_type.stpl")]
         struct Template {
             request_user: AuthResp2,
             object_list:  Vec<Place>,
@@ -84,7 +111,7 @@ pub async fn places_page(session: Session) -> actix_web::Result<HttpResponse> {
     }
     else {
         #[derive(TemplateOnce)]
-        #[template(path = "places/anon_places.stpl")]
+        #[template(path = "places/anon_places_type.stpl")]
         struct Template {
             object_list:  Vec<Place>,
         }

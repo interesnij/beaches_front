@@ -23,23 +23,38 @@ use crate::views::AuthResp2;
 
 pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/create_place/", web::get().to(create_place_page));
+    config.route("/create_region/", web::get().to(create_region_page));
+    config.route("/create_city/", web::get().to(create_city_page));
+
     config.route("/place/{id}/edit/", web::get().to(edit_place_page));
+    config.route("/region/{id}/edit/", web::get().to(edit_region_page));
+    config.route("/city/{id}/edit/", web::get().to(edit_city_page));
+
     config.route("/place/{id}/managers/", web::get().to(managers_page));
     config.route("/place/{id}/", web::get().to(place_page)); 
     config.route("/place/{id}/create_map/", web::get().to(place_create_map_page));
 
     config.route("/create_place/", web::post().to(create_place));
+    config.route("/create_region/", web::post().to(create_region));
+    config.route("/create_city/", web::post().to(create_city));
+
     config.route("/place/{id}/edit/", web::post().to(edit_place));
+    config.route("/region/{id}/edit/", web::post().to(edit_region));
+    config.route("/city/{id}/edit/", web::post().to(edit_city));
+
     config.route("/place/create_modules/", web::post().to(create_modules));
     config.route("/create_order/", web::post().to(create_order));
     config.route("/delete_order/", web::post().to(delete_order));
+
+    config.route("/delete_region/", web::post().to(delete_region));
+    config.route("/delete_city/", web::post().to(delete_city));
 }
 
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceJson {
     pub title:   String, 
-    pub type_id: String,
+    pub type_id: i16,
     pub user_id: String,
     pub image:   Option<String>,
     pub cord:    Option<String>,
@@ -47,7 +62,7 @@ pub struct PlaceJson {
 #[derive(Deserialize, Serialize, Debug)]
 pub struct EditPlaceJson {
     pub title:   String,
-    pub type_id: String,
+    pub type_id: i16,
     pub user_id: String,
     pub image:   Option<String>,
     pub cord:    Option<String>,
@@ -102,7 +117,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             types:   0,
             created: chrono::Local::now().naive_utc(),
             user_id: "".to_string(),
-            type_id: "".to_string(),
+            type_id: 0,
             image:   None,
             cord:    None,
         };
@@ -168,7 +183,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
             types:   0,
             created: chrono::Local::now().naive_utc(),
             user_id: "".to_string(),
-            type_id: "".to_string(),
+            type_id: 0,
             image:   None,
             cord:    None,
         };
@@ -220,7 +235,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
                 types:   0,
                 created: chrono::Local::now().naive_utc(),
                 user_id: "".to_string(),
-                type_id: "".to_string(),
+                type_id: 0,
                 image:   None,
                 cord:    None,
             };
@@ -261,6 +276,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
         crate::views::auth_page(session.clone()).await
     }
 }
+
 pub async fn create_place_page(session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
@@ -281,28 +297,99 @@ pub async fn create_place_page(session: Session) -> actix_web::Result<HttpRespon
         crate::views::auth_page(session.clone()).await
     }
 }
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Region { 
+    pub id:          i32,
+    pub name:        String,
+    pub geo_id:      Option<i32>,
+    pub country_id:  i32,
+    pub timezone_id: Option<i32>,
+    pub cord:        Option<String>,
+}
+pub async fn create_region_page(session: Session) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        if _request_user.is_superuser() {
+            #[derive(TemplateOnce)]
+            #[template(path = "admin/create_region.stpl")]
+            struct Template {
+                request_user: AuthResp2,
+            }
+            let body = Template {
+                request_user: _request_user,
+            }
+            .render_once()
+            .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+            return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
+        }
+        else {
+            return crate::views::auth_page(session.clone()).await;
+        }
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+pub async fn create_city_page(session: Session) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        if _request_user.is_superuser() {
+            let regions:  Vec<Region>;
+
+            let url = URL.to_string() + &"/regions/".to_string();
+            let resp = crate::utils::request_get::<Vec<Region>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp.is_ok() { 
+                regions = resp.expect("E.");
+            }
+            else { 
+                regions = Vec::new();
+            }
+            #[derive(TemplateOnce)]
+            #[template(path = "admin/create_city.stpl")]
+            struct Template {
+                request_user: AuthResp2,
+                regions:      Vec<Region>,
+            }
+            let body = Template {
+                request_user: _request_user,
+                regions:      regions,
+            }
+            .render_once()
+            .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+            return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
+        }
+        else {
+            return crate::views::auth_page(session.clone()).await;
+        }
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+
 pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let object:  Place;
-        let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/place/".to_string() + &id.to_string() + &"/".to_string();
         let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
-            if resp.is_ok() { 
-                let data = resp.expect("E.");
-                object = data.place;
-            }
-            else { 
-                object = Place {
-                    id:      "".to_string(),
-                    title:   "".to_string(), 
-                    types:   0,
-                    created: chrono::Local::now().naive_utc(),
-                    user_id: "".to_string(),
-                    type_id: "".to_string(),
-                    image:   None,
-                    cord:    None,
-                };
-            }
+        if resp.is_ok() { 
+            let data = resp.expect("E.");
+            object = data.place;
+        }
+        else { 
+            object = Place {
+                id:      "".to_string(),
+                title:   "".to_string(), 
+                types:   0,
+                created: chrono::Local::now().naive_utc(),
+                user_id: "".to_string(),
+                type_id: 0,
+                image:   None,
+                cord:    None,
+            };
+        }
         
         #[derive(TemplateOnce)]
         #[template(path = "places/edit.stpl")]
@@ -313,6 +400,105 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
         let body = Template {
             request_user: _request_user,
             object:       object,
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+
+pub async fn edit_region_page(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let object: Region;
+        let url = URL.to_string() + &"/region/".to_string() + &id.to_string() + &"/".to_string();
+        let resp = crate::utils::request_get::<Region>(url, "".to_string(), "application/json".to_string()).await;
+        if resp.is_ok() { 
+            object = resp.expect("E.");
+        }
+        else { 
+            object = Region {
+                id:          0,
+                name:        "".to_string(), 
+                geo_id:      None,
+                country_id:  0,
+                timezone_id: None,
+                cord:        None,
+            };
+        }
+        
+        #[derive(TemplateOnce)]
+        #[template(path = "admin/edit_region.stpl")]
+        struct Template {
+            request_user: AuthResp2,
+            object:       Region,
+        }
+        let body = Template {
+            request_user: _request_user,
+            object:       object,
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Citie {
+    pub id:         i32,
+    pub name:       String,
+    pub geo_id:     Option<i32>,
+    pub region_id:  Option<i32>,
+    pub country_id: i32,
+    pub cord:       Option<String>,
+}
+pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let object: City;
+        let url = URL.to_string() + &"/city/".to_string() + &id.to_string() + &"/".to_string();
+        let resp = crate::utils::request_get::<City>(url, "".to_string(), "application/json".to_string()).await;
+        if resp.is_ok() { 
+            object = resp.expect("E.");
+        }
+        else { 
+            object = Region {
+                id:          0,
+                name:        "".to_string(), 
+                geo_id:      None,
+                region_id:   0,
+                country_id:  0,
+                cord:        None,
+            };
+        }
+
+        let regions:  Vec<Region>;
+        let url2 = URL.to_string() + &"/regions/".to_string();
+        let resp2 = crate::utils::request_get::<Vec<Region>>(url2, "".to_string(), "application/json".to_string()).await;
+        if resp2.is_ok() { 
+            regions = resp2.expect("E.");
+        }
+        else { 
+            regions = Vec::new();
+        }
+        
+        #[derive(TemplateOnce)]
+        #[template(path = "admin/edit_city.stpl")]
+        struct Template {
+            request_user: AuthResp2,
+            object:       Region,
+            regions:      Vec<Region>,
+        }
+        let body = Template {
+            request_user: _request_user,
+            object:       object,
+            regions:      regions,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

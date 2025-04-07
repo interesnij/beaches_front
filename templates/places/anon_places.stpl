@@ -16,28 +16,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <% for object in object_list { %>
-                        <div class="col">
-                            <a href="/place/<%= object.id %>/">
-                            <div class="card custom-card">
-                                <% if object.image.is_some() { %>
-                                    <img src="<%= object.image.as_deref().unwrap() %>" class="card-img-top _nice" alt="place_img">
-                                <% } else { %>
-                                    <img src="/assets/images/media/media-44.jpg" class="card-img-top" alt="place_img">
-                                <% } %>
-                                <div class="card-body">
-                                    <h6 class="card-title fw-semibold">
-                                        <%= object.title %>
-                                    </h6>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
-                        <% } %>
-                    </div>
-                </div>
+                
             </div>
 </div>
 

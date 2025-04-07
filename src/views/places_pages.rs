@@ -545,6 +545,126 @@ pub async fn edit_place(session: Session, data: Json<EditPlaceJson>, id: web::Pa
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
 
+#[derive(Deserialize, Serialize, Debug)]
+pub struct CreateRegionJson { 
+    pub name: String,
+    pub cord: Option<String>,
+}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct CreateCityJson {
+    pub region_id: Option<i32>,
+    pub name:      String,
+    pub cord:      Option<String>,
+}
+pub async fn create_region(session: Session, data: Json<CreateRegionJson>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<CreateRegionJson, ()> (
+            URL.to_owned() + &"/create_region/".to_string(),
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+pub async fn edit_region(session: Session, data: Json<CreateRegionJson>, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/edit_region/".to_string() + &id.clone() + &"/".to_string();
+        let res = crate::utils::request_post::<CreateRegionJson, ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
+pub async fn create_city(session: Session, data: Json<CreateCityJson>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<CreateCityJson, ()> (
+            URL.to_owned() + &"/create_city/".to_string(),
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+pub async fn edit_city(session: Session, data: Json<CreateCityJson>, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/edit_city/".to_string() + &id.clone() + &"/".to_string();
+        let res = crate::utils::request_post::<CreateCityJson, ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
+pub async fn delete_region(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/delete_region/".to_string() + &id.clone() + &"/".to_string();
+        let res = crate::utils::request_post::<(), ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+pub async fn delete_city(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let url = URL.to_string() + &"/delete_city/".to_string() + &id.clone() + &"/".to_string();
+        let res = crate::utils::request_post::<(), ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
 pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");

@@ -631,7 +631,8 @@ pub async fn edit_city(session: Session, data: Json<CreateCityJson>, id: web::Pa
 pub async fn delete_region(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/delete_region/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/delete_region/".to_string() + &id.to_string() + &"/".to_string();
+        let data = {};
         let res = crate::utils::request_post::<(), ()> (
             url,
             &data, 
@@ -649,7 +650,8 @@ pub async fn delete_region(session: Session, id: web::Path<i32>) -> actix_web::R
 pub async fn delete_city(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/delete_city/".to_string() + &id.clone() + &"/".to_string();
+        let data = {};
+        let url = URL.to_string() + &"/delete_city/".to_string() + &id.to_string() + &"/".to_string();
         let res = crate::utils::request_post::<(), ()> (
             url,
             &data, 

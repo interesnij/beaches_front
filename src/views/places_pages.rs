@@ -286,7 +286,7 @@ pub async fn create_place_page(session: Session) -> actix_web::Result<HttpRespon
         let _request_user = get_current_user(&session).expect("E.");
 
         let cities: Vec<City>;
-        let url = URL.to_string() + &"/cities/".to_string() + &id.to_string() + &"/".to_string();
+        let url = URL.to_string() + &"/cities/".to_string();
         let resp = crate::utils::request_get::<Vec<City>>(url, "".to_string(), "application/json".to_string()).await;
         if resp.is_ok() { 
             cities = resp.expect("E.");

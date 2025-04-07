@@ -576,7 +576,7 @@ pub async fn create_region(session: Session, data: Json<CreateRegionJson>) -> ac
 pub async fn edit_region(session: Session, data: Json<CreateRegionJson>, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/edit_region/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/edit_region/".to_string() + &id.to_string() + &"/".to_string();
         let res = crate::utils::request_post::<CreateRegionJson, ()> (
             url,
             &data, 
@@ -612,7 +612,7 @@ pub async fn create_city(session: Session, data: Json<CreateCityJson>) -> actix_
 pub async fn edit_city(session: Session, data: Json<CreateCityJson>, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let url = URL.to_string() + &"/edit_city/".to_string() + &id.clone() + &"/".to_string();
+        let url = URL.to_string() + &"/edit_city/".to_string() + &id.to_string() + &"/".to_string();
         let res = crate::utils::request_post::<CreateCityJson, ()> (
             url,
             &data, 

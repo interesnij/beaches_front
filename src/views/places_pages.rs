@@ -450,7 +450,7 @@ pub async fn edit_region_page(session: Session, id: web::Path<i32>) -> actix_web
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Citie {
+pub struct City {
     pub id:         i32,
     pub name:       String,
     pub geo_id:     Option<i32>,
@@ -468,7 +468,7 @@ pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::
             object = resp.expect("E.");
         }
         else { 
-            object = Region {
+            object = City {
                 id:          0,
                 name:        "".to_string(), 
                 geo_id:      None,

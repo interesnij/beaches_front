@@ -229,7 +229,7 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
             object = data;
         }
         else {
-            object = Place{
+            object = Place {
                 id:      "".to_string(),
                 title:   "".to_string(), 
                 types:   0,
@@ -472,7 +472,7 @@ pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::
                 id:          0,
                 name:        "".to_string(), 
                 geo_id:      None,
-                region_id:   0,
+                region_id:   None,
                 country_id:  0,
                 cord:        None,
             };
@@ -492,7 +492,7 @@ pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::
         #[template(path = "admin/edit_city.stpl")]
         struct Template {
             request_user: AuthResp2,
-            object:       Region,
+            object:       City,
             regions:      Vec<Region>,
         }
         let body = Template {

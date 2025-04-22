@@ -31,7 +31,11 @@
                         </form>
                     </div>
                     <div class="col-md-4">
-                    
+                        <h4>Регионы</h4>
+
+                        <% for object in regions.iter() { %>
+                            <p><%= object.name %> (<a href="/region/<%= object.id %>/edit/">изменить</a>, <span class="delete_region" style="cursor: pointer">удалить</span>)</p>
+                        <% } %>
                     </div>
             </div>
         </div>

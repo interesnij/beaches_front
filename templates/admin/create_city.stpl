@@ -33,13 +33,13 @@
                         </form>
                     </div>
                     <div class="col-md-4">
-                    <h4>Города</h4>
+                        <h4>Города</h4>
 
-                    <% for object in cities.iter() { %>
-                        <p></p>
-                    <% } %>
+                        <% for object in cities.iter() { %>
+                            <p><%= object.name %> (<a href="/city/<%= object.id %>/edit/">изменить</a>, <span class="delete_city" style="cursor: pointer">удалить</span>)</p>
+                        <% } %>
                     </div>
-            </div>
+            </div> 
         </div>
     </div>
 </div>

@@ -386,13 +386,26 @@ pub async fn create_region_page(session: Session) -> actix_web::Result<HttpRespo
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         if _request_user.is_superuser() {
+            let regions:  Vec<Region>;
+
+            let url = URL.to_string() + &"/regions/".to_string();
+            let resp = crate::utils::request_get::<Vec<Region>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp.is_ok() { 
+                regions = resp.expect("E.");
+            }
+            else { 
+                regions = Vec::new();
+            }
+
             #[derive(TemplateOnce)]
             #[template(path = "admin/create_region.stpl")]
             struct Template {
                 request_user: AuthResp2,
+                regions:      Vec<Region>,
             }
             let body = Template {
                 request_user: _request_user,
+                regions:      regions,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -714,16 +727,28 @@ pub async fn edit_region_page(session: Session, id: web::Path<i32>) -> actix_web
                 cord:        None,
             };
         }
+
+        let regions:  Vec<Region>;
+        let url2 = URL.to_string() + &"/regions/".to_string();
+        let resp2 = crate::utils::request_get::<Vec<Region>>(url2, "".to_string(), "application/json".to_string()).await;
+        if resp2.is_ok() { 
+            regions = resp2.expect("E.");
+        }
+        else { 
+            regions = Vec::new();
+        }
         
         #[derive(TemplateOnce)]
         #[template(path = "admin/edit_region.stpl")]
         struct Template {
             request_user: AuthResp2,
             object:       Region,
+            regions:      Vec<Region>,
         }
         let body = Template {
             request_user: _request_user,
             object:       object,
+            regions:      regions,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

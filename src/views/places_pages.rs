@@ -15,7 +15,7 @@ use crate::utils::{
     is_signed_in,
     Place, UserJson,
     Places, RespOrderJson2s, 
-    ModuleTypes, PlaceTypes,
+    PlaceTypes,
     Times, UserJsons, URL,
 };
 use crate::views::AuthResp2;
@@ -968,6 +968,25 @@ pub async fn delete_module_type(session: Session, id: web::Path<i32>) -> actix_w
         let _request_user = get_current_user(&session).expect("E.");
         let data = {};
         let url = URL.to_string() + &"/delete_module_type/".to_string() + &id.to_string() + &"/".to_string();
+        let res = crate::utils::request_post::<(), ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+pub async fn delete_place(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let data = {};
+        let url = URL.to_string() + &"/delete_place/".to_string() + &id.to_string() + &"/".to_string();
         let res = crate::utils::request_post::<(), ()> (
             url,
             &data, 

@@ -33,6 +33,10 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/place/{id}/managers/", web::get().to(managers_page));
     config.route("/place/{id}/", web::get().to(place_page)); 
     config.route("/place/{id}/create_map/", web::get().to(place_create_map_page));
+    config.route("/place/{id}/create_module_type/", web::get().to(create_module_type_page));
+    config.route("/place/{id}/create_event/", web::get().to(create_event_page));
+    config.route("/place/{place_id}/edit_module_type/{obj_id}/", web::get().to(edit_module_type_page));
+    config.route("/place/{place_id}/edit_event/{obj_id}/", web::get().to(edit_event_page));
 
     config.route("/create_place/", web::post().to(create_place));
     config.route("/create_region/", web::post().to(create_region));
@@ -44,13 +48,37 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
 
     config.route("/place/create_modules/", web::post().to(create_modules));
     config.route("/create_order/", web::post().to(create_order));
-    config.route("/delete_order/", web::post().to(delete_order));
+    config.route("/delete_order/{id}/", web::post().to(delete_order));
 
-    config.route("/delete_region/", web::post().to(delete_region));
-    config.route("/delete_city/", web::post().to(delete_city));
+    config.route("/delete_region/{id}/", web::post().to(delete_region));
+    config.route("/delete_city/{id}/", web::post().to(delete_city));
+    config.route("/delete_module_type/{id}/", web::post().to(delete_module_type));
+    config.route("/delete_event/{id}/", web::post().to(delete_event));
 }
 
-
+#[derive(Debug, Deserialize, Serialize)]
+pub struct ModuleType {
+    pub id:          String,
+    pub place_id:    String,
+    pub title:       String,
+    pub description: String,
+    pub types:       String,
+    pub image:       Option<String>,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Event {
+    pub id:          String,
+    pub user_id:     String,
+    pub place_id:    String,
+    pub title:       String,
+    pub description: String,
+    pub types:       i16, 
+    pub created:     chrono::NaiveDateTime,
+    pub price:       i32,
+    pub time_start:  String,
+    pub time_end:    String,
+    pub image:       Option<String>,
+}
 #[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceJson {
     pub title:   String, 
@@ -73,8 +101,10 @@ pub struct EditPlaceJson {
 pub struct ModuleJson { 
     pub id:         String,
     pub title:      String,
+    pub label:      String,
     pub type_id:    String,
     pub price:      i32,
+    pub z_index:    i32,
     pub width:      i16,
     pub height:     i16,
     pub left:       f64,
@@ -103,6 +133,8 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
     let object:  Place;
     let modules: Vec<crate::utils::Module>;
     let orders:  Vec<crate::utils::RespOrderJson>;
+    let module_types: Vec<crate::utils::ModuleType>;
+    
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() { 
@@ -126,6 +158,17 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         modules = Vec::new();
         orders = Vec::new();
     }
+
+    let module_types: Vec<crate::utils::ModuleType>;
+    let url2 = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/module_types/".to_string();
+    let resp2 = crate::utils::request_get::<Vec<crate::utils::ModuleType>>(url2, "".to_string(), "application/json".to_string()).await;
+    if resp2.is_ok() { 
+        module_types = resp2.expect("E.");
+    }
+    else { 
+        module_types = Vec::new();
+    }
+    
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         
@@ -136,12 +179,14 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             object:       Place,
             modules:      Vec<crate::utils::Module>,
             orders:       Vec<crate::utils::RespOrderJson>,
+            module_types: Vec<crate::utils::ModuleType>,
         }
         let body = Template {
             request_user: _request_user,
             object:       object,
             modules:      modules,
             orders:       orders,
+            module_types: module_types,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -151,14 +196,16 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         #[derive(TemplateOnce)]
         #[template(path = "places/anon_place.stpl")]
         struct Template {
-            object:  Place,
-            modules: Vec<crate::utils::Module>,
-            orders:  Vec<crate::utils::RespOrderJson>,
+            object:       Place,
+            modules:      Vec<crate::utils::Module>,
+            orders:       Vec<crate::utils::RespOrderJson>,
+            module_types: Vec<crate::utils::ModuleType>,
         }
         let body = Template {
-            object:  object,
-            modules: modules,
-            orders:  orders,
+            object:       object,
+            modules:      modules,
+            orders:       orders,
+            module_types: module_types,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -194,6 +241,16 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
         orders = Vec::new();
     }
 
+    let module_types: Vec<crate::utils::ModuleType>;
+    let url2 = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/module_types/".to_string();
+    let resp2 = crate::utils::request_get::<Vec<crate::utils::ModuleType>>(url2, "".to_string(), "application/json".to_string()).await;
+    if resp2.is_ok() { 
+        module_types = resp2.expect("E.");
+    }
+    else { 
+        module_types = Vec::new();
+    }
+
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         
@@ -204,12 +261,14 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
             object:       Place,
             modules:      Vec<crate::utils::Module>,
             orders:       Vec<crate::utils::RespOrderJson>,
+            module_types: Vec<crate::utils::ModuleType>,
         }
         let body = Template {
             request_user: _request_user,
             object:       object,
             modules:      modules,
             orders:       orders,
+            module_types: module_types,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -370,6 +429,202 @@ pub async fn create_city_page(session: Session) -> actix_web::Result<HttpRespons
             let body = Template {
                 request_user: _request_user,
                 regions:      regions,
+            }
+            .render_once()
+            .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+            return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
+        }
+        else {
+            return crate::views::auth_page(session.clone()).await;
+        }
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+
+pub async fn create_event_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        //if _request_user.is_superuser() {
+            let events: Vec<Event>;
+
+            let url = URL.to_string() + &"/place/".to_string() + &id.to_string() + &"/events/".to_string();
+            let resp = crate::utils::request_get::<Vec<Event>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp.is_ok() { 
+                events = resp.expect("E.");
+            } 
+            else { 
+                events = Vec::new();
+            }
+            #[derive(TemplateOnce)]
+            #[template(path = "admin/create_module_type.stpl")]
+            struct Template {
+                request_user: AuthResp2,
+                events:       Vec<Event>,
+            }
+            let body = Template {
+                request_user: _request_user,
+                events:       events,
+            }
+            .render_once()
+            .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+            return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
+        //}
+        //else {
+        //    return crate::views::auth_page(session.clone()).await;
+        //}
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+pub async fn create_module_type_page(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        //if _request_user.is_superuser() {
+            let events: Vec<ModuleType>;  
+
+            let url = URL.to_string() + &"/place/".to_string() + &id.to_string() + &"/module_types/".to_string();
+            let resp = crate::utils::request_get::<Vec<Event>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp.is_ok() { 
+                events = resp.expect("E.");
+            } 
+            else { 
+                events = Vec::new();
+            }
+            #[derive(TemplateOnce)]
+            #[template(path = "admin/create_module_type.stpl")]
+            struct Template {
+                request_user: AuthResp2,
+                events:       Vec<Event>,
+            }
+            let body = Template {
+                request_user: _request_user,
+                events:       events,
+            }
+            .render_once()
+            .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+            return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
+        //}
+        //else {
+        //    return crate::views::auth_page(session.clone()).await;
+        //}
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+
+pub async fn edit_module_type_page(session: Session, param: web::Path<(String,String)>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) { 
+        let _request_user = get_current_user(&session).expect("E.");
+        let place_id: String = param.0.clone();
+        let obj_id: String = param.1.clone();
+
+        if _request_user.is_superuser() {
+            let module_types: Vec<ModuleType>;
+            let url = URL.to_string() + &"/place/".to_string() + &place_id.to_string() + &"/module_types/".to_string();
+            let resp = crate::utils::request_get::<Vec<ModuleType>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp.is_ok() { 
+                module_types = resp.expect("E.");
+            } 
+            else { 
+                module_types = Vec::new();
+            }
+
+            let object: ModuleType;
+            let url2 = URL.to_string() + &"/module_type/".to_string() + &obj_id.to_string() + &"/".to_string();
+            let resp2 = crate::utils::request_get::<ModuleType>(url2, "".to_string(), "application/json".to_string()).await;
+            if resp2.is_ok() { 
+                object = resp.expect("E.");
+            } 
+            else { 
+                object = ModuleType {
+                    id:          "".to_string(),
+                    place_id:    "".to_string(),
+                    title:       "".to_string(),
+                    description: "".to_string(),
+                    types:       "".to_string(),
+                    image:       None,
+                };
+            }
+
+            #[derive(TemplateOnce)]
+            #[template(path = "admin/edit_module_type.stpl")]
+            struct Template {
+                request_user: AuthResp2,
+                module_types: Vec<ModuleType>,
+                object:       ModuleType,
+            }
+            let body = Template {
+                request_user: _request_user,
+                module_types: module_types,
+                object:       object,
+            }
+            .render_once()
+            .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+            return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
+        }
+        else {
+            return crate::views::auth_page(session.clone()).await;
+        }
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
+    }
+}
+
+pub async fn edit_event_page(session: Session, param: web::Path<(String,String)>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) { 
+        let _request_user = get_current_user(&session).expect("E.");
+        let place_id: String = param.0.clone();
+        let obj_id: String = param.1.clone();
+
+        if _request_user.is_superuser() {
+            let events: Vec<Event>;
+            let url = URL.to_string() + &"/place/".to_string() + &place_id.to_string() + &"/events/".to_string();
+            let resp = crate::utils::request_get::<Vec<Event>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp.is_ok() { 
+                events = resp.expect("E.");
+            } 
+            else { 
+                events = Vec::new();
+            }
+
+            let object: Event;
+            let url2 = URL.to_string() + &"/event/".to_string() + &obj_id.to_string() + &"/".to_string();
+            let resp2 = crate::utils::request_get::<Event>(url2, "".to_string(), "application/json".to_string()).await;
+            if resp2.is_ok() { 
+                object = resp.expect("E.");
+            } 
+            else { 
+                object = Event {
+                    id:          "".to_string(),
+                    user_id:     "".to_string(),
+                    place_id:    "".to_string(),
+                    title:       "".to_string(),
+                    description: "".to_string(),
+                    types:       0, 
+                    created:     chrono::Local::now().naive_utc() + chrono::Duration::hours(3),
+                    price:       0,
+                    time_start:  "".to_string(),
+                    time_end:    "".to_string(),
+                    image:       None,
+                };
+            } 
+
+            #[derive(TemplateOnce)]
+            #[template(path = "admin/edit_event.stpl")]
+            struct Template {
+                request_user: AuthResp2,
+                events:       Vec<Event>,
+                object:       Event,
+            }
+            let body = Template {
+                request_user: _request_user,
+                events:       events,
+                object:       object,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -683,6 +938,44 @@ pub async fn delete_city(session: Session, id: web::Path<i32>) -> actix_web::Res
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
+pub async fn delete_module_type(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let data = {};
+        let url = URL.to_string() + &"/delete_module_type/".to_string() + &id.to_string() + &"/".to_string();
+        let res = crate::utils::request_post::<(), ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+pub async fn delete_place(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let data = {};
+        let url = URL.to_string() + &"/delete_place/".to_string() + &id.to_string() + &"/".to_string();
+        let res = crate::utils::request_post::<(), ()> (
+            url,
+            &data, 
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
 
 pub async fn create_modules(session: Session, data: Json<CreateModuleJson>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
@@ -708,10 +1001,11 @@ pub struct OrderJson {
     pub title:      String,
     pub place_id:   String,
     pub object_id:  String,
+    pub event_id:   Option<String>,
     pub price:      i32,
     pub time_start: String,
     pub time_end:   String, 
-} 
+}  
 pub async fn create_order(session: Session, data: Json<Vec<OrderJson>>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");

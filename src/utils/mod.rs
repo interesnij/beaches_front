@@ -70,14 +70,6 @@ pub struct PlaceTypes {
     pub data: Vec<PlaceType>,
 }
 
-// типы модулей (стул, лежак)
-#[derive(Debug, Deserialize, Serialize)]
-pub struct ModuleType {
-    pub id:    String,
-    pub title: String,
-    pub types: i16,
-    pub image: Option<String>,
-}
 #[derive(Debug, Deserialize, Serialize)]
 pub struct ModuleTypes {
     pub data: Vec<ModuleType>,
@@ -148,10 +140,12 @@ pub struct RespOrderJson2s {
 pub struct Module {
     pub id:         String,
     pub title:      String,
+    pub label:      String,
     pub types:      i16,
     pub place_id:   String,
     pub type_id:    String,
     pub price:      i32,
+    pub z_index:    i32,
     pub _width:     i16,
     pub _height:    i16,
     pub _left:      f64,

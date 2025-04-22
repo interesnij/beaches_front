@@ -1,0 +1,37 @@
+<% include!("../partials/h.stpl"); %>
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    Изменение региона
+                </div>
+            </div> 
+            <div class="card-body"> 
+                <div class="row">
+                    <div class="col-md-8">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Название региона</label>
+                                <input type="text" id="id_name" name="name" class="form-control" placeholder="Название региона" aria-label="Title">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Координаты</label>
+                                <input type="text" id="id_cord" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
+                            </div>
+                            <p class="api_response error"></p>
+                            <div class="col-md-12">
+                                <button type="button" id="create_region" class="btn btn-primary">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                    
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include!("../partials/f.stpl"); %>

@@ -1,0 +1,47 @@
+<% include!("../partials/h.stpl"); %>
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    Изменение города <%= object.name %>
+                </div>
+            </div> 
+            <div class="card-body"> 
+                <div class="row">
+                    <div class="col-md-8">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Название города</label>
+                                <input type="text" id="id_name" value="<%= object.name %>" name="name" class="form-control" placeholder="Название города" aria-label="Title">
+                            </div>
+                            <select id="id_region" name="region_id" class="form-select" aria-label="Select">
+                                <option selected="">Выберите регион</option>
+                                <% for i in regions.iter() { %>
+                                    <option <% if i.id == object.region_id { %>selected<% } %> value="<%= i.id %>"><%= i.name %></option>
+                                <% } %>
+                            </select>
+                            <div class="mb-3">
+                                <label class="form-label">Координаты</label>
+                                <% if object.cord.is_some() { %>
+                                    <input type="text" id="id_cord" value="<%= object.cord.as_deref().unwrap() %>" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
+                                <% } else { %>
+                                    <input type="text" id="id_cord" name="cord" class="form-control" placeholder="Широта и долгота через запятую" aria-label="Сord">
+                                <% } %>
+                            </div>
+                            <p class="api_response error"></p>
+                            <div class="col-md-12">
+                                <button type="button" id="edit_city" class="btn btn-primary">Изменить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                    
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include!("../partials/f.stpl"); %>

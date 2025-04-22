@@ -504,8 +504,10 @@
                 var _module = {
                     id:         first_list[i]["_guid"],
                     title:      first_list[i]["_name"],
+                    label:      first_list[i]["_label"],
                     type_id:    first_list[i]["_typeModulesGuid"],
                     price:      first_list[i]["_price"]*1,
+                    z_index:    1,
                     width:      first_list[i]["_width"],
                     height:     first_list[i]["_height"],
                     left:       first_list[i]["_left"] *1.0,

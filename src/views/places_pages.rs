@@ -133,7 +133,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
     let object:  Place;
     let modules: Vec<crate::utils::Module>;
     let orders:  Vec<crate::utils::RespOrderJson>;
-    let module_types: Vec<crate::utils::ModuleType>;
+    let module_types: Vec<crate::views::ModuleType>;
     
     let url = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/".to_string();
     let resp = crate::utils::request_get::<PlaceDataJson>(url, "".to_string(), "application/json".to_string()).await;
@@ -159,9 +159,9 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         orders = Vec::new();
     }
 
-    let module_types: Vec<crate::utils::ModuleType>;
+    let module_types: Vec<crate::views::ModuleType>;
     let url2 = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/module_types/".to_string();
-    let resp2 = crate::utils::request_get::<Vec<crate::utils::ModuleType>>(url2, "".to_string(), "application/json".to_string()).await;
+    let resp2 = crate::utils::request_get::<Vec<crate::views::ModuleType>>(url2, "".to_string(), "application/json".to_string()).await;
     if resp2.is_ok() { 
         module_types = resp2.expect("E.");
     }
@@ -179,7 +179,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             object:       Place,
             modules:      Vec<crate::utils::Module>,
             orders:       Vec<crate::utils::RespOrderJson>,
-            module_types: Vec<crate::utils::ModuleType>,
+            module_types: Vec<crate::views::ModuleType>,
         }
         let body = Template {
             request_user: _request_user,
@@ -199,7 +199,7 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
             object:       Place,
             modules:      Vec<crate::utils::Module>,
             orders:       Vec<crate::utils::RespOrderJson>,
-            module_types: Vec<crate::utils::ModuleType>,
+            module_types: Vec<crate::views::ModuleType>,
         }
         let body = Template {
             object:       object,
@@ -241,9 +241,9 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
         orders = Vec::new();
     }
 
-    let module_types: Vec<crate::utils::ModuleType>;
+    let module_types: Vec<crate::views::ModuleType>;
     let url2 = URL.to_string() + &"/place/".to_string() + &id.clone() + &"/module_types/".to_string();
-    let resp2 = crate::utils::request_get::<Vec<crate::utils::ModuleType>>(url2, "".to_string(), "application/json".to_string()).await;
+    let resp2 = crate::utils::request_get::<Vec<crate::views::ModuleType>>(url2, "".to_string(), "application/json".to_string()).await;
     if resp2.is_ok() { 
         module_types = resp2.expect("E.");
     }
@@ -261,7 +261,7 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
             object:       Place,
             modules:      Vec<crate::utils::Module>,
             orders:       Vec<crate::utils::RespOrderJson>,
-            module_types: Vec<crate::utils::ModuleType>,
+            module_types: Vec<crate::views::ModuleType>,
         }
         let body = Template {
             request_user: _request_user,
@@ -423,7 +423,7 @@ pub async fn create_city_page(session: Session) -> actix_web::Result<HttpRespons
             }
 
             let url2 = URL.to_string() + &"/cities/".to_string();
-            let resp2 = crate::utils::request_get::<Vec<City>>(url, "".to_string(), "application/json".to_string()).await;
+            let resp2 = crate::utils::request_get::<Vec<City>>(url2, "".to_string(), "application/json".to_string()).await;
             if resp2.is_ok() { 
                 cities = resp2.expect("E.");
             }
@@ -775,7 +775,7 @@ pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::
 
         let cities:  Vec<City>;
         let url3 = URL.to_string() + &"/cities/".to_string();
-        let resp3 = crate::utils::request_get::<Vec<City>>(url, "".to_string(), "application/json".to_string()).await;
+        let resp3 = crate::utils::request_get::<Vec<City>>(url3, "".to_string(), "application/json".to_string()).await;
         if resp3.is_ok() { 
             cities = resp3.expect("E.");
         }

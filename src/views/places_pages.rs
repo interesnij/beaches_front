@@ -982,11 +982,11 @@ pub async fn delete_module_type(session: Session, id: web::Path<i32>) -> actix_w
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
-pub async fn delete_place(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+pub async fn delete_event(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let data = {};
-        let url = URL.to_string() + &"/delete_place/".to_string() + &id.to_string() + &"/".to_string();
+        let url = URL.to_string() + &"/delete_event/".to_string() + &id.to_string() + &"/".to_string();
         let res = crate::utils::request_post::<(), ()> (
             url,
             &data, 

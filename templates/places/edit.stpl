@@ -9,7 +9,7 @@
                 </div>
             </div> 
             <div class="card-body"> 
-                <form>
+                <form> 
                     <div class="mb-3">
                         <label class="form-label">Название объекта</label>
                         <input type="text" value="<%= object.title %>" id="id_title" name="title" class="form-control" placeholder="Название объекта" aria-label="Title">

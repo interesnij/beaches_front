@@ -16,7 +16,7 @@
                                 <label class="form-label">Название города</label>
                                 <input type="text" id="id_name" name="name" class="form-control" placeholder="Название города" aria-label="Title">
                             </div>
-                            <select id="id_region" name="region_id" class="form-select" aria-label="Select">
+                            <select id="id_region" name="region_id" class="mb-3 form-select" aria-label="Select">
                                 <option selected="">Выберите регион</option>
                                 <% for object in regions.iter() { %>
                                     <option value="<%= object.id %>"><%= object.name %></option>
@@ -36,7 +36,7 @@
                         <h4>Города</h4>
 
                         <% for object in cities.iter() { %>
-                            <p><%= object.name %> (<a href="/city/<%= object.id %>/edit/">изменить</a>, <span class="delete_city" style="cursor: pointer">удалить</span>)</p>
+                            <p><%= object.name %> (<a href="/city/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_city" style="cursor: pointer">удалить</span>)</p>
                         <% } %>
                     </div>
             </div> 

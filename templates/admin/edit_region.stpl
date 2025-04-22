@@ -26,7 +26,7 @@
                             </div>
                             <p class="api_response error"></p>
                             <div class="col-md-12">
-                                <button type="button" id="edit_region" class="btn btn-primary">Изменить</button>
+                                <button type="button" data-pk="<%= object.id %>" id="edit_region" class="btn btn-primary">Изменить</button>
                             </div>
                         </form>
                     </div>
@@ -34,7 +34,7 @@
                         <h4>Регионы</h4>
 
                         <% for object in regions.iter() { %>
-                            <p><%= object.name %> (<a href="/region/<%= object.id %>/edit/">изменить</a>, <span class="delete_region" style="cursor: pointer">удалить</span>)</p>
+                            <p><%= object.name %> (<a href="/region/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_region" style="cursor: pointer">удалить</span>)</p>
                         <% } %>
                     </div>
             </div>

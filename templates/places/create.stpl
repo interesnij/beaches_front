@@ -14,7 +14,7 @@
                         <label class="form-label">Название объекта</label>
                         <input type="text" id="id_title" name="title" class="form-control" placeholder="Название объекта" aria-label="Title">
                     </div>
-                    <select id="id_type_select" name="type_id" class="form-select" aria-label="Select">
+                    <select id="id_type_select" name="type_id" class="form-select mb-3" aria-label="Select">
                         <option selected="">Выберите тип объекта</option>
                         <option value="1">Пляжное место</option>
                         <option value="2">Парковка</option>

@@ -30,7 +30,7 @@
                         <h4>Регионы</h4>
 
                         <% for object in regions.iter() { %>
-                            <p><%= object.name %> (<a href="/region/<%= object.id %>/edit/">изменить</a>, <span class="delete_region" style="cursor: pointer">удалить</span>)</p>
+                            <p><%= object.name %> (<a href="/region/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_region" style="cursor: pointer">удалить</span>)</p>
                         <% } %>
                     </div>
             </div>

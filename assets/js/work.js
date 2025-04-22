@@ -241,3 +241,154 @@ on('body', 'click', '#edit_user_info', function() {
   }};
   link.send(json);
 });
+
+
+on('body', 'click', '#create_region', function() {
+  let form = this.parentElement.parentElement;
+  
+  form.querySelector("#id_name").style.setProperty('border', 'inherit', 'important');
+  //form.querySelector("#id_country").style.setProperty('border', 'inherit', 'important');
+
+  if (!form.querySelector("#id_name").value) {
+      form.querySelector("#id_name").style.setProperty('border', '1px #FF0000 solid', 'important');
+      toast_error("Укажите название");
+      return
+  }
+  //else if (!form.querySelector("#id_country").value) {
+  //  form.querySelector("#id_country").style.setProperty('border', '1px #FF0000 solid', 'important');
+  //  toast_error("Укажите страну");
+  //  return
+  //}
+
+  form.querySelector("#create_region").setAttribute("disabled", "true");
+  form.querySelector("#create_region").innerHTML = "Идет сохранение";
+
+    form_data = new FormData(form);
+  
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/create_region/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      location.reload()
+    }};
+    link.send(form_data);
+});
+on('body', 'click', '#edit_region', function() {
+  _this = this;
+  form = _this.parentElement.parentElement;
+
+  form.querySelector("#id_name").style.setProperty('border', 'inherit', 'important');
+  //form.querySelector("#id_country").style.setProperty('border', 'inherit', 'important');
+
+  if (!form.querySelector("#id_name").value) {
+    form.querySelector("#id_name").style.setProperty('border', '1px #FF0000 solid', 'important');
+    toast_error("Укажите название");
+    return
+  }
+  //else if (!form.querySelector("#id_country").value) {
+  //  form.querySelector("#id_country").style.setProperty('border', '1px #FF0000 solid', 'important');
+  //  toast_error("Укажите страну");
+  //  return
+  //}
+
+  form.querySelector("#edit_region").setAttribute("disabled", "true");
+  form.querySelector("#edit_region").innerHTML = "Идет сохранение";
+
+    form_data = new FormData(form);
+  
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/edit_region/" + _this.getAttribute("data-pk") + "/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      location.reload()
+    }};
+    link.send(form_data);
+});
+
+on('body', 'click', '.remove_region', function() {
+  delete_item("/delete_region/", this.getAttribute("data-pk"));
+  this.parentElement.remove();
+});
+
+
+on('body', 'click', '#create_city', function() {
+  let form = this.parentElement.parentElement;
+  
+  form.querySelector("#id_name").style.setProperty('border', 'inherit', 'important');
+  //form.querySelector("#id_country").style.setProperty('border', 'inherit', 'important');
+
+  if (!form.querySelector("#id_name").value) {
+      form.querySelector("#id_name").style.setProperty('border', '1px #FF0000 solid', 'important');
+      toast_error("Укажите название");
+      return
+  }
+  //else if (!form.querySelector("#id_country").value) {
+  //  form.querySelector("#id_country").style.setProperty('border', '1px #FF0000 solid', 'important');
+  //  toast_error("Укажите страну");
+  //  return
+  //}
+
+  form.querySelector("#create_city").setAttribute("disabled", "true");
+  form.querySelector("#create_city").innerHTML = "Идет сохранение";
+
+    form_data = new FormData(form);
+  
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/create_city/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      location.reload()
+    }};
+    link.send(form_data);
+});
+on('body', 'click', '#edit_city', function() {
+  _this = this;
+  form = _this.parentElement.parentElement;
+  
+  form.querySelector("#id_name").style.setProperty('border', 'inherit', 'important');
+  //form.querySelector("#id_country").style.setProperty('border', 'inherit', 'important');
+
+  if (!form.querySelector("#id_name").value) {
+      form.querySelector("#id_name").style.setProperty('border', '1px #FF0000 solid', 'important');
+      toast_error("Укажите название");
+      return
+  }
+  //else if (!form.querySelector("#id_country").value) {
+  //  form.querySelector("#id_country").style.setProperty('border', '1px #FF0000 solid', 'important');
+  //  toast_error("Укажите страну");
+  //  return
+  //}
+
+  form.querySelector("#edit_city").setAttribute("disabled", "true");
+  form.querySelector("#edit_city").innerHTML = "Идет сохранение";
+
+    form_data = new FormData(form);
+  
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/edit_city/" + _this.getAttribute("data-pk") + "/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      location.reload()
+    }};
+    link.send(form_data);
+});
+
+on('body', 'click', '.delete_city', function() {
+  link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/delete_city/" + this.getAttribute("data-pk") + "/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      this.remove();
+    }};
+    link.send( null );
+    this.parentElement.remove();
+});
+on('body', 'click', '.delete_region', function() {
+  link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/delete_region/" + this.getAttribute("data-pk") + "/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      this.remove();
+    }};
+    link.send( null );
+});

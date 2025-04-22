@@ -16,7 +16,7 @@
                                 <label class="form-label">Название города</label>
                                 <input type="text" id="id_name" value="<%= object.name %>" name="name" class="form-control" placeholder="Название города" aria-label="Title">
                             </div>
-                            <select id="id_region" name="region_id" class="form-select" aria-label="Select">
+                            <select id="id_region" name="region_id" class="form-select mb-3" aria-label="Select">
                                 <option selected="">Выберите регион</option>
                                 <% for i in regions.iter() { %>
                                     <option <% if object.region_id.is_some() && i.id == object.region_id.unwrap() { %>selected<% } %> value="<%= i.id %>"><%= i.name %></option>
@@ -32,14 +32,14 @@
                             </div>
                             <p class="api_response error"></p>
                             <div class="col-md-12">
-                                <button type="button" id="edit_city" class="btn btn-primary">Изменить</button>
+                                <button type="button" data-pk="<%= object.id %>" id="edit_city" class="btn btn-primary">Изменить</button>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-4">
                         <h4>Города</h4>
                         <% for object in cities.iter() { %>
-                            <p><%= object.name %> (<a href="/city/<%= object.id %>/edit/">изменить</a>, <span class="delete_city" style="cursor: pointer">удалить</span>)</p>
+                            <p><%= object.name %> (<a href="/city/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_city" style="cursor: pointer">удалить</span>)</p>
                         <% } %>
                     </div> 
             </div>

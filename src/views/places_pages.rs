@@ -411,6 +411,7 @@ pub async fn create_city_page(session: Session) -> actix_web::Result<HttpRespons
         let _request_user = get_current_user(&session).expect("E.");
         if _request_user.is_superuser() {
             let regions:  Vec<Region>;
+            let cities:  Vec<City>;
 
             let url = URL.to_string() + &"/regions/".to_string();
             let resp = crate::utils::request_get::<Vec<Region>>(url, "".to_string(), "application/json".to_string()).await;
@@ -420,15 +421,27 @@ pub async fn create_city_page(session: Session) -> actix_web::Result<HttpRespons
             else { 
                 regions = Vec::new();
             }
+
+            let url2 = URL.to_string() + &"/cities/".to_string();
+            let resp2 = crate::utils::request_get::<Vec<City>>(url, "".to_string(), "application/json".to_string()).await;
+            if resp2.is_ok() { 
+                cities = resp2.expect("E.");
+            }
+            else { 
+                cities = Vec::new();
+            }
+
             #[derive(TemplateOnce)]
             #[template(path = "admin/create_city.stpl")]
             struct Template {
                 request_user: AuthResp2,
                 regions:      Vec<Region>,
+                cities:       Vec<City>,
             }
             let body = Template {
                 request_user: _request_user,
                 regions:      regions,
+                cities:       cities,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -486,7 +499,7 @@ pub async fn create_module_type_page(session: Session, id: web::Path<String>) ->
             let events: Vec<ModuleType>;  
 
             let url = URL.to_string() + &"/place/".to_string() + &id.to_string() + &"/module_types/".to_string();
-            let resp = crate::utils::request_get::<Vec<Event>>(url, "".to_string(), "application/json".to_string()).await;
+            let resp = crate::utils::request_get::<Vec<ModuleType>>(url, "".to_string(), "application/json".to_string()).await;
             if resp.is_ok() { 
                 events = resp.expect("E.");
             } 
@@ -497,7 +510,7 @@ pub async fn create_module_type_page(session: Session, id: web::Path<String>) ->
             #[template(path = "admin/create_module_type.stpl")]
             struct Template {
                 request_user: AuthResp2,
-                events:       Vec<Event>,
+                events:       Vec<ModuleType>,
             }
             let body = Template {
                 request_user: _request_user,
@@ -537,7 +550,7 @@ pub async fn edit_module_type_page(session: Session, param: web::Path<(String,St
             let url2 = URL.to_string() + &"/module_type/".to_string() + &obj_id.to_string() + &"/".to_string();
             let resp2 = crate::utils::request_get::<ModuleType>(url2, "".to_string(), "application/json".to_string()).await;
             if resp2.is_ok() { 
-                object = resp.expect("E.");
+                object = resp2.expect("E.");
             } 
             else { 
                 object = ModuleType {
@@ -595,8 +608,8 @@ pub async fn edit_event_page(session: Session, param: web::Path<(String,String)>
             let object: Event;
             let url2 = URL.to_string() + &"/event/".to_string() + &obj_id.to_string() + &"/".to_string();
             let resp2 = crate::utils::request_get::<Event>(url2, "".to_string(), "application/json".to_string()).await;
-            if resp2.is_ok() { 
-                object = resp.expect("E.");
+            if resp2.is_ok() {  
+                object = resp2.expect("E.");
             } 
             else { 
                 object = Event {
@@ -759,6 +772,16 @@ pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::
         else { 
             regions = Vec::new();
         }
+
+        let cities:  Vec<City>;
+        let url3 = URL.to_string() + &"/cities/".to_string();
+        let resp3 = crate::utils::request_get::<Vec<City>>(url, "".to_string(), "application/json".to_string()).await;
+        if resp3.is_ok() { 
+            cities = resp3.expect("E.");
+        }
+        else { 
+            cities = Vec::new();
+        }
         
         #[derive(TemplateOnce)]
         #[template(path = "admin/edit_city.stpl")]
@@ -766,11 +789,13 @@ pub async fn edit_city_page(session: Session, id: web::Path<i32>) -> actix_web::
             request_user: AuthResp2,
             object:       City,
             regions:      Vec<Region>,
+            cities:       Vec<City>,
         }
         let body = Template {
             request_user: _request_user,
             object:       object,
             regions:      regions,
+            cities:       cities,
         }
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

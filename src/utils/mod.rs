@@ -70,11 +70,6 @@ pub struct PlaceTypes {
     pub data: Vec<PlaceType>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
-pub struct ModuleTypes {
-    pub data: Vec<ModuleType>,
-}
-
 // пользователи
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct UserJson {

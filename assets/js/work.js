@@ -357,7 +357,9 @@ on('body', 'click', '#create_city', function() {
   form.querySelector("#create_city").setAttribute("disabled", "true");
   form.querySelector("#create_city").innerHTML = "Идет сохранение";
 
-  form_data = new FormData(form);
+  form_data = new FormData();
+  form_data.append("region_id", form.querySelector("#id_region").value*1);
+  form_data.append("name", form.querySelector("#id_name").value);
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object);
@@ -392,7 +394,9 @@ on('body', 'click', '#edit_city', function() {
   form.querySelector("#edit_city").setAttribute("disabled", "true");
   form.querySelector("#edit_city").innerHTML = "Идет сохранение";
 
-  form_data = new FormData(form);
+  form_data = new FormData();
+  form_data.append("region_id", form.querySelector("#id_region").value*1);
+  form_data.append("name", form.querySelector("#id_name").value);
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object);

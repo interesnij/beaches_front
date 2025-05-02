@@ -357,7 +357,7 @@ on('body', 'click', '#create_city', function() {
   form.querySelector("#create_city").setAttribute("disabled", "true");
   form.querySelector("#create_city").innerHTML = "Идет сохранение";
 
-  form_data = new FormData();
+  form_data = new FormData(form);
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object);
@@ -392,7 +392,7 @@ on('body', 'click', '#edit_city', function() {
   form.querySelector("#edit_city").setAttribute("disabled", "true");
   form.querySelector("#edit_city").innerHTML = "Идет сохранение";
 
-  form_data = new FormData();
+  form_data = new FormData(form);
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object);

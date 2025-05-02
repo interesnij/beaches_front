@@ -146,16 +146,17 @@ pub async fn place_page(session: Session, id: web::Path<String>) -> actix_web::R
         orders = data.orders;
     }
     else { 
-        object = Place{
-            id:      "".to_string(),
-            title:   "".to_string(), 
-            types:   0,
-            created: chrono::Local::now().naive_utc(),
-            user_id: "".to_string(),
-            city_id: 0,
-            type_id: 0,
-            image:   None,
-            cord:    None,
+        object = Place {
+            id:         "".to_string(),
+            title:      "".to_string(), 
+            types:      0,
+            created:    chrono::Local::now().naive_utc(),
+            user_id:    "".to_string(),
+            city_id:    0,
+            type_id:    0,
+            image:      None,
+            background: None,
+            cord:       None,
         };
         modules = Vec::new();
         orders = Vec::new();
@@ -228,16 +229,17 @@ pub async fn place_create_map_page(session: Session, id: web::Path<String>) -> a
         orders = data.orders;
     }
     else { 
-        object = Place{
-            id:      "".to_string(),
-            title:   "".to_string(), 
-            types:   0,
-            created: chrono::Local::now().naive_utc(),
-            user_id: "".to_string(),
-            city_id: 0,
-            type_id: 0,
-            image:   None,
-            cord:    None,
+        object = Place {
+            id:         "".to_string(),
+            title:      "".to_string(), 
+            types:      0,
+            created:    chrono::Local::now().naive_utc(),
+            user_id:    "".to_string(),
+            city_id:    0,
+            type_id:    0,
+            image:      None,
+            background: None,
+            cord:       None,
         };
         modules = Vec::new();
         orders = Vec::new();
@@ -497,7 +499,7 @@ pub async fn create_event_page(session: Session, id: web::Path<String>) -> actix
             let body = Template {
                 request_user: _request_user,
                 events:       events,
-                place:        id.to_string(),
+                place_id:     id.to_string(),
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -657,11 +659,13 @@ pub async fn edit_event_page(session: Session, param: web::Path<(String,String)>
                 request_user: AuthResp2,
                 events:       Vec<Event>,
                 object:       Event,
+                place_id:     String,
             }
             let body = Template {
                 request_user: _request_user,
                 events:       events,
                 object:       object,
+                place_id:     place_id,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;

@@ -19,7 +19,7 @@
                             <select id="id_region" name="region_id" class="mb-3 form-select" aria-label="Select">
                                 <option selected="">Выберите регион</option>
                                 <% for object in regions.iter() { %>
-                                    <option value="<%= object.id %>"><%= object.name %></option>
+                                    <option value=<%= object.id %>><%= object.name %></option>
                                 <% } %>
                             </select>
                             <div class="mb-3">

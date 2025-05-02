@@ -288,6 +288,7 @@ on('body', 'click', '#create_region', function() {
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/create_region/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
@@ -322,6 +323,7 @@ on('body', 'click', '#edit_region', function() {
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/edit_region/" + _this.getAttribute("data-pk") + "/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
@@ -362,6 +364,7 @@ on('body', 'click', '#create_city', function() {
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/create_city/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
@@ -396,6 +399,7 @@ on('body', 'click', '#edit_city', function() {
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/edit_city/" + _this.getAttribute("data-pk") + "/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()

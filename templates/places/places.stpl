@@ -18,13 +18,13 @@
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card custom-card">
-                        <img src="/assets/images/пляж.jpg" class="card-img-top" alt="img">
+                        <img src="/assets/images/пляж.jpg" class="card-img-top _nice" alt="img">
                         <div class="card-body">
                             <h6 class="card-title fw-semibold">
                                 <a href="/places/1/">
                                     Пляжные места
                                 </a>
-                            </h6>
+                            </h6> 
                             <p class="card-text mb-3 text-muted">
 
                             </p>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-xl-4">
                     <div class="card custom-card">
-                        <img src="/assets/images/парковка.jpg" class="card-img-top" alt="img">
+                        <img src="/assets/images/парковка.jpg" class="card-img-top _nice" alt="img">
                         <div class="card-body">
                             <h6 class="card-title fw-semibold"><a href="/places/2/">Парковки</a></h6>
                             <p class="card-text mb-3 text-muted">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-xl-4">
                     <div class="card custom-card">
-                        <img src="/assets/images/кафе.jpg" class="card-img-top" alt="img">
+                        <img src="/assets/images/кафе.jpg" class="card-img-top _nice" alt="img">
                         <div class="card-body">
                             <h6 class="card-title fw-semibold"><a href="/places/4/">Кафе / рестораны</a></h6>
                             <p class="card-text mb-3 text-muted">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-xl-4">
                     <div class="card custom-card">
-                        <img src="/assets/images/беседка.jpg" class="card-img-top" alt="img">
+                        <img src="/assets/images/беседка.jpg" class="card-img-top _nice" alt="img">
                         <div class="card-body">
                             <h6 class="card-title fw-semibold"><a href="/places/6/">Зоны отдыха</a></h6>
                             <p class="card-text mb-3 text-muted">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-xl-4">
                     <div class="card custom-card">
-                        <img src="/assets/images/киоск.png" class="card-img-top" alt="img">
+                        <img src="/assets/images/киоск.png" class="card-img-top _nice" alt="img">
                         <div class="card-body">
                             <h6 class="card-title fw-semibold"><a href="/places/3/">Мероприятия / экскурсии</a></h6>
                             <p class="card-text mb-3 text-muted">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-xl-4">
                     <div class="card custom-card">
-                        <img src="/assets/images/Коворкинг.png" class="card-img-top" alt="img">
+                        <img src="/assets/images/Коворкинг.jpg" class="card-img-top _nice" alt="img">
                         <div class="card-body">
                             <h6 class="card-title fw-semibold"><a href="/places/5/">Коворкинг</a></h6>
                             <p class="card-text mb-3 text-muted">

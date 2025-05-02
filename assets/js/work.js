@@ -488,13 +488,10 @@ on('body', 'click', '#create_event', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
-    object = {};
-    form_data.forEach((value, key) => object[key] = value);
-    json = JSON.stringify(object);
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
     link.open( 'POST', "/create/upload_files/?types=create_event", true );
-    link.setRequestHeader('Content-Type', 'application/json');
+    link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -505,7 +502,7 @@ on('body', 'click', '#create_event', function() {
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(json);
+    link.send(form_data);
 });
 
 on('body', 'click', '#create_module_type', function() {
@@ -547,7 +544,7 @@ on('body', 'click', '#create_module_type', function() {
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
   link.open( 'POST', "/create/upload_files/?types=create_module_type", true );
-  //link.setRequestHeader('Content-Type', 'application/json');
+  link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -604,13 +601,11 @@ on('body', 'click', '#edit_event', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
-    object = {};
-    form_data.forEach((value, key) => object[key] = value);
-    json = JSON.stringify(object);
+
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
     link.open( 'POST', "/create/upload_files/?types=edit_event&id=" + _this.getAttribute("object_id"), true );
-    link.setRequestHeader('Content-Type', 'application/json');
+    link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -621,7 +616,7 @@ on('body', 'click', '#edit_event', function() {
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(json);
+    link.send(form_data);
 });
 
 
@@ -661,13 +656,10 @@ on('body', 'click', '#edit_module_type', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
-    object = {};
-    form_data.forEach((value, key) => object[key] = value);
-    json = JSON.stringify(object);
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
     link.open( 'POST', "/create/upload_files/?types=edit_module_type&id=" + _this.getAttribute("object_id"), true );
-    link.setRequestHeader('Content-Type', 'application/json');
+    link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -678,5 +670,5 @@ on('body', 'click', '#edit_module_type', function() {
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(json);
+    link.send(form_data);
 });

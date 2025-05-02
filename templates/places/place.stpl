@@ -156,7 +156,7 @@
             "name": "<%= i.title %>",
             "description": "<%= i.description %>",
             "price": <%= i.price %>,
-            "imageUrl": "<%= object.get_image() %>",
+            "imageUrl": "<%= i.image %>",
         });
     <% } %>
     <% for (i, object) in modules.iter().enumerate() { %>

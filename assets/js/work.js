@@ -360,9 +360,9 @@ on('body', 'click', '#create_city', function() {
   form_data = new FormData();
   form_data.append("region_id", form.querySelector("#id_region").value*1);
   form_data.append("name", form.querySelector("#id_name").value);
-  object = {};
-  form_data.forEach((value, key) => object[key] = value);
-  json = JSON.stringify(object);
+  //object = {};
+  //form_data.forEach((value, key) => object[key] = value);
+  //json = JSON.stringify(object);
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/create_city/", true );
@@ -371,7 +371,7 @@ on('body', 'click', '#create_city', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
     }};
-    link.send(json);
+    link.send(form_data);
 });
 on('body', 'click', '#edit_city', function() {
   _this = this;
@@ -397,9 +397,9 @@ on('body', 'click', '#edit_city', function() {
   form_data = new FormData();
   form_data.append("region_id", form.querySelector("#id_region").value*1);
   form_data.append("name", form.querySelector("#id_name").value);
-  object = {};
-  form_data.forEach((value, key) => object[key] = value);
-  json = JSON.stringify(object);
+  //object = {};
+  //form_data.forEach((value, key) => object[key] = value);
+  //json = JSON.stringify(object);
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/edit_city/" + _this.getAttribute("data-pk") + "/", true );
@@ -408,7 +408,7 @@ on('body', 'click', '#edit_city', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
     }};
-    link.send(json);
+    link.send(form_data);
 });
 
 on('body', 'click', '.delete_city', function() {

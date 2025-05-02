@@ -509,8 +509,6 @@ on('body', 'click', '#create_module_type', function() {
     _this = this;
     form = _this.parentElement.parentElement;
     response = form.querySelector(".api_response");
-
-	form_data = new FormData(form);
   
     if (!form.querySelector("#id_title").value){
       form.querySelector("#id_title").style.border = "1px #FF0000 solid";
@@ -539,12 +537,13 @@ on('body', 'click', '#create_module_type', function() {
     else {
       _this.disabled = true;
     }
-    
+  
+  form_data = new FormData(form);
 	form_data.append("place_id", _this.getAttribute("place_id"));
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
   link.open( 'POST', "/create/upload_files/?types=create_module_type", true );
-  link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  //link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {

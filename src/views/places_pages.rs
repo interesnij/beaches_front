@@ -294,15 +294,16 @@ pub async fn managers_page(session: Session, id: web::Path<String>) -> actix_web
         }
         else {
             object = Place {
-                id:      "".to_string(),
-                title:   "".to_string(), 
-                types:   0,
-                created: chrono::Local::now().naive_utc(),
-                user_id: "".to_string(),
-                city_id: 0,
-                type_id: 0,
-                image:   None,
-                cord:    None,
+                id:         "".to_string(),
+                title:      "".to_string(), 
+                types:      0,
+                created:    chrono::Local::now().naive_utc(),
+                user_id:    "".to_string(),
+                city_id:    0,
+                type_id:    0,
+                image:      None,
+                background: None,
+                cord:       None,
             };
         }
 
@@ -491,12 +492,12 @@ pub async fn create_event_page(session: Session, id: web::Path<String>) -> actix
             struct Template {
                 request_user: AuthResp2,
                 events:       Vec<Event>,
-                place_id:     Strind,
+                place_id:     String,
             }
             let body = Template {
                 request_user: _request_user,
                 events:       events,
-                place:        id,
+                place:        id.to_string(),
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -514,27 +515,27 @@ pub async fn create_module_type_page(session: Session, id: web::Path<String>) ->
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         //if _request_user.is_superuser() {
-            let events: Vec<ModuleType>;  
+            let module_types: Vec<ModuleType>;  
 
             let url = URL.to_string() + &"/place/".to_string() + &id.to_string() + &"/module_types/".to_string();
             let resp = crate::utils::request_get::<Vec<ModuleType>>(url, "".to_string(), "application/json".to_string()).await;
             if resp.is_ok() { 
-                events = resp.expect("E.");
+                module_types = resp.expect("E.");
             } 
             else { 
-                events = Vec::new();
+                module_types = Vec::new();
             }
             #[derive(TemplateOnce)]
             #[template(path = "admin/create_module_type.stpl")]
             struct Template {
                 request_user: AuthResp2,
-                events:       Vec<ModuleType>,
+                module_types: Vec<ModuleType>,
                 place_id:     String,
             }
             let body = Template {
                 request_user: _request_user,
-                events:       events,
-                place_id:     id,
+                module_types: module_types,
+                place_id:     id.to_string(),
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -580,6 +581,7 @@ pub async fn edit_module_type_page(session: Session, param: web::Path<(String,St
                     description: "".to_string(),
                     types:       "".to_string(),
                     image:       None,
+                    price:       0,
                 };
             }
 
@@ -595,7 +597,7 @@ pub async fn edit_module_type_page(session: Session, param: web::Path<(String,St
                 request_user: _request_user,
                 module_types: module_types,
                 object:       object,
-                place_id:     id,
+                place_id:     place_id,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -686,15 +688,16 @@ pub async fn edit_place_page(session: Session, id: web::Path<String>) -> actix_w
         }
         else { 
             object = Place {
-                id:      "".to_string(),
-                title:   "".to_string(), 
-                types:   0,
-                created: chrono::Local::now().naive_utc(),
-                user_id: "".to_string(),
-                city_id: 0,
-                type_id: 0,
-                image:   None,
-                cord:    None,
+                id:         "".to_string(),
+                title:      "".to_string(), 
+                types:      0,
+                created:    chrono::Local::now().naive_utc(),
+                user_id:    "".to_string(),
+                city_id:    0,
+                type_id:    0,
+                image:      None,
+                background: None,
+                cord:       None,
             };
         }
         

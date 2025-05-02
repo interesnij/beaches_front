@@ -26,6 +26,7 @@ pub struct ConfigToStaticServer {
 #[derive(Debug, Deserialize)]
 struct ImageParams {
     pub types: Option<String>,
+    pub uuid:  Option<String>,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct IdUser {
@@ -39,11 +40,41 @@ pub async fn upload_files (
     http_client: Data<awc::Client>,
     req:         HttpRequest,
 ) -> actix_web::Result<HttpResponse> {
-    if !crate::utils::is_signed_in(&session) {
-        return Ok(HttpResponse::Ok().body("403"));
-    } 
-    let _request_user = crate::utils::get_current_user(&session).expect("E.");
-    println!("<= [{uuid}]", uuid = _request_user.uuid);
+    let params_some = web::Query::<ImageParams>::from_query(&req.query_string());
+    let types: String;
+    let uuid: String;
+    let user_uuid: String;
+    if params_some.is_ok() {
+        let params = params_some.unwrap();
+        if params.types.is_some() {
+            types = params.types.as_deref().unwrap().to_string();
+        }
+        else {
+            types = "".to_string();
+        }
+        if params.uuid.is_some() {
+            uuid = params.uuid.as_deref().unwrap().to_string();
+        }
+        else {
+            uuid = "".to_string();
+        }
+    }
+    else {
+        types = "".to_string();
+        uuid = "".to_string();
+    }
+    if uuid.is_not_empty() {
+        user_uuid = uuid;
+    }
+    else {
+        if !crate::utils::is_signed_in(&session) {
+            return Ok(HttpResponse::Ok().body("403"));
+        }
+        else {
+            user_uuid = _request_user.uuid;
+        }
+    }
+    println!("<= [{uuid}]", uuid = user_uuid);
 
     let url = format!( 
         "{to}{path}", 
@@ -60,7 +91,7 @@ pub async fn upload_files (
             req.head()
         )
         .insert_header(("ContentType", "multipart/form-data"))
-        .insert_header(("secret", _request_user.uuid))
+        .insert_header(("secret", user_uuid))
         .send_stream(body)
         .await 
     {
@@ -85,20 +116,7 @@ pub async fn upload_files (
             println!("========================================");
             println!("");
 
-            let params_some = web::Query::<ImageParams>::from_query(&req.query_string());
-            let types: String;
-            if params_some.is_ok() {
-                let params = params_some.unwrap();
-                if params.types.is_some() {
-                    types = params.types.as_deref().unwrap().to_string();
-                }
-                else {
-                    types = "".to_string();
-                }
-            }
-            else {
-                types = "".to_string();
-            }
+            
             println!("types: {}", types);
             if types == "user_avatar".to_string() {
                 let _request_user = crate::utils::get_current_user(&session).expect("E.");

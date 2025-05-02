@@ -79,14 +79,14 @@ pub async fn places_page(session: Session) -> actix_web::Result<HttpResponse> {
 
 pub async fn places_type_page(session: Session, type_id: web::Path<i16>) -> actix_web::Result<HttpResponse> {
     let object_list: Vec<Place>;
-    let url = URL.to_string() + &"/places/".to_string() + &type_id.to_string();
+    let url = URL.to_string() + &"/places/".to_string() + &type_id.to_string() + &"/".to_string();
     let resp = crate::utils::request_get::<Vec<Place>>(url, "".to_string(), "application/json".to_string()).await;
     if resp.is_ok() { 
         let data = resp.expect("E.");
         object_list = data;
-    }
+    } 
     else { 
-        object_list = Vec::new();
+        object_list = Vec::new(); 
     }
     let mut list: Vec<Place> = Vec::new();
     for object in object_list.into_iter() {

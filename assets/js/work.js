@@ -281,7 +281,10 @@ on('body', 'click', '#create_region', function() {
   form.querySelector("#create_region").setAttribute("disabled", "true");
   form.querySelector("#create_region").innerHTML = "Идет сохранение";
 
-    form_data = new FormData(form);
+  form_data = new FormData(form);
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/create_region/", true );
@@ -289,7 +292,7 @@ on('body', 'click', '#create_region', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
     }};
-    link.send(form_data);
+    link.send(json);
 });
 on('body', 'click', '#edit_region', function() {
   _this = this;
@@ -312,7 +315,10 @@ on('body', 'click', '#edit_region', function() {
   form.querySelector("#edit_region").setAttribute("disabled", "true");
   form.querySelector("#edit_region").innerHTML = "Идет сохранение";
 
-    form_data = new FormData(form);
+  form_data = new FormData(form);
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/edit_region/" + _this.getAttribute("data-pk") + "/", true );
@@ -320,7 +326,7 @@ on('body', 'click', '#edit_region', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
     }};
-    link.send(form_data);
+    link.send(json);
 });
 
 on('body', 'click', '.remove_region', function() {
@@ -349,7 +355,10 @@ on('body', 'click', '#create_city', function() {
   form.querySelector("#create_city").setAttribute("disabled", "true");
   form.querySelector("#create_city").innerHTML = "Идет сохранение";
 
-    form_data = new FormData(form);
+  form_data = new FormData(form);
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/create_city/", true );
@@ -357,7 +366,7 @@ on('body', 'click', '#create_city', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
     }};
-    link.send(form_data);
+    link.send(json);
 });
 on('body', 'click', '#edit_city', function() {
   _this = this;
@@ -380,7 +389,10 @@ on('body', 'click', '#edit_city', function() {
   form.querySelector("#edit_city").setAttribute("disabled", "true");
   form.querySelector("#edit_city").innerHTML = "Идет сохранение";
 
-    form_data = new FormData(form);
+  form_data = new FormData(form);
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
   
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/edit_city/" + _this.getAttribute("data-pk") + "/", true );
@@ -388,7 +400,7 @@ on('body', 'click', '#edit_city', function() {
     if ( link.readyState == 4 && link.status == 200 ) {
       location.reload()
     }};
-    link.send(form_data);
+    link.send(json);
 });
 
 on('body', 'click', '.delete_city', function() {

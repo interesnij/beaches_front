@@ -2,7 +2,7 @@
 
 <div class="main-content app-content">
     <div class="container-fluid">
-        <div class="card custom-card">
+        <div class="card custom-card" style="min-height: inherit;">
             <div class="card-header justify-content-between">
                 <div class="card-title">
                     Добавление типа модулей

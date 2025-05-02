@@ -890,7 +890,7 @@ pub struct CreateRegionJson {
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct CreateCityJson {
-    pub region_id: Option<i32>,
+    pub region_id: Option<String>,
     pub name:      String,
     pub cord:      Option<String>,
 }

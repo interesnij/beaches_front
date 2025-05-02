@@ -63,7 +63,7 @@ pub async fn upload_files (
         types = "".to_string();
         uuid = "".to_string();
     }
-    if uuid.is_not_empty() {
+    if !uuid.is_empty() {
         user_uuid = uuid;
     }
     else {
@@ -71,6 +71,7 @@ pub async fn upload_files (
             return Ok(HttpResponse::Ok().body("403"));
         }
         else {
+            let _request_user = crate::utils::get_current_user(&session).expect("E.");
             user_uuid = _request_user.uuid;
         }
     }

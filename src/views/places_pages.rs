@@ -83,16 +83,16 @@ pub struct Event {
 #[derive(Deserialize, Serialize, Debug)]
 pub struct PlaceJson {
     pub title:   String, 
-    pub type_id: i16,
+    pub type_id: String,
     pub user_id: String,
-    pub city_id: i32,
+    pub city_id: String,
     pub image:   Option<String>,
     pub cord:    Option<String>,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct EditPlaceJson {
     pub title:   String,
-    pub type_id: i16,
+    pub type_id: String,
     pub user_id: String,
     pub image:   Option<String>,
     pub cord:    Option<String>,

@@ -56,9 +56,9 @@ pub struct Place {
     pub cord:       Option<String>,
 }
 impl Place {
-    pub fn get_image(&self) -> String {
-        if self.image.is_some() {
-            return self.image.as_deref().unwrap().to_string();
+    pub fn get_background(&self) -> String {
+        if self.background.is_some() {
+            return self.background.as_deref().unwrap().to_string();
         }
         else {
             return "/assets/images/my/Терраса_фон.png".to_string();

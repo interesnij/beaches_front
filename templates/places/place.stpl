@@ -146,7 +146,7 @@
         "name": "",
         "description": "",
         "price": 0,
-        "imageUrl": "<%= object.get_image() %>",
+        "imageUrl": "<%= object.get_background() %>",
     });
 
     <% for i in module_types.iter() { %>

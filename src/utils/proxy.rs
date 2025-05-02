@@ -43,6 +43,7 @@ pub async fn upload_files (
         return Ok(HttpResponse::Ok().body("403"));
     } 
     let _request_user = crate::utils::get_current_user(&session).expect("E.");
+    println!("<= [{uuid}]", uuid = _request_user.uuid);
 
     let url = format!( 
         "{to}{path}", 

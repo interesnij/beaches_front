@@ -32,6 +32,12 @@
                     <li>
                         <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
                     </li>
+                    <li>
+                        <a href="/create_city/" class="side-menu__item"><span class="side-menu__label">Создать город</span></a>
+                    </li>
+                    <li>
+                        <a href="/create_region/" class="side-menu__item"><span class="side-menu__label">Создать регион</span></a>
+                    </li>
                 <% } else if partner { %>
                     <li class="slide">
                         <a href="/places/" class="side-menu__item"><span class="side-menu__label">Объекты</span></a>

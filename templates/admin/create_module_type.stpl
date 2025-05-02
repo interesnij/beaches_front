@@ -1,0 +1,56 @@
+<% include!("../partials/h.stpl"); %>
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    Добавление типа модулей
+                </div>
+            </div> 
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Название</label>
+                                <input type="text" id="id_title" name="title" class="form-control" placeholder="Название типа модулей" aria-label="Title">
+                            </div>
+                            <select id="id_types" name="types" class="mb-3 form-select" aria-label="Select">
+                                <option selected="" value="">Выберите тип</option>
+                                    <option value="Place">Модуль бекграунда</option>
+                                    <option value="Module">Модуль заказа</option>
+                                    <option value="Technical">Деталь интерьера</option>
+                            </select>
+                            <div class="mb-3">
+                                <label class="form-label">Описание</label>
+                                <input type="text" id="id_description" name="description" class="form-control" placeholder="Описание события" aria-label="Title">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Цена</label>
+                                <input type="number" id="id_price" name="price" class="form-control" placeholder="Стоимость события" aria-label="Сord">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Миниатюра</label>
+                                <input name="image" id="id_image" class="input-md form-control" type="file" />
+                            </div> 
+
+                            <p class="api_response error"></p>
+                            <div class="col-md-12">
+                                <button type="button" id="create_module_type" place_id="<%= place_id %>" class="btn btn-primary">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Типы модулей</h4>
+
+                        <% for object in module_types.iter() { %>
+                            <p><%= object.title %> (<a href="/module_type/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_module_type" style="cursor: pointer">удалить</span>)</p>
+                        <% } %>
+                    </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<% include!("../partials/f.stpl"); %>

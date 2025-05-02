@@ -46,7 +46,7 @@ on('body', 'click', '#create_place', function() {
       response.innerHTML = "Введите Название";
       response.classList.add("error");
       return 
-    }
+    } 
     else if (!form.querySelector("#id_cord").value){
       form.querySelector("#id_cord").style.border = "1px #FF0000 solid";
       response.innerHTML = "Введите Координаты";
@@ -131,6 +131,9 @@ on('body', 'click', '.change_user_avatar', function() {
 on('body', 'click', '.change_place_avatar', function() {
   this.previousElementSibling.querySelector("input").click();
 });
+on('body', 'click', '.change_place_background', function() {
+  this.previousElementSibling.querySelector("input").click();
+});
 
 on('body', 'change', '#id_user_image', function() {
     form = this.parentElement;
@@ -155,6 +158,21 @@ on('body', 'change', '#id_place_image', function() {
     form_data = new FormData(form);
     link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     link_.open('POST', "/create/upload_files/?types=place_avatar&id=" + id, true);
+    link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    link_.onreadystatechange = function() { 
+        if (this.readyState == 4) {
+            location.reload();
+        }
+    }; 
+    link_.send(form_data);
+});
+
+on('body', 'change', '#id_place_background', function() {
+    form = this.parentElement;
+    id = form.getAttribute("data-id");
+    form_data = new FormData(form);
+    link_ = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    link_.open('POST', "/create/upload_files/?types=place_background&id=" + id, true);
     link_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     link_.onreadystatechange = function() { 
         if (this.readyState == 4) {
@@ -388,7 +406,264 @@ on('body', 'click', '.delete_region', function() {
     link.open( 'POST', "/delete_region/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
-      this.remove();
+      this.parentElement.remove();
     }};
     link.send( null );
+});
+on('body', 'click', '.delete_module_type', function() {
+  link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/delete_module_type/" + this.getAttribute("data-pk") + "/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      this.parentElement.remove();
+    }};
+    link.send( null );
+});
+on('body', 'click', '.delete_event', function() {
+  link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/delete_event/" + this.getAttribute("data-pk") + "/", true );
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      this.parentElement.remove();
+    }};
+    link.send( null );
+});
+
+
+on('body', 'click', '#create_event', function() {
+    _this = this;
+    form = _this.parentElement.parentElement;
+    response = form.querySelector(".api_response");
+
+	form_data = new FormData(form);
+  
+    if (!form.querySelector("#id_title").value){
+      form.querySelector("#id_title").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Название";
+      response.classList.add("error");
+      return 
+    } 
+    else if (!form.querySelector("#id_description").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите описание";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_price").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите цену";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_time_start").value){
+      form.querySelector("#id_time_start").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите время начала события";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_time_end").value){
+      form.querySelector("#id_time_start").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите время окончания события";
+      response.classList.add("error");
+      return
+    }
+    else {
+      _this.disabled = true;
+    }
+    
+	form_data.append("place_id", _this.getAttribute("place_id"));
+    object = {};
+    form_data.forEach((value, key) => object[key] = value);
+    json = JSON.stringify(object);
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+    link.open( 'POST', "/create/upload_files/?types=create_event", true );
+    link.setRequestHeader('Content-Type', 'application/json');
+  
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+        location.reload();
+    }
+    else {
+        _this.disabled = false;
+        response.style.display = "block";
+        response.classList.add("error");
+    }};
+    link.send(json);
+});
+
+on('body', 'click', '#create_module_type', function() {
+    _this = this;
+    form = _this.parentElement.parentElement;
+    response = form.querySelector(".api_response");
+
+	form_data = new FormData(form);
+  
+    if (!form.querySelector("#id_title").value){
+      form.querySelector("#id_title").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Название";
+      response.classList.add("error");
+      return 
+    } 
+    else if (!form.querySelector("#id_description").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите описание";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_price").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите цену";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_types").value){
+      form.querySelector("#id_types").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Выберите тип";
+      response.classList.add("error")
+      return
+    }
+    else {
+      _this.disabled = true;
+    }
+    
+	form_data.append("place_id", _this.getAttribute("place_id"));
+    object = {};
+    form_data.forEach((value, key) => object[key] = value);
+    json = JSON.stringify(object);
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+    link.open( 'POST', "/create/upload_files/?types=create_module_type", true );
+    link.setRequestHeader('Content-Type', 'application/json');
+  
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+        location.reload();
+    }
+    else {
+        _this.disabled = false;
+        response.style.display = "block";
+        response.classList.add("error");
+    }};
+    link.send(json);
+});
+
+
+on('body', 'click', '#edit_event', function() {
+    _this = this;
+    form = _this.parentElement.parentElement;
+    response = form.querySelector(".api_response");
+
+	form_data = new FormData(form);
+  
+    if (!form.querySelector("#id_title").value){
+      form.querySelector("#id_title").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Название";
+      response.classList.add("error");
+      return 
+    } 
+    else if (!form.querySelector("#id_description").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите описание";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_price").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите цену";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_time_start").value){
+      form.querySelector("#id_time_start").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите время начала события";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_time_end").value){
+      form.querySelector("#id_time_start").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите время окончания события";
+      response.classList.add("error");
+      return
+    }
+    else {
+      _this.disabled = true;
+    }
+    
+	form_data.append("place_id", _this.getAttribute("place_id"));
+    object = {};
+    form_data.forEach((value, key) => object[key] = value);
+    json = JSON.stringify(object);
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+    link.open( 'POST', "/create/upload_files/?types=edit_event&id=" + _this.getAttribute("object_id"), true );
+    link.setRequestHeader('Content-Type', 'application/json');
+  
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+        location.reload();
+    }
+    else {
+        _this.disabled = false;
+        response.style.display = "block";
+        response.classList.add("error");
+    }};
+    link.send(json);
+});
+
+
+on('body', 'click', '#edit_module_type', function() {
+    _this = this;
+    form = _this.parentElement.parentElement;
+    response = form.querySelector(".api_response");
+
+	form_data = new FormData(form);
+  
+    if (!form.querySelector("#id_title").value){
+      form.querySelector("#id_title").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите Название";
+      response.classList.add("error");
+      return 
+    } 
+    else if (!form.querySelector("#id_description").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите описание";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_price").value){
+      form.querySelector("#id_description").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Введите цену";
+      response.classList.add("error")
+      return
+    }
+    else if (!form.querySelector("#id_types").value){
+      form.querySelector("#id_types").style.border = "1px #FF0000 solid";
+      response.innerHTML = "Выберите тип";
+      response.classList.add("error")
+      return
+    }
+    else {
+      _this.disabled = true;
+    }
+    
+	form_data.append("place_id", _this.getAttribute("place_id"));
+    object = {};
+    form_data.forEach((value, key) => object[key] = value);
+    json = JSON.stringify(object);
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    
+    link.open( 'POST', "/create/upload_files/?types=edit_module_type&id=" + _this.getAttribute("object_id"), true );
+    link.setRequestHeader('Content-Type', 'application/json');
+  
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+        location.reload();
+    }
+    else {
+        _this.disabled = false;
+        response.style.display = "block";
+        response.classList.add("error");
+    }};
+    link.send(json);
 });

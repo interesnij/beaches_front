@@ -1,0 +1,61 @@
+<% include!("../partials/h.stpl"); %>
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    Изменение события "<%= object.title %>"
+                </div>
+            </div> 
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Название</label>
+                                <input type="text" value="<%= object.title %>" id="id_title" name="title" class="form-control" placeholder="Название события" aria-label="Title">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Описание</label>
+                                <input type="text" value="<%= object.description %>" id="id_description" name="description" class="form-control" placeholder="Описание события" aria-label="Title">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Цена</label>
+                                <input type="number" id="id_price" value="<%= object.price %>" name="price" class="form-control" placeholder="Стоимость события" aria-label="Сord">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Начало</label>
+                                <input type="time" value="<%= object.time_start %>" id="id_time_start" name="time_start" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Окончание</label>
+                                <input type="time" value="<%= object.time_end %>" id="id_time_end" name="time_end" />
+                            </div>
+                            <div class="mb-3"> 
+                                <label class="form-label">Миниатюра</label>
+                                <% if object.image.is_some() { %>
+                                    <img style="height:50px" src="<%= object.image.as_deref().unwrap() %>" />
+                                <% } %>
+                                <input name="image" id="id_image" class="input-md form-control" type="file" />
+                            </div> 
+
+                            <p class="api_response error"></p>
+                            <div class="col-md-12">
+                                <button type="button" id="edit_event" object_id="<%= object.id %>" place_id="<%= place_id %>" class="btn btn-primary">Сохранить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>События</h4>
+
+                        <% for object in events.iter() { %>
+                            <p><%= object.title %> (<a href="/event/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_event" style="cursor: pointer">удалить</span>)</p>
+                        <% } %>
+                    </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<% include!("../partials/f.stpl"); %>

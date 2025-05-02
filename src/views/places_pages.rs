@@ -64,6 +64,7 @@ pub struct ModuleType {
     pub description: String,
     pub types:       String,
     pub image:       Option<String>,
+    pub price:       i32,
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Event {
@@ -114,6 +115,7 @@ pub struct ModuleJson {
     pub font_size:  String,
     pub back_color: String,
     pub image:      Option<String>,
+    pub event_id:   Option<String>,
 } 
 
 #[derive(Deserialize, Debug, Serialize)]
@@ -483,15 +485,18 @@ pub async fn create_event_page(session: Session, id: web::Path<String>) -> actix
             else { 
                 events = Vec::new();
             }
+
             #[derive(TemplateOnce)]
-            #[template(path = "admin/create_module_type.stpl")]
+            #[template(path = "admin/create_event.stpl")]
             struct Template {
                 request_user: AuthResp2,
                 events:       Vec<Event>,
+                place_id:     Strind,
             }
             let body = Template {
                 request_user: _request_user,
                 events:       events,
+                place:        id,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -524,10 +529,12 @@ pub async fn create_module_type_page(session: Session, id: web::Path<String>) ->
             struct Template {
                 request_user: AuthResp2,
                 events:       Vec<ModuleType>,
+                place_id:     String,
             }
             let body = Template {
                 request_user: _request_user,
                 events:       events,
+                place_id:     id,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -582,11 +589,13 @@ pub async fn edit_module_type_page(session: Session, param: web::Path<(String,St
                 request_user: AuthResp2,
                 module_types: Vec<ModuleType>,
                 object:       ModuleType,
+                place_id:     String,
             }
             let body = Template {
                 request_user: _request_user,
                 module_types: module_types,
                 object:       object,
+                place_id:     id,
             }
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
@@ -623,7 +632,7 @@ pub async fn edit_event_page(session: Session, param: web::Path<(String,String)>
             let resp2 = crate::utils::request_get::<Event>(url2, "".to_string(), "application/json".to_string()).await;
             if resp2.is_ok() {  
                 object = resp2.expect("E.");
-            } 
+            }
             else { 
                 object = Event {
                     id:          "".to_string(),

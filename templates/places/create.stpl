@@ -15,14 +15,14 @@
                         <input type="text" id="id_title" name="title" class="form-control" placeholder="Название объекта" aria-label="Title">
                     </div>
                     <select id="id_type_select" name="type_id" class="form-select mb-3" aria-label="Select">
-                        <option selected="">Выберите тип объекта</option>
+                        <option value="0" selected="">Выберите тип объекта</option>
                         <option value="1">Пляжное место</option>
                         <option value="2">Парковка</option>
                         <option value="3">Мероприятие / экскурсия</option>
                         <option value="4">Кафе / ресторан</option>
                         <option value="5">Коворкинг</option>
                         <option value="6">Зона отдыха</option>
-                    </select>
+                    </select> 
                     <select id="id_city_select" name="city_id" class="form-select" aria-label="Select">
                         <option selected="">Выберите город объекта</option>
                         <% for object in cities.iter() { %>

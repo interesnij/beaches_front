@@ -44,15 +44,26 @@ pub struct NewUserForm {
 // объекты
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Place {
-    pub id:      String,
-    pub title:   String, 
-    pub types:   i16,
-    pub created: chrono::NaiveDateTime,
-    pub user_id: String,
-    pub city_id: i16,
-    pub type_id: i16,
-    pub image:   Option<String>,
-    pub cord:    Option<String>,
+    pub id:         String,
+    pub title:      String, 
+    pub types:      i16,
+    pub created:    chrono::NaiveDateTime,
+    pub user_id:    String,
+    pub city_id:    i16,
+    pub type_id:    i16,
+    pub image:      Option<String>,
+    pub background: Option<String>,
+    pub cord:       Option<String>,
+}
+impl Place {
+    pub fn get_image(&self) -> String {
+        if self.image.is_some() {
+            return self.image.as_deref().unwrap().to_string();
+        }
+        else {
+            return "/assets/images/my/Терраса_фон.png".to_string();
+        }
+    }
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Places {
@@ -150,6 +161,7 @@ pub struct Module {
     pub font_size:  String,
     pub back_color: String,
     pub image:      Option<String>,
+    pub event_id:   Option<String>,
 }
 
 pub fn get_page(req: &HttpRequest) -> i32 {

@@ -486,17 +486,18 @@ on('body', 'click', '#create_event', function() {
     else {
       _this.disabled = true;
     }
-    
+  time_start = new Date(form.querySelector("#id_time_start").value);
+  time_end = new Date(form.querySelector("#id_time_end").value);
 	form_data.append("place_id", _this.getAttribute("place_id"));
-  time_start = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
-  time_end = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  time_start = time_start.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  time_end = time_end.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 	form_data.append("place_id", _this.getAttribute("place_id"));
   form_data.append("time_start", time_start);
   form_data.append("time_end", time_end);
   form_data.append("title", form.querySelector("#id_title").value);
   form_data.append("description", form.querySelector("#id_description").value);
   form_data.append("price", form.querySelector("#id_price").value);
-  
+
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object); 
@@ -640,12 +641,13 @@ on('body', 'click', '#edit_event', function() {
     else {
       _this.disabled = true;
     }
-  
-  time_start = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
-  time_end = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  time_start = new Date(form.querySelector("#id_time_start").value);
+  time_end = new Date(form.querySelector("#id_time_end").value);
+  time_start2 = time_start.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  time_end2 = time_end.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 	form_data.append("place_id", _this.getAttribute("place_id"));
-  form_data.append("time_start", time_start);
-  form_data.append("time_end", time_end);
+  form_data.append("time_start", time_start2);
+  form_data.append("time_end", time_end2);
   form_data.append("title", form.querySelector("#id_title").value);
   form_data.append("description", form.querySelector("#id_description").value);
   form_data.append("price", form.querySelector("#id_price").value);

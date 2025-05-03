@@ -451,7 +451,7 @@ on('body', 'click', '#create_event', function() {
     form = _this.parentElement.parentElement;
     response = form.querySelector(".api_response");
 
-	form_data = new FormData(form);
+	form_data = new FormData();
   
     if (!form.querySelector("#id_title").value){
       form.querySelector("#id_title").style.border = "1px #FF0000 solid";
@@ -488,6 +488,15 @@ on('body', 'click', '#create_event', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  time_start = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  time_end = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+	form_data.append("place_id", _this.getAttribute("place_id"));
+  form_data.append("time_start", time_start);
+  form_data.append("time_end", time_end);
+  form_data.append("title", form.querySelector("#id_title").value);
+  form_data.append("description", form.querySelector("#id_description").value);
+  form_data.append("price", form.querySelector("#id_price").value);
+  
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object); 
@@ -499,6 +508,7 @@ on('body', 'click', '#create_event', function() {
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
+        console.log("files.length", form.querySelector("#id_image").files.length);
         if (form.querySelector("#id_image").files.length > 0) {
 
           console.log("file exists");
@@ -510,10 +520,15 @@ on('body', 'click', '#create_event', function() {
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
           link2.open('POST', "/create/upload_files/?types=event_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-          if (this.readyState == 4) {
-            console.log("reload");
-            location.reload();
-          }
+          link_.onreadystatechange = function() {
+            console.log("this.readyState", this.readyState);
+            console.log("this.status", this.status);
+            if (this.readyState == 4) {
+                console.log("reload");
+                location.reload();
+            }
+          }; 
+          link_.send(form_data);
         }
         else {
           location.reload();
@@ -589,7 +604,8 @@ on('body', 'click', '#edit_event', function() {
     form = _this.parentElement.parentElement;
     response = form.querySelector(".api_response");
 
-	form_data = new FormData(form);
+	form_data = new FormData();
+
   
     if (!form.querySelector("#id_title").value){
       form.querySelector("#id_title").style.border = "1px #FF0000 solid";
@@ -624,8 +640,16 @@ on('body', 'click', '#edit_event', function() {
     else {
       _this.disabled = true;
     }
-    
+  
+  time_start = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  time_end = form.querySelector("#id_time_start").value.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  form_data.append("time_start", time_start);
+  form_data.append("time_end", time_end);
+  form_data.append("title", form.querySelector("#id_title").value);
+  form_data.append("description", form.querySelector("#id_description").value);
+  form_data.append("price", form.querySelector("#id_price").value);
+
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object);

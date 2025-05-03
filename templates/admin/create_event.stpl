@@ -26,12 +26,12 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Начало</label>
-                                <input type="time" id="id_time_start" name="time_start" />
+                                <input type="datetime" id="id_time_start" name="time_start" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Окончание</label>
-                                <input type="time" id="id_time_end" name="time_end" />
-                            </div>
+                                <input type="datetime" id="id_time_end" name="time_end" />
+                            </div> 
                             <div class="mb-3">
                                 <label class="form-label">Миниатюра</label>
                                 <input name="image" id="id_image" class="input-md form-control" type="file" />

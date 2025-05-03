@@ -988,7 +988,7 @@ pub async fn edit_module_type(session: Session, data: Json<EditModuleType>, id: 
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let res = crate::utils::request_post::<EditModuleType, String> (
-            URL.to_owned() + &"/edit_module_type/".to_string() + &id.to_string() + "/".to_string(),
+            URL.to_owned() + &"/edit_module_type/".to_string() + &id.to_string() + &"/".to_string(),
             &data,  
             _request_user.uuid,
             "application/json".to_string()
@@ -1040,7 +1040,7 @@ pub async fn edit_event(session: Session, data: Json<EditEvent>, id: web::Path<S
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let res = crate::utils::request_post::<EditEvent, String> (
-            URL.to_owned() + &"/edit_event/".to_string() + &id.to_string() + "/".to_string(),
+            URL.to_owned() + &"/edit_event/".to_string() + &id.to_string() + &"/".to_string(),
             &data,  
             _request_user.uuid,
             "application/json".to_string()

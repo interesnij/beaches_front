@@ -958,14 +958,14 @@ pub struct CreateModuleType {
     pub title:       String,
     pub description: String,
     pub types:       String,
-    pub price:       i32,
+    pub price:       String,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct EditModuleType {
     pub title:       String,
     pub description: String,
     pub types:       String,
-    pub price:       i32,
+    pub price:       String,
 }
 pub async fn create_module_type(session: Session, data: Json<CreateModuleType>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
@@ -1020,7 +1020,7 @@ pub struct EditEvent {
     pub time_end:    String,
 }
 pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_web::Result<HttpResponse> {
-    if is_signed_in(&session) {
+    if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");
         let res = crate::utils::request_post::<CreateEvent, String> (
             URL.to_owned() + &"/create_event/".to_string(),

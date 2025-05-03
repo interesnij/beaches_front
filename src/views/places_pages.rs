@@ -34,17 +34,21 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/place/{id}/", web::get().to(place_page)); 
     config.route("/place/{id}/create_map/", web::get().to(place_create_map_page));
     config.route("/place/{id}/create_module_type/", web::get().to(create_module_type_page));
-    config.route("/place/{id}/create_event/", web::get().to(create_event_page));
+    config.route("/place/{id}/create_event/", web::get().to(create_event_page)); 
     config.route("/place/{place_id}/edit_module_type/{obj_id}/", web::get().to(edit_module_type_page));
     config.route("/place/{place_id}/edit_event/{obj_id}/", web::get().to(edit_event_page));
 
     config.route("/create_place/", web::post().to(create_place));
     config.route("/create_region/", web::post().to(create_region));
     config.route("/create_city/", web::post().to(create_city));
+    config.route("/create_module_type/", web::post().to(create_module_type));
+    config.route("/create_event/", web::post().to(create_event));
 
     config.route("/place/{id}/edit/", web::post().to(edit_place));
     config.route("/region/{id}/edit/", web::post().to(edit_region));
     config.route("/city/{id}/edit/", web::post().to(edit_city));
+    config.route("/module_type/{id}/edit/", web::post().to(edit_module_type));
+    config.route("/event/{id}/edit/", web::post().to(edit_event));
 
     config.route("/place/create_modules/", web::post().to(create_modules));
     config.route("/create_order/", web::post().to(create_order));
@@ -947,6 +951,110 @@ pub async fn create_city(session: Session, data: Json<CreateCityJson>) -> actix_
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct CreateModuleType {
+    pub place_id:    String,
+    pub title:       String,
+    pub description: String,
+    pub types:       String,
+    pub price:       i32,
+}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct EditModuleType {
+    pub title:       String,
+    pub description: String,
+    pub types:       String,
+    pub price:       i32,
+}
+pub async fn create_module_type(session: Session, data: Json<CreateModuleType>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<CreateModuleType, String> (
+            URL.to_owned() + &"/create_module_type/".to_string(),
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("403"))
+}
+pub async fn edit_module_type(session: Session, data: Json<EditModuleType>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<EditModuleType, String> (
+            URL.to_owned() + &"/edit_module_type/".to_string() + &id.to_string() + "/".to_string(),
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await; 
+
+        return match res {
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("403"))
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct CreateEvent {
+    pub place_id:    String,
+    pub title:       String,
+    pub description: String,
+    pub price:       i32,
+    pub time_start:  String,
+    pub time_end:    String,
+}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct EditEvent {
+    pub title:       String,
+    pub description: String,
+    pub price:       i32,
+    pub time_start:  String,
+    pub time_end:    String,
+}
+pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<CreateEvent, String> (
+            URL.to_owned() + &"/create_event/".to_string(),
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("403"))
+}
+pub async fn edit_event(session: Session, data: Json<EditEvent>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<EditEvent, String> (
+            URL.to_owned() + &"/edit_event/".to_string() + &id.to_string() + "/".to_string(),
+            &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await; 
+
+        return match res {
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("403"))
+}
+
+
 pub async fn edit_city(session: Session, data: Json<CreateCityJson>, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");

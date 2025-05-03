@@ -488,21 +488,43 @@ on('body', 'click', '#create_event', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object); 
+
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/create/upload_files/?types=create_event", true );
-    link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/create_event/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
-        location.reload();
+        if (form.querySelector("#id_image").files.length > 0) {
+
+          console.log("file exists");
+          uuid = link.responseText;
+          console.log("uuid", uuid);
+
+          form_data = new FormData();
+          form_data.append("image", form.querySelector("#id_image").value);
+          link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+          link2.open('POST', "/create/upload_files/?types=event_avatar&id=" + uuid, true);
+          link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+          if (this.readyState == 4) {
+            console.log("reload");
+            location.reload();
+          }
+        }
+        else {
+          location.reload();
+        }
     }
     else {
         _this.disabled = false;
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(form_data);
+    link.send(json);
 });
 
 on('body', 'click', '#create_module_type', function() {
@@ -540,10 +562,14 @@ on('body', 'click', '#create_module_type', function() {
   
   form_data = new FormData(form);
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
+
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-  link.open( 'POST', "/create/upload_files/?types=create_module_type", true );
-  //link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/create_module_type/", true );
+  link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -554,7 +580,7 @@ on('body', 'click', '#create_module_type', function() {
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(form_data);
+    link.send(json);
 });
 
 
@@ -600,11 +626,14 @@ on('body', 'click', '#edit_event', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
 
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/create/upload_files/?types=edit_event&id=" + _this.getAttribute("object_id"), true );
-    link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    link.open( 'POST', "/event/" + _this.getAttribute("object_id") + "/edit/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -615,7 +644,7 @@ on('body', 'click', '#edit_event', function() {
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(form_data);
+    link.send(json);
 });
 
 
@@ -655,10 +684,14 @@ on('body', 'click', '#edit_module_type', function() {
     }
     
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
+
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/create/upload_files/?types=edit_module_type&id=" + _this.getAttribute("object_id"), true );
-    link.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    link.open( 'POST', "/module_type/" + _this.getAttribute("object_id") + "/edit/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
@@ -669,5 +702,5 @@ on('body', 'click', '#edit_module_type', function() {
         response.style.display = "block";
         response.classList.add("error");
     }};
-    link.send(form_data);
+    link.send(json);
 });

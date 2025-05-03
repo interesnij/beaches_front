@@ -1007,7 +1007,7 @@ pub struct CreateEvent {
     pub place_id:    String,
     pub title:       String,
     pub description: String,
-    pub price:       i32,
+    pub price:       String,
     pub time_start:  String,
     pub time_end:    String,
 }
@@ -1015,7 +1015,7 @@ pub struct CreateEvent {
 pub struct EditEvent {
     pub title:       String,
     pub description: String,
-    pub price:       i32,
+    pub price:       String,
     pub time_start:  String,
     pub time_end:    String,
 }

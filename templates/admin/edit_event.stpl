@@ -26,11 +26,11 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Начало</label>
-                                <input type="time" value="<%= object.time_start %>" id="id_time_start" name="time_start" />
+                                <input type="datetime-local" value="<%= object.time_start %>" id="id_time_start" name="time_start" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Окончание</label>
-                                <input type="time" value="<%= object.time_end %>" id="id_time_end" name="time_end" />
+                                <input type="datetime-local" value="<%= object.time_end %>" id="id_time_end" name="time_end" />
                             </div>
                             <div class="mb-3"> 
                                 <label class="form-label">Миниатюра</label>

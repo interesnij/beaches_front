@@ -47,8 +47,8 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/place/{id}/edit/", web::post().to(edit_place));
     config.route("/region/{id}/edit/", web::post().to(edit_region));
     config.route("/city/{id}/edit/", web::post().to(edit_city));
-    config.route("/module_type/{id}/edit/", web::post().to(edit_module_type));
-    config.route("/event/{id}/edit/", web::post().to(edit_event));
+    config.route("/edit_module_type/{id}/", web::post().to(edit_module_type));
+    config.route("/edit_event/{id}/", web::post().to(edit_event));
 
     config.route("/place/create_modules/", web::post().to(create_modules));
     config.route("/create_order/", web::post().to(create_order));
@@ -1027,7 +1027,7 @@ pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_we
             &data,  
             _request_user.uuid,
             "application/json".to_string()
-        ).await;
+        ).await; 
 
         return match res {
             Ok(_str) => {

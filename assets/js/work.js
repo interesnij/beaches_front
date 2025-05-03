@@ -504,10 +504,10 @@ on('body', 'click', '#create_event', function() {
 
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/create_event/", true );
+    link.open( 'POST', "/create_event/", true );
     link.setRequestHeader('Content-Type', 'application/json');
   
-    link.onreadystatechange = function () {
+    link.onreadystatechange = function () {  
     if ( link.readyState == 4 && link.status == 200 ) {
         console.log("files.length", form.querySelector("#id_image").files.length);
         if (form.querySelector("#id_image").files.length > 0) {
@@ -588,7 +588,7 @@ on('body', 'click', '#create_module_type', function() {
 
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-  link.open( 'POST', "/place/" + _this.getAttribute("place_id") +"/create_module_type/", true );
+  link.open( 'POST', "/create_module_type/", true );
   link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {
@@ -662,7 +662,7 @@ on('body', 'click', '#edit_event', function() {
 
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/event/" + _this.getAttribute("object_id") + "/edit/", true );
+    link.open( 'POST', "/edit_event/" + _this.getAttribute("object_id") + "/", true );
     link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {
@@ -720,7 +720,7 @@ on('body', 'click', '#edit_module_type', function() {
 
     link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     
-    link.open( 'POST', "/module_type/" + _this.getAttribute("object_id") + "/edit/", true );
+    link.open( 'POST', "/edit_module_type/" + _this.getAttribute("object_id") + "/", true );
     link.setRequestHeader('Content-Type', 'application/json');
   
     link.onreadystatechange = function () {

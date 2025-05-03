@@ -496,7 +496,7 @@ on('body', 'click', '#create_event', function() {
   form_data.append("time_end", time_end);
   form_data.append("title", form.querySelector("#id_title").value);
   form_data.append("description", form.querySelector("#id_description").value);
-  form_data.append("price", form.querySelector("#id_price").value);
+  form_data.append("price", form.querySelector("#id_price").value*1);
 
   object = {};
   form_data.forEach((value, key) => object[key] = value);
@@ -521,7 +521,7 @@ on('body', 'click', '#create_event', function() {
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
           link2.open('POST', "/create/upload_files/?types=event_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-          link_.onreadystatechange = function() {
+          link2.onreadystatechange = function() {
             console.log("this.readyState", this.readyState);
             console.log("this.status", this.status);
             if (this.readyState == 4) {
@@ -529,7 +529,7 @@ on('body', 'click', '#create_event', function() {
                 location.reload();
             }
           }; 
-          link_.send(form_data);
+          link2.send(form_data);
         }
         else {
           location.reload();
@@ -578,6 +578,10 @@ on('body', 'click', '#create_module_type', function() {
   
   form_data = new FormData(form);
 	form_data.append("place_id", _this.getAttribute("place_id"));
+  form_data.append("title", form.querySelector("#id_title").value);
+  form_data.append("description", form.querySelector("#id_description").value);
+  form_data.append("price", form.querySelector("#id_price").value*1);
+  form_data.append("types", form.querySelector("#id_types").value);
   object = {};
   form_data.forEach((value, key) => object[key] = value);
   json = JSON.stringify(object);
@@ -650,7 +654,7 @@ on('body', 'click', '#edit_event', function() {
   form_data.append("time_end", time_end2);
   form_data.append("title", form.querySelector("#id_title").value);
   form_data.append("description", form.querySelector("#id_description").value);
-  form_data.append("price", form.querySelector("#id_price").value);
+  form_data.append("price", form.querySelector("#id_price").value*1);
 
   object = {};
   form_data.forEach((value, key) => object[key] = value);

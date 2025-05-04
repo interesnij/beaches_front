@@ -44,7 +44,7 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/create_module_type/", web::post().to(create_module_type));
     config.route("/create_event/", web::post().to(create_event));
     config.route("/create_partner/{id}/", web::post().to(create_partner));
-    config.route("/create_suggest/", web::post().to(create_suggest));
+    config.route("/suggest_partner/", web::post().to(suggest_partner));
 
     config.route("/place/{id}/edit/", web::post().to(edit_place));
     config.route("/region/{id}/edit/", web::post().to(edit_region));
@@ -959,12 +959,12 @@ pub async fn create_city(session: Session, data: Json<CreateCityJson>) -> actix_
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CreatePartnerJson {
     pub title: String,
     pub inn:   String,
 }
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct PartnerJson {
     pub title:   String,
     pub inn:     String,

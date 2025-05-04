@@ -223,7 +223,7 @@
                 "treeDepth": 3
             }
         },
-        "typeModules":
+        "typeModules": [
             {
                 "guid": "78A4F7A2-E064-437B-B213-7BEC3F518338",
                 "type": "Place",

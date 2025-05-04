@@ -977,7 +977,7 @@ pub async fn suggest_partner(session: Session, data: Json<CreatePartnerJson>) ->
             title: data.title.clone(), 
             inn: data.inn.clone(),
             user_id: _request_user.id,
-        }
+        };
         let res = crate::utils::request_post::<PartnerJson, ()> (
             URL.to_owned() + &"/suggest_partner/".to_string(),
             &_req,  
@@ -997,7 +997,7 @@ pub async fn create_partner(session: Session, id: web::Path<String>) -> actix_we
         let _request_user = get_current_user(&session).expect("E.");
         let res = crate::utils::request_post::<PartnerJson, ()> (
             URL.to_owned() + &"/create_partner/".to_string() + &id.clone() + &"/".clone(),
-            &_req,  
+            &{},  
             _request_user.uuid,
             "application/json".to_string()
         ).await;

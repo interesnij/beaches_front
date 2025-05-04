@@ -1042,7 +1042,7 @@ pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_we
 
         return match res {
             Ok(_str) => {
-                println!("_str: {}", _str);
+                println!("_str: {:?}", _str);
                 Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str.text))
             },
             Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),

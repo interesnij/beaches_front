@@ -50,7 +50,7 @@
                         <h4>События</h4>
 
                         <% for object in events.iter() { %>
-                            <p><%= object.title %> (<a href="/event/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_event" style="cursor: pointer">удалить</span>)</p>
+                            <p><%= object.title %> (<a href="/place/<%= place_id %>/event/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_event" style="cursor: pointer">удалить</span>)</p>
                         <% } %>
                     </div>
             </div> 

@@ -31,7 +31,7 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/city/{id}/edit/", web::get().to(edit_city_page));
 
     config.route("/place/{id}/managers/", web::get().to(managers_page));
-    config.route("/place/{id}/", web::get().to(place_page)); 
+    config.route("/place/{id}/", web::get().to(place_page));  
     config.route("/place/{id}/create_map/", web::get().to(place_create_map_page));
     config.route("/place/{id}/create_module_type/", web::get().to(create_module_type_page));
     config.route("/place/{id}/create_event/", web::get().to(create_event_page)); 
@@ -562,7 +562,6 @@ pub async fn edit_module_type_page(session: Session, param: web::Path<(String,St
         let place_id: String = param.0.clone();
         let obj_id: String = param.1.clone();
 
-        if _request_user.is_superuser() {
             let module_types: Vec<ModuleType>;
             let url = URL.to_string() + &"/place/".to_string() + &place_id.to_string() + &"/module_types/".to_string();
             let resp = crate::utils::request_get::<Vec<ModuleType>>(url, "".to_string(), "application/json".to_string()).await;
@@ -608,10 +607,6 @@ pub async fn edit_module_type_page(session: Session, param: web::Path<(String,St
             .render_once()
             .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
             return Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body));
-        }
-        else {
-            return crate::views::auth_page(session.clone()).await;
-        }
     }
     else {
         crate::views::auth_page(session.clone()).await

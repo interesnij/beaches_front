@@ -148,7 +148,7 @@ pub async fn upload_files (
             Ok(resp_builder.streaming(resp.into_stream()))
         }, 
         Err(err) => {
-            println!("err");
+            println!("err proxy!");
             Ok(HttpResponse::Ok().body("ой-ёй"))
         },
     }

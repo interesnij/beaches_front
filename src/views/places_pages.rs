@@ -1110,7 +1110,7 @@ pub async fn delete_city(session: Session, id: web::Path<i32>) -> actix_web::Res
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
-pub async fn delete_module_type(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+pub async fn delete_module_type(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let data = {};
@@ -1129,7 +1129,7 @@ pub async fn delete_module_type(session: Session, id: web::Path<i32>) -> actix_w
     }
     Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
 }
-pub async fn delete_event(session: Session, id: web::Path<i32>) -> actix_web::Result<HttpResponse> {
+pub async fn delete_event(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         let data = {};

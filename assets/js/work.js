@@ -524,7 +524,7 @@ on('body', 'click', '#create_event', function() {
           console.log("uuid", uuid);
 
           form_data = new FormData();
-          form_data.append("image", form.querySelector("#id_image").value);
+          form_data.append("image", form.querySelector("#id_image").files[0]);
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
           link2.open('POST', "/create/upload_files/?types=event_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -608,7 +608,8 @@ on('body', 'click', '#create_module_type', function() {
           console.log("uuid", uuid);
 
           form_data = new FormData();
-          form_data.append("image", form.querySelector("#id_image").value);
+
+          form_data.append("image", form.querySelector("#id_image").files[0]);
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
           link2.open('POST', "/create/upload_files/?types=module_type_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -706,7 +707,7 @@ on('body', 'click', '#edit_event', function() {
           console.log("uuid", uuid);
 
           form_data = new FormData();
-          form_data.append("image", form.querySelector("#id_image").value);
+          form_data.append("image", form.querySelector("#id_image").files[0]);
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
           link2.open('POST', "/create/upload_files/?types=event_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -788,11 +789,11 @@ on('body', 'click', '#edit_module_type', function() {
           console.log("uuid", uuid);
 
           form_data = new FormData();
-          form_data.append("image", form.querySelector("#id_image").value);
+          form_data.append("image", form.querySelector("#id_image").files[0]);
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
           link2.open('POST', "/create/upload_files/?types=module_type_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-          link2.onreadystatechange = function() {
+          link2.onreadystatechange = function() { 
             console.log("this.readyState", this.readyState);
             console.log("this.status", this.status);
             if (this.readyState == 4) {

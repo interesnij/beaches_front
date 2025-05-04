@@ -427,22 +427,26 @@ on('body', 'click', '.delete_region', function() {
     link.send( null );
 });
 on('body', 'click', '.delete_module_type', function() {
+  form_data = new FormData();
+  form_data.append("test", "ok");
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/delete_module_type/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
       this.parentElement.remove();
     }};
-    link.send( null );
+    link.send( form_data );
 });
 on('body', 'click', '.delete_event', function() {
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+  form_data = new FormData();
+  form_data.append("test", "ok");
     link.open( 'POST', "/delete_event/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () { 
     if ( link.readyState == 4 && link.status == 200 ) {
       this.parentElement.remove();
     }};
-    link.send( null );
+    link.send( form_data );
 });
 
 

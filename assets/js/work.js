@@ -408,43 +408,46 @@ on('body', 'click', '#edit_city', function() {
 });
 
 on('body', 'click', '.delete_city', function() {
+  _this = this;
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/delete_city/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
-      this.remove();
+      _this.parentElement.remove();
     }};
     link.send( null );
-    this.parentElement.remove();
 });
 on('body', 'click', '.delete_region', function() {
+  _this = this;
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/delete_region/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
-      this.parentElement.remove();
+      _this.parentElement.remove();
     }};
     link.send( null );
 });
 on('body', 'click', '.delete_module_type', function() {
+  _this = this;
   form_data = new FormData();
   form_data.append("test", "ok");
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
     link.open( 'POST', "/delete_module_type/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () {
     if ( link.readyState == 4 && link.status == 200 ) {
-      this.parentElement.remove();
+      _this.parentElement.remove();
     }};
     link.send( form_data );
 });
 on('body', 'click', '.delete_event', function() {
+  _this = this;
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
   form_data = new FormData();
   form_data.append("test", "ok");
     link.open( 'POST', "/delete_event/" + this.getAttribute("data-pk") + "/", true );
     link.onreadystatechange = function () { 
     if ( link.readyState == 4 && link.status == 200 ) {
-      this.parentElement.remove();
+      _this.parentElement.remove();
     }};
     link.send( form_data );
 });
@@ -601,7 +604,7 @@ on('body', 'click', '#create_module_type', function() {
         if (form.querySelector("#id_image").files.length > 0) {
 
           console.log("file exists");
-          uuid = link.responseText;
+          uuid = link.responseText; 
           console.log("uuid", uuid);
 
           form_data = new FormData();

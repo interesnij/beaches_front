@@ -610,7 +610,7 @@ on('body', 'click', '#create_module_type', function() {
           form_data = new FormData();
           form_data.append("image", form.querySelector("#id_image").value);
           link2 = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
-          link2.open('POST', "/create/upload_files/?types=event_avatar&id=" + uuid, true);
+          link2.open('POST', "/create/upload_files/?types=module_type_avatar&id=" + uuid, true);
           link2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
           link2.onreadystatechange = function() {
             console.log("this.readyState", this.readyState);

@@ -137,7 +137,7 @@
     import { SchemeBookingSettings } from '/assets/js/scheme-booking-settings.js';
 
     var modules_22 = [];
-    var orders_22 = [];
+    var orders_22 = []; 
     var types_22 = []; 
 
     types_22.push ({

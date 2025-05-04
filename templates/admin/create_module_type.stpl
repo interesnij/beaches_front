@@ -48,7 +48,7 @@
                             <p>
                                 <%= object.title %>
                                 <img height="50px" src="<%= object.get_image() %>" />
-                                (<a href="/place/<%= place_id %>/module_type/<%= object.id %>/edit/">изменить</a>, 
+                                (<a href="/place/<%= place_id %>/edit_module_type/<%= object.id %>/">изменить</a>, 
                                 <span data-pk="<%= object.id %>" class="delete_module_type" style="cursor: pointer">удалить</span>)
                             </p>
                         <% } %>

@@ -48,7 +48,7 @@
                         <h4>Типы модулей</h4>
 
                         <% for object in module_types.iter() { %>
-                            <p><%= object.title %> (<a href="/place/<%= place_id %>/module_type/<%= object.id %>/edit/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_module_type" style="cursor: pointer">удалить</span>)</p>
+                            <p><%= object.title %> (<a href="/place/<%= place_id %>/edit_module_type/<%= object.id %>/">изменить</a>, <span data-pk="<%= object.id %>" class="delete_module_type" style="cursor: pointer">удалить</span>)</p>
                         <% } %>
                     </div>
             </div> 

@@ -23,6 +23,7 @@ pub fn pages_urls(config: &mut web::ServiceConfig) {
     config.route("/terms-and-conditions/", web::get().to(terms_page));
     config.route("/privacy-policy/", web::get().to(policy_page));
     config.route("/business/", web::get().to(business_page));
+    config.route("/create_suggest_item/", web::get().to(suggest_page));
 }
 
 pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
@@ -48,6 +49,26 @@ pub async fn main_page(session: Session) -> actix_web::Result<HttpResponse> {
         .render_once()
         .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
         Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+}
+
+pub async fn suggest_page(session: Session) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        #[derive(TemplateOnce)]
+        #[template(path = "suggest.stpl")]
+        struct Template {
+            request_user: AuthResp2,
+        }
+        let body = Template {
+            request_user: _request_user,
+        }
+        .render_once()
+        .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+        Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+    }
+    else {
+        crate::views::auth_page(session.clone()).await
     }
 }
 

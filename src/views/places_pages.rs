@@ -43,6 +43,8 @@ pub fn place_urls(config: &mut web::ServiceConfig) {
     config.route("/create_city/", web::post().to(create_city));
     config.route("/create_module_type/", web::post().to(create_module_type));
     config.route("/create_event/", web::post().to(create_event));
+    config.route("/create_partner/{id}/", web::post().to(create_partner));
+    config.route("/create_suggest/", web::post().to(create_suggest));
 
     config.route("/place/{id}/edit/", web::post().to(edit_place));
     config.route("/region/{id}/edit/", web::post().to(edit_region));
@@ -945,6 +947,57 @@ pub async fn create_city(session: Session, data: Json<CreateCityJson>) -> actix_
         let res = crate::utils::request_post::<CreateCityJson, ()> (
             URL.to_owned() + &"/create_city/".to_string(),
             &data,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct CreatePartnerJson {
+    pub title: String,
+    pub inn:   String,
+}
+#[derive(Deserialize, Serialize)]
+pub struct PartnerJson {
+    pub title:   String,
+    pub inn:     String,
+    pub user_id: String,
+}
+pub async fn suggest_partner(session: Session, data: Json<CreatePartnerJson>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let _req = PartnerJson {
+            title: data.title.clone(), 
+            inn: data.inn.clone(),
+            user_id: _request_user.id,
+        }
+        let res = crate::utils::request_post::<PartnerJson, ()> (
+            URL.to_owned() + &"/suggest_partner/".to_string(),
+            &_req,  
+            _request_user.uuid,
+            "application/json".to_string()
+        ).await;
+
+        return match res {
+            Ok(user) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok")),
+            Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
+        }
+    }
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("ok"))
+}
+pub async fn create_partner(session: Session, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
+    if is_signed_in(&session) {
+        let _request_user = get_current_user(&session).expect("E.");
+        let res = crate::utils::request_post::<PartnerJson, ()> (
+            URL.to_owned() + &"/create_partner/".to_string() + &id.clone() + &"/".clone(),
+            &_req,  
             _request_user.uuid,
             "application/json".to_string()
         ).await;

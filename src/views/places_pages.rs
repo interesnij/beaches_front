@@ -70,6 +70,16 @@ pub struct ModuleType {
     pub image:       Option<String>,
     pub price:       i32,
 }
+impl ModuleType {
+    pub fn get_image(&self) -> String {
+        if self.image.is_some() {
+            return self.image.as_deref().unwrap().to_string();
+        }
+        else {
+            return "".to_string();
+        }
+    }
+}
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Event {
     pub id:          String,

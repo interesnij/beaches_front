@@ -203,10 +203,10 @@
         "guid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3"
     },
     "workspace": {
-        "placeGuid": "<%= object.id %>",
+        "placeGuid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3",
         "width": 1600,
         "height": 900,
-        "backgroundGuid": "<%= object.get_background() %>"
+        "backgroundGuid": "<%= object.id %>"
     },
     "settings": {
         "placeGuid": "C85B7E02-8B1C-4C2F-B4FE-7CD52314DCE3",
@@ -230,7 +230,7 @@
     },
     "typeModules": types_22,
     "modules": modules_22,
-        "bookings": []
+    "bookings": []
 }
     console.log("incomming modules", data["modules"]);
     var canvas = document.getElementById('scheme-canvas');

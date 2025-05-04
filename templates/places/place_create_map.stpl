@@ -156,25 +156,6 @@
 
     var modules_22 = [];
     var types_22 = [];
-    <% for (i, object) in modules.iter().enumerate() { %>
-        modules_22.push ({ 
-                    "guid": "<%= object.id %>",
-                    "name": "<%= object.title %>",
-                    "objectName": "Module",
-                    "typeModulesGuid": "<%= object.type_id %>",
-                    "width": <%= object._width %>,
-                    "height": <%= object._height %>,
-                    "left": <%= object._left %>,
-                    "top": <%= object._top %>,
-                    "label":  "<%= i %>",
-                    "price": "<%= object.price %>",
-                    "angle": <%= object._angle %>,
-                    "fontColor": "<%= object.font_color %>",
-                    "fontSize": "<%= object.font_size %>",
-                    "backColor": "<%= object.back_color %>"
-                });
-    <% } %>
-
     types_22.push ({
         "guid": "<%= object.id %>",
         "type": "Place",
@@ -192,6 +173,24 @@
             "price": <%= i.price %>,
             "imageUrl": "<%= i.get_image() %>",
         });
+    <% } %>
+    <% for (i, object) in modules.iter().enumerate() { %>
+        modules_22.push ({
+                    "guid": "<%= object.id %>",
+                    "name": "<%= object.title %>",
+                    "objectName": "Module",
+                    "typeModulesGuid": "<%= object.type_id %>",
+                    "width": <%= object._width %>,
+                    "height": <%= object._height %>,
+                    "left": <%= object._left %>,
+                    "top": <%= object._top %>,
+                    "label":  "<%= i %>",
+                    "price": "<%= object.price %>",
+                    "angle": <%= object._angle %>,
+                    "fontColor": "<%= object.font_color %>",
+                    "fontSize": "<%= object.font_size %>",
+                    "backColor": "<%= object.back_color %>"
+                });
     <% } %>
 
     //window.addEventListener('load', (event) => {

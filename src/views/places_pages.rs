@@ -76,7 +76,7 @@ impl ModuleType {
             return self.image.as_deref().unwrap().to_string();
         }
         else {
-            return "".to_string();
+            return "/assets/images/my/Терраса_фон.jpg".to_string();
         }
     }
 }

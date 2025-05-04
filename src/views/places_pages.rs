@@ -972,10 +972,16 @@ pub struct EditModuleType {
     pub types:       String,
     pub price:       String,
 }
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct Info {
+    pub text: String,
+}
+
 pub async fn create_module_type(session: Session, data: Json<CreateModuleType>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let res = crate::utils::request_post::<CreateModuleType, String> (
+        let res = crate::utils::request_post::<CreateModuleType, Info> (
             URL.to_owned() + &"/create_module_type/".to_string(),
             &data,  
             _request_user.uuid,
@@ -983,7 +989,7 @@ pub async fn create_module_type(session: Session, data: Json<CreateModuleType>) 
         ).await;
 
         return match res {
-            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str.text)),
             Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
         }
     }
@@ -992,7 +998,7 @@ pub async fn create_module_type(session: Session, data: Json<CreateModuleType>) 
 pub async fn edit_module_type(session: Session, data: Json<EditModuleType>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let res = crate::utils::request_post::<EditModuleType, String> (
+        let res = crate::utils::request_post::<EditModuleType, Info> (
             URL.to_owned() + &"/edit_module_type/".to_string() + &id.to_string() + &"/".to_string(),
             &data,  
             _request_user.uuid,
@@ -1000,7 +1006,7 @@ pub async fn edit_module_type(session: Session, data: Json<EditModuleType>, id: 
         ).await; 
 
         return match res {
-            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str.text)),
             Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
         }
     }
@@ -1027,7 +1033,7 @@ pub struct EditEvent {
 pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) { 
         let _request_user = get_current_user(&session).expect("E.");
-        let res = crate::utils::request_post::<CreateEvent, String> (
+        let res = crate::utils::request_post::<CreateEvent, Info> (
             URL.to_owned() + &"/create_event/".to_string(),
             &data,  
             _request_user.uuid,
@@ -1037,7 +1043,7 @@ pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_we
         return match res {
             Ok(_str) => {
                 println!("_str: {}", _str);
-                Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str))
+                Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str.text))
             },
             Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
         }
@@ -1047,7 +1053,7 @@ pub async fn create_event(session: Session, data: Json<CreateEvent>) -> actix_we
 pub async fn edit_event(session: Session, data: Json<EditEvent>, id: web::Path<String>) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
-        let res = crate::utils::request_post::<EditEvent, String> (
+        let res = crate::utils::request_post::<EditEvent, Info> (
             URL.to_owned() + &"/edit_event/".to_string() + &id.to_string() + &"/".to_string(),
             &data,  
             _request_user.uuid,
@@ -1055,7 +1061,7 @@ pub async fn edit_event(session: Session, data: Json<EditEvent>, id: web::Path<S
         ).await; 
 
         return match res {
-            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str)),
+            Ok(_str) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(_str.text)),
             Err(_) => Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body("err")),
         }
     }

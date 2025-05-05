@@ -64,6 +64,14 @@ impl Place {
             return "/assets/images/my/Терраса_фон.png".to_string();
         }
     }
+    pub fn get_image(&self) -> String {
+        if self.image.is_some() {
+            return self.image.as_deref().unwrap().to_string();
+        }
+        else {
+            return "/assets/images/пляж.jpg".to_string();
+        }
+    }
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Places {

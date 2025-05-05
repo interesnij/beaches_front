@@ -72,7 +72,7 @@ function init() {
             <% if i.cord.is_some() { %>
                 //addToMap("<%= i.cord.as_deref().unwrap() %>");
                 var myPlacemark = new ymaps.Placemark([<%= i.cord.as_deref().unwrap() %>], {
-                    //balloonContentHeader: "<%= i.title %>",
+                    balloonContentHeader: "<%= i.title %>",
                     balloonContentBody: "<a href='/place/<%= i.id %>/' target='_blank'><%= i.title %></a>",
                     iconLayout: 'default#image',
                     iconImageHref: "<%= i.get_image() %>",

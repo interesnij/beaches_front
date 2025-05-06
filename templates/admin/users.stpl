@@ -27,15 +27,16 @@
                             <div class="">
                                 <div class="fs-15 fw-semibold">
                                     <div class="fs-15 fw-semibold"><%= object.first_name %> <%= object.last_name %></div>
-                                    <p class="mb-0 text-muted op-7 fs-12">Статус: <%= object.get_status() %></p>
-                                    <p class="mb-0 text-muted op-7 fs-12">
+                                    <p class="mb-0 op-7 fs-12">Статус: <%= object.get_status() %></p>
+                                    <hr />
+                                    <p class="mb-0 op-7 fs-12">
                                         <span class="remove_partner" style="cursor: pointer">Удалить</span>
                                     </p> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <% } %>
             </div>
+            <% } %>
     </div>
 </div>

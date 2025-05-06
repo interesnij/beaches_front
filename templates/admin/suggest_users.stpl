@@ -23,17 +23,18 @@
                             <div class="">
                                 <div class="fs-15 fw-semibold">
                                     <div class="fs-15 fw-semibold"><%= object.title %></div>
-                                    <p class="mb-0 text-muted op-7 fs-12">ИНН: <%= object.inn %></p>
-                                    <p class="mb-0 text-muted op-7 fs-12">Владелец: <%= user.first_name %> <%= user.last_name %></p>
-                                    <p class="mb-0 text-muted op-7 fs-12">
+                                    <p class="mb-0 op-7 fs-12">ИНН: <%= object.inn %></p>
+                                    <p class="mb-0 op-7 fs-12">Владелец: <%= user.first_name %> <%= user.last_name %></p>
+                                    <hr />
+                                    <p class="mb-0 op-7 fs-12" data-id="<%= object.id %>">
                                         <span class="create_partner" style="cursor: pointer">Одобрить</span>
-                                        <span class="remove_partner" style="cursor: pointer">Удалить</span>
-                                    </p>
+                                        <!--<span class="remove_partner" style="cursor: pointer">Удалить</span>-->
+                                    </p> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <% } %>
-            </div>
+            </div> 
+            <% } %>
     </div>
 </div>

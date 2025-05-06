@@ -858,12 +858,14 @@ on('body', 'click', '#create_suggest_item', function() {
 
 on('body', 'click', '.create_partner', function() {
   _this = this;
+  console.log("start create partner");
   link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
   form_data = new FormData();
   form_data.append("test", "ok");
     link.open( 'POST', "/create_partner/" + _this.parentElement.getAttribute("data-id") + "/", true );
     link.onreadystatechange = function () { 
     if ( link.readyState == 4 && link.status == 200 ) {
+      console.log("end create partner");
       _this.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
     }};
     link.send( form_data );

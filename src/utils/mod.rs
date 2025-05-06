@@ -100,7 +100,7 @@ pub struct UserJson {
     pub image:      Option<String>,
 }
 
-impl {
+impl UserJson {
     pub fn get_status(&self) -> String {
         return match self.perm {
             1 => "Пользователь".to_string(),

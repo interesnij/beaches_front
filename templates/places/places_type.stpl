@@ -70,7 +70,6 @@ function init() {
 
         <% for i in object_list.iter() { %>
             <% if i.cord.is_some() { %>
-                //addToMap("<%= i.cord.as_deref().unwrap() %>");
                 var myPlacemark = new ymaps.Placemark([<%= i.cord.as_deref().unwrap() %>], {
                     balloonContentHeader: "<%= i.title %>",
                     balloonContentBody: "<a href='/place/<%= i.id %>/' target='_blank'><%= i.title %></a>",
@@ -78,10 +77,13 @@ function init() {
                     iconImageHref: "<%= i.get_image() %>",
                     iconImageSize: [30, 44],
                     iconImageOffset: [-15, -44]
-                        }, {
-                            preset: 'islands#yellowDotIcon'
-                        });
+                }, 
+                    {
+                        preset: 'islands#yellowDotIcon'
+                    }
+                );
                 myMap.geoObjects.add(myPlacemark);
+                
             <% } %>
         <% } %>
     });

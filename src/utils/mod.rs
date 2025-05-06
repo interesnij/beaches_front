@@ -96,9 +96,32 @@ pub struct UserJson {
     pub first_name: String,
     pub last_name:  String,
     pub email:      String,
-    pub level:      i16,
+    pub perm:       i16,
     pub image:      Option<String>,
-}  
+}
+
+impl {
+    pub fn get_status(&self) -> String {
+        return match self.perm {
+            1 => "Пользователь".to_string(),
+            2 => "Менеджер объекта".to_string(),
+            3 => "Подал заявку на партнерство".to_string(),
+            4 => "Владелец объекта".to_string(),
+            5 => "Модератор сайта".to_string(),
+            10 => "Суперпользователь".to_string(),
+            _ => "Статус неизвестен".to_string(),
+        }
+    }
+    pub fn get_image(&self) -> String {
+        if self.image.is_some() {
+            return self.image.as_deref().unwrap().to_string();
+        }
+        else {
+            return "/assets/images/faces/1.jpg".to_string();
+        }
+    }
+
+}
 #[derive(Debug, Deserialize, Serialize)]
 pub struct UserJsons {
     pub data: Vec<UserJson>,

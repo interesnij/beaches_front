@@ -30,6 +30,9 @@
                         <a href="/partners/" class="side-menu__item"><span class="side-menu__label">Партнеры</span></a>
                     </li>
                     <li>
+                        <a href="/suggest_users/" class="side-menu__item"><span class="side-menu__label">Заявки</span></a>
+                    </li>
+                    <li>
                         <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>
                     </li>
                     <li>

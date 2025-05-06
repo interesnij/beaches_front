@@ -81,7 +81,7 @@ pub struct RespPartnerJson {
     pub created: chrono::NaiveDateTime,
     pub user:    UserJson,
 }
-impl {
+impl RespPartnerJson {
     pub fn get_image(&self) -> String {
         if self.image.is_some() {
             return self.image.as_deref().unwrap().to_string();

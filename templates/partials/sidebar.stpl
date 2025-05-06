@@ -24,7 +24,7 @@
                         <a href="/places/" class="side-menu__item"><span class="side-menu__label">Объекты</span></a>
                     </li>
                     <li>
-                        <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Клиенты</span></a>
+                        <a href="/users/" class="side-menu__item"><span class="side-menu__label">Пользователи</span></a>
                     </li>
                     <li>
                         <a href="/partners/" class="side-menu__item"><span class="side-menu__label">Партнеры</span></a>
@@ -41,9 +41,6 @@
                 <% } else if partner { %>
                     <li class="slide">
                         <a href="/places/" class="side-menu__item"><span class="side-menu__label">Объекты</span></a>
-                    </li>
-                    <li>
-                        <a href="/clients/" class="side-menu__item"><span class="side-menu__label">Клиенты</span></a>
                     </li>
                     <li>
                         <a href="/create_place/" class="side-menu__item"><span class="side-menu__label">Создать объект</span></a>

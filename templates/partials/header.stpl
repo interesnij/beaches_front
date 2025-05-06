@@ -177,13 +177,12 @@
                     
                     <% if admin { %>
                         <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Объекты </a></li>
-                        <li><a class="dropdown-item d-flex" href="/clients/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Клиенты </a></li>
+                        <li><a class="dropdown-item d-flex" href="/users/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Пользователи </a></li>
                         <li><a class="dropdown-item d-flex" href="/partners/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Партнеры </a></li>
                         <li><a class="dropdown-item d-flex" href="/create_region/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Добавить регион</a></li>
                         <li><a class="dropdown-item d-flex" href="/create_city/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Добавить город</a></li>
                     <% } else if partner { %>   
                         <li><a class="dropdown-item d-flex" href="/places/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Объекты </a></li>
-                        <li><a class="dropdown-item d-flex" href="/clients/"><i class="bx bx-cog fs-18 me-2 op-7"></i>Клиенты </a></li>
                     <% } %>
                     <li><a class="dropdown-item d-flex logout_hundler" style="cursor:pointer"><i class="bx bx-log-out fs-18 me-2 op-7"></i>Выйти</a></li>
                 </ul>

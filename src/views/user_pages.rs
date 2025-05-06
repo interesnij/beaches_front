@@ -81,16 +81,6 @@ pub struct RespPartnerJson {
     pub created: chrono::NaiveDateTime,
     pub user:    UserJson,
 }
-impl RespPartnerJson {
-    pub fn get_image(&self) -> String {
-        if self.image.is_some() {
-            return self.image.as_deref().unwrap().to_string();
-        }
-        else {
-            return "/assets/images/faces/1.jpg".to_string();
-        }
-    }
-}
 
 pub async fn suggest_users_page(session: Session) -> actix_web::Result<HttpResponse> {
     if is_signed_in(&session) {

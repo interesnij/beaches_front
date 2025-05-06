@@ -20,11 +20,6 @@
                 <div class="card custom-card card-bg-light">
                     <div class="card-body">
                         <div class="d-flex align-items-center w-100">
-                            <div class="me-2">
-                                <span class="avatar avatar-rounded">
-                                    <img src="<%= object.get_image() %>" alt="img">
-                                </span>
-                            </div>
                             <div class="">
                                 <div class="fs-15 fw-semibold">
                                     <div class="fs-15 fw-semibold"><%= object.title %></div>

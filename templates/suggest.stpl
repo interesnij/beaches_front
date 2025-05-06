@@ -9,7 +9,7 @@
                 </div>
             </div> 
             <div class="card-body"> 
-                        <form>
+                        <form> 
                             <div class="mb-3">
                                 <label class="form-label">Название компании</label>
                                 <input type="text" id="id_title" name="title" class="form-control" placeholder="Название компании" aria-label="Title">

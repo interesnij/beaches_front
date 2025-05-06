@@ -814,3 +814,43 @@ on('body', 'click', '#edit_module_type', function() {
     }};
     link.send(json);
 });
+
+
+
+on('body', 'click', '#create_suggest_item', function() {
+  let form = this.parentElement.parentElement;
+  
+  form.querySelector("#id_title").style.setProperty('border', 'inherit', 'important');
+  form.querySelector("#id_inn").style.setProperty('border', 'inherit', 'important');
+  response = form.querySelector(".api_response");
+  if (!form.querySelector("#id_title").value) {
+      form.querySelector("#id_title").style.setProperty('border', '1px #FF0000 solid', 'important');
+      response.innerHTML = "Укажите название компании";
+      response.classList.add("error");
+      return
+  }
+  else if (!form.querySelector("#id_inn").value) {
+      form.querySelector("#id_inn").style.setProperty('border', '1px #FF0000 solid', 'important');
+      response.innerHTML = "Укажите ИНН компании";
+      response.classList.add("error");
+      return
+  }
+
+  form.querySelector("#create_suggest_item").setAttribute("disabled", "true");
+  form.querySelector("#create_suggest_item").innerHTML = "Идет сохранение";
+
+  form_data = new FormData(form);
+  form_data.append("user_id" , ID)
+  object = {};
+  form_data.forEach((value, key) => object[key] = value);
+  json = JSON.stringify(object);
+  
+    link = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' );
+    link.open( 'POST', "/suggest_partner/", true );
+    link.setRequestHeader('Content-Type', 'application/json');
+    link.onreadystatechange = function () {
+    if ( link.readyState == 4 && link.status == 200 ) {
+      window.location.href = "/profile/";
+    }};
+    link.send(json);
+});

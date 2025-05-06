@@ -84,6 +84,12 @@ on('body', 'click', '#signup', function() {
       response.classList.remove("error");
     }
 
+    first_name = form.querySelector("#id_first_name").value.trim();
+    last_name = form.querySelector("#id_last_name").value.trim();
+
+    form.querySelector("#id_first_name").value = first_name.replace(/[^a-zA-Z ]/g, "");
+    form.querySelector("#id_last_name").value = last_name.replace(/[^a-zA-Z ]/g, "");
+
     form.querySelector("#signup").setAttribute("disabled", "true");
   
     form_data = new FormData(form);

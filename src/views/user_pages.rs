@@ -72,7 +72,7 @@ pub async fn profile_page(session: Session) -> actix_web::Result<HttpResponse> {
     }
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct RespPartnerJson {
     pub id:      String,
     pub title:   String,
@@ -86,7 +86,7 @@ pub async fn suggest_users_page(session: Session) -> actix_web::Result<HttpRespo
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         if _request_user.is_superuser() {
-            let list: Vec<UserJson>;
+            let list: Vec<RespPartnerJson>;
             let url = URL.to_string() + &"/suggest/".to_string();
             let resp = crate::utils::request_get::<Vec<RespPartnerJson>>(url, _request_user.uuid.clone(), "application/json".to_string()).await;
             if resp.is_ok() { 
@@ -122,7 +122,7 @@ pub async fn partners_page(session: Session) -> actix_web::Result<HttpResponse> 
     if is_signed_in(&session) {
         let _request_user = get_current_user(&session).expect("E.");
         if _request_user.is_superuser() {
-            let list: Vec<UserJson>;
+            let list: Vec<RespPartnerJson>;
             let url = URL.to_string() + &"/partners/".to_string();
             let resp = crate::utils::request_get::<Vec<RespPartnerJson>>(url, _request_user.uuid.clone(), "application/json".to_string()).await;
             if resp.is_ok() { 

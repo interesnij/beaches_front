@@ -40,3 +40,5 @@
             <% } %>
     </div>
 </div>
+
+<% include!("../partials/f.stpl"); %>

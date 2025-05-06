@@ -12,7 +12,7 @@
                     </ol>
                 </nav>
             </div>
-        </div>
+        </div> 
         <div class="row row-sm">
             <% for object in list { %>
             <% let user = object.user; %>
@@ -26,7 +26,7 @@
                                     <p class="mb-0 op-7 fs-12">ИНН: <%= object.inn %></p>
                                     <p class="mb-0 op-7 fs-12">Владелец: <%= user.first_name %> <%= user.last_name %></p>
                                     <hr />
-                                    <p class="mb-0 op-7 fs-12" data-id="<%= object.id %>">
+                                    <p class="mb-0 op-7 fs-12" data-id="<%= user.id %>">
                                         <span class="create_partner" style="cursor: pointer">Одобрить</span>
                                         <!--<span class="remove_partner" style="cursor: pointer">Удалить</span>-->
                                     </p> 

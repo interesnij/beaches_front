@@ -120,8 +120,8 @@
 																</div>
 																<div class="card-body">
 																	<p class="card-text">Стоимость - <%= _order.price %></p>
-																	<p class="card-text">Время начала - <%= _order.time_start.format("%d-%m-%Y в %H:%M").to_string() %></p>
-																	<p class="card-text">Время окончания - <%= _order.time_start.format("%d-%m-%Y в %H:%M").to_string() %></p>
+																	<p class="card-text">Начало - <%= _order.time_start.format("%d-%m-%Y в %H:%M").to_string() %></p>
+																	<p class="card-text">Окончание - <%= _order.time_end.format("%d-%m-%Y в %H:%M").to_string() %></p>
 																</div>
 															</div>
 														</div>

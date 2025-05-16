@@ -16,7 +16,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="g-4">
                         <% for object in object_list.iter() { %>
                         <div class="">
@@ -38,7 +38,7 @@
                         <% } %>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div id="map"></div>
                 </div>
             </div>

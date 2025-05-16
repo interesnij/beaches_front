@@ -56,7 +56,7 @@ function init() {
     ymaps.geocode('43.580808, 39.718660').then(function (res) {
         myMap = new ymaps.Map('map', {
             center: res.geoObjects.get(0).geometry.getCoordinates(),
-            zoom : 4
+            zoom : 14
         }); 
 
         var addToMap = function(inputAdress) {

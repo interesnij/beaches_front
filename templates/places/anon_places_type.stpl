@@ -53,10 +53,10 @@ ymaps.ready(init);
 
 function init() {
     var myMap;
-    ymaps.geocode('<%= first.cord.as_deref().unwrap() %>').then(function (res) {
+    ymaps.geocode('43.580808, 39.718660').then(function (res) {
         myMap = new ymaps.Map('map', {
             center: res.geoObjects.get(0).geometry.getCoordinates(),
-            zoom : 12
+            zoom : 4
         }); 
 
         var addToMap = function(inputAdress) {

@@ -150,8 +150,8 @@ pub struct RespOrderJsons {
 pub struct OrderListJson {
     pub object_id:  String,
     pub price:      i32,
-    pub time_start: String, 
-    pub time_end:   String,
+    pub time_start: chrono::NaiveDateTime,
+    pub time_end:   chrono::NaiveDateTime,
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PlaceListJson {
@@ -190,9 +190,21 @@ pub struct Module {
     pub _angle:     f64,
     pub font_color: String,
     pub font_size:  String,
-    pub back_color: String,
+    pub back_color: String, 
     pub image:      Option<String>,
     pub event_id:   Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct HistoryData {
+    pub user_id:   i32, 
+    pub object_id: i32,
+    pub page_id:   i16,
+    pub link:      String,
+    pub title:     String,
+    pub height:    f64,
+    pub seconds:   i32,
+    pub template:  String,
 }
 
 pub fn get_page(req: &HttpRequest) -> i32 {
@@ -238,3 +250,30 @@ pub fn get_id(req: &HttpRequest) -> String {
     }
     id
 }
+
+
+pub async fn get_first_load_page (
+    title:       &String,
+    description: &String,
+    uri:         &String,
+    image:       &String,
+) -> actix_web::Result<HttpResponse> {
+    #[derive(TemplateOnce)] 
+    #[template(path = "generic/first_load.stpl")]
+    struct Template<'a> {
+        title:          &'a String,
+        description:    &'a String,
+        image:          &'a String,
+        uri:            &'a String,
+    }
+    let body = Template {
+        title:          title,
+        description:    description,
+        image:          image,
+        uri:            uri,
+    }
+    .render_once()
+    .map_err(|e| InternalError::new(e, StatusCode::INTERNAL_SERVER_ERROR))?;
+    Ok(HttpResponse::Ok().content_type("text/html; charset=utf-8").body(body))
+}
+

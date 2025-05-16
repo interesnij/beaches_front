@@ -1,0 +1,31 @@
+<% if is_ajax == 1 { %>
+
+<style>
+._nice {
+    object-fit: cover;
+    height: 250px !important;
+    width: 100%;
+}
+._nice_small {
+    object-fit: cover;
+    height: 37px !important;
+    width: 100%;
+}
+#map {
+  width: 100%; height: 100%; padding: 0; margin: 0;
+}
+.ymaps-2-1-79-controls__control_toolbar {
+  display: none;
+}
+</style>
+</head>
+
+<body> 
+    <div id="loader" >
+        <img src="/assets/images/media/loader.svg" alt="">
+    </div>
+
+    <div class="page">
+        <% include!("anon_header2.stpl"); %>
+        <% include!("anon_sidebar.stpl"); %>
+<% } %>

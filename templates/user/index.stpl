@@ -39,7 +39,7 @@
 										</div>
 										<div class="d-flex justify-content-between mb-4">
 											<div> 
-												<h5 class="main-profile-name"><%= request_user.first_name %> <%= request_user.last_name %> (<%= request_user.perm %>)</h5>
+												<h5 class="main-profile-name"><%= request_user.first_name %> <%= request_user.last_name %></h5>
 											</div>
 										</div>
 									</div><!-- main-profile-overview -->
@@ -53,9 +53,6 @@
 								<div class="tabs-menu ">
 									<!-- Tabs -->
 									<ul class="nav nav-tabs profile navtab-custom panel-tabs" role="tablist">
-										<li class="">
-											<a href="#home" data-bs-toggle="tab" class="active" aria-expanded="true" aria-selected="true" role="tab"> <span class="visible-xs"><i class="las la-user-circle fs-16 me-1"></i></span> <span class="hidden-xs">Инфо</span> </a>
-										</li>
 										<% if admin == true || partner == true { %>
 										<li class="">
 											<a href="#gallery" data-bs-toggle="tab" aria-expanded="false" aria-selected="false" role="tab" class="" tabindex="-1"> <span class="visible-xs"><i class="las la-images fs-15 me-1"></i></span>
@@ -73,10 +70,6 @@
 									</ul>
 								</div>
 								<div class="tab-content border border-top-0 p-4 br-dark">
-									<div class="tab-pane border-0 p-0 active show" id="home" role="tabpanel">
-										<p class="fs-15 text-uppercase mb-3">ID <%= request_user.uuid %></p>
-                                        <p class="fs-15 text-uppercase mb-3">Статус - <%= request_user.get_status() %></p>
-									</div>
 									<% if admin == true || partner == true { %>
 									<div class="tab-pane border-0 p-0" id="gallery" role="tabpanel">
                                         <div class="row">
@@ -127,13 +120,8 @@
 																</div>
 																<div class="card-body">
 																	<p class="card-text">Стоимость - <%= _order.price %></p>
-																	<p class="card-text">Время начала - <%= _order.time_start %></p>
-																	<p class="card-text">Время окончания - <%= _order.time_end %></p>
-																</div>
-																<div class="card-footer">
-																	<p class="card-text">
-																		<% if _place.cord.is_some() { %><%= _place.cord.as_deref().unwrap() %><% } else { %>Координаты неизвестны<% } %>
-																	</p>
+																	<p class="card-text">Время начала - <%= _order.time_start.format("%d-%m-%Y в %H:%M").to_string() %><%= _order.time_start %></p>
+																	<p class="card-text">Время окончания - <%= _order.time_start.format("%d-%m-%Y в %H:%M").to_string() %><%= _order.time_end %></p>
 																</div>
 															</div>
 														</div>

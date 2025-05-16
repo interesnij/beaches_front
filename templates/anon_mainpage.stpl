@@ -2,35 +2,32 @@
 
 <div class="main-content app-content">
     <div class="container-fluid">
-    <div class="row about-main mb-5 mt-5" style="background-color: rgba(var(--primary-rgb), 0.7);padding: 40px 10px;color: white !important;">
-        <div class="col-lg-8 col-md-8 col-sm-12 text-center">
-            <div class="mb-3">
-                <h5 class="fw-semibold text-fixed-white op-9">Забронируй свое место за 60 секунд</h5>
+        <div class="row about-main mb-5 mt-5" style="background-color: rgba(var(--primary-rgb), 0.7);padding: 40px 10px;color: white !important;">
+            <div class="col-lg-8 col-md-8 col-sm-12 text-center">
+                <div class="mb-3">
+                    <h5 class="fw-semibold text-fixed-white op-9">Забронируй свое место за 60 секунд</h5>
+                </div>
+                <h1 class="mb-3 fw-semibold fs-46 text-fixed-white">Добро пожаловать на My Place</h1>
+                <p class="leading-normal text-fixed-white fs-16">
+                    Наши преимущества:<br />
+                    Универсальность (места, рестораны, парковки)<br />
+                    Мгновенное бронирование и оплата<br />
+                    Безопасность
+                </p>
+                <p class="leading-normal fs-16 btn-list">
+                    <a href="/places/" class="m-1 btn btn-primary">
+                        Выбрать места
+                        <i class="fe fe-eye ms-2 align-middle"></i>
+                    </a>
+                    <a href="/about/" class="m-1 btn btn-info">
+                        О нас
+                        <i class="fe fe-arrow-right ms-2 align-middle"></i>
+                    </a>
+                </p>
             </div>
-            <h1 class="mb-3 fw-semibold fs-46 text-fixed-white">Добро пожаловать на My Place</h1>
-            <p class="leading-normal text-fixed-white fs-16">
-                Наши преимущества:<br />
-                Универсальность (места, рестораны, парковки)<br />
-                Мгновенное бронирование и оплата<br />
-                Безопасность
-            </p>
-            <p class="leading-normal fs-16 btn-list">
-                <a href="/places/" class="m-1 btn btn-primary">
-                    Выбрать места
-                    <i class="fe fe-eye ms-2 align-middle"></i>
-                </a>
-                <a href="/business/" class="m-1 btn btn-info">
-                    Для бизнеса
-                    <i class="fe fe-arrow-right ms-2 align-middle"></i>
-                </a>
-            </p>
         </div>
-    </div>
-    <div class="row mb-5 rounded-5">
-        <p><img src="/assets/images/signup_jpg.jpg" class="rounded-3 w-100" alt="image"></p>
-    </div>
 
-    <% include!("faq_.stpl"); %>
+        <% include!("faq_.stpl"); %>
         <% include!("missia_.stpl"); %>
         <% include!("testimonials_.stpl"); %>
     </div>

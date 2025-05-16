@@ -16,6 +16,7 @@ use actix_web::{
     dev::ConnectionInfo,
 };
 use serde::{Deserialize, Serialize};
+use sailfish::TemplateOnce;
 
 
 pub const URL: &str = "https://back.my-demo.ru";

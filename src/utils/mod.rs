@@ -62,7 +62,7 @@ impl Place {
             return self.background.as_deref().unwrap().to_string();
         }
         else {
-            return "/assets/images/my/Терраса_фон.png".to_string();
+            return "/assets/images/my/фон.png".to_string();
         }
     }
     pub fn get_image(&self) -> String {
